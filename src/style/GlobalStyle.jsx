@@ -24,6 +24,12 @@ body {
   overflow-x: hidden;
 }
 
+button{
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
 :root {
   /* 🎨 Background */
   --background-primary: #0e0e0e; /* Netural/90 */
