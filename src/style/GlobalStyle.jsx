@@ -15,13 +15,13 @@ const GlobalStyle = createGlobalStyle`
 html {
   scroll-behavior: smooth;
   font-size: 62.5%;
-  font-family:SF Pro;
-  font-weight:500;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
+  font-family: "Syncopate", sans-serif;
+  font-weight: 400;
 }
 
 button{
