@@ -3,7 +3,7 @@ import SectionCard from '../components/About/SectionCard';
 import styled from 'styled-components';
 import Intro from '../components/About/Intro';
 import PeopleContent from '../components/About/PeopleContent';
-import { GlassyBox } from '../style/common';
+import { GlassEffect } from '../style/common';
 import Gradient1 from '../assets/images/Gradient1.png';
 import Gradient2 from '../assets/images/Gradient2.png';
 
@@ -111,7 +111,7 @@ const Sections = styled.div`
 
 const Section=styled.div``;
 
-const ChatBox=styled(GlassyBox)`
+const ChatBox=styled(GlassEffect)`
   display: block;
   width: fit-content;
   margin-left: auto;

@@ -20,7 +20,6 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--background-primary);
-  background-color:green;
   overflow-x: hidden;
   font-family: "Syncopate", sans-serif;
   font-weight: 400;

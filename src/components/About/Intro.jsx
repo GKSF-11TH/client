@@ -2,7 +2,7 @@ import React from 'react';
 import mapImg from '../../assets/images/about-page-world-map.svg';
 import styled from 'styled-components';
 import iconAI from '../../assets/images/GKS_AI.png';
-import { GlassyBox } from '../../style/common';
+import { GlassEffect } from '../../style/common';
 
 
 const Intro = () => {
@@ -75,7 +75,7 @@ const TitleWrapper=styled.div`
     }
 `
 
-const ChatBox=styled(GlassyBox)`
+const ChatBox=styled(GlassEffect)`
     display: flex;
     width: 45.8rem;
     height: 10.4rem;
