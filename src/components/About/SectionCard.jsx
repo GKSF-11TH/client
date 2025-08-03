@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import iconAI from '../../../assets/images/GKS_AI.png';
+import iconAI from '../../assets/images/GKS_AI.png';
 
 const SectionCard = ({ title, children }) => {
   return (
@@ -15,7 +15,7 @@ const SectionCard = ({ title, children }) => {
 };
 
 const CardWrapper = styled.section`
-  width: 100%;
+  width: calc(71.4/106*100%);
   display: flex;
   flex-direction: column;
   gap: 2rem;
