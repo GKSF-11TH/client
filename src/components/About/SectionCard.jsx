@@ -20,6 +20,10 @@ const CardWrapper = styled.section`
   flex-direction: column;
   gap: 2rem;
   align-items: flex-start;
+
+  @media (max-width: 768px) {
+    width:calc(29.1/31.5*100%);
+  }
 `;
 
 const TitleWrapper = styled.div`

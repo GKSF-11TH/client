@@ -1,14 +1,16 @@
 import React from 'react';
 import mapImg from '../../assets/images/about-page-world-map.svg';
+import KoreaImg from '../../assets/images/korea-map.svg';
 import styled from 'styled-components';
 import iconAI from '../../assets/images/GKS_AI.png';
-import { GlassEffect } from '../../style/common';
+import { GlassEffectWithSolidBg } from '../../style/common';
 
 
 const Intro = () => {
     return (
         <Container>
-            <Background src={mapImg}></Background>
+            <Background src={mapImg} className="desktop-map"></Background>
+            <Background src={KoreaImg} className="mobile-map"></Background>
             <Content>
                 <TitleWrapper>
                     <h1>Global Korean<br/>Studies Forum</h1>
@@ -32,10 +34,26 @@ const Container=styled.div`
     justify-content:center;
 `
 
-const Background=styled.img`
-    width:100%;
-    position:absolute;
-    z-index:0;
+const Background = styled.img`
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+
+    &.mobile-map {
+        display: none;
+        
+        @media (max-width: 768px) {
+            display: block;
+        }
+    }
+    
+    &.desktop-map {
+        display: block;
+        
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
 `
 
 const Content=styled.div`
@@ -75,7 +93,7 @@ const TitleWrapper=styled.div`
     }
 `
 
-const ChatBox=styled(GlassEffect)`
+const ChatBox=styled(GlassEffectWithSolidBg)`
     display: flex;
     width: 45.8rem;
     height: 10.4rem;
