@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap');
+
+/*
+  아래와 같이 사용
+  font-family: "Syncopate", sans-serif;
+  font-weight: 400;
+*/
+
 .ibm-plex-mono-medium {
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 500;
