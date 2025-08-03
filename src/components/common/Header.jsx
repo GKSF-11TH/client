@@ -5,7 +5,7 @@ import logoImg from '../../assets//images/_GKSF Logo.svg'
 
 export default function Header() {
   const navigate=useNavigate();
-  
+
   return (
     <div>
       <HeaderSection>
