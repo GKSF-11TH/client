@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import BackgroundImage from '../assets/images/booth-gradient-bg.svg';
+import BackgroundImage from '../assets/images/booth-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import BoothCard from '../components/Booth/BoothCard';
 import { useNavigate } from 'react-router-dom';
@@ -89,6 +89,7 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 17.4rem;
+  gap: calc(17.4 / 96 * 100vh);
 
   @media (max-width: 768px) {
     gap: 7.2rem;
