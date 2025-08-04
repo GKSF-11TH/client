@@ -196,7 +196,9 @@ const Logo = styled.div`
   }
 `;
 
+
 const NavWrapper = styled(GlassEffectWithBlurryBg)`
+
   display: flex;
   padding: 0.6rem 0.8rem;
   /* height: 4.2rem; */
