@@ -141,8 +141,8 @@ const HeaderSection = styled.header`
     flex-direction: column;
     align-items: center;
 
-    ${({ $DropdownOpen }) =>
-      $DropdownOpen &&
+    ${({ $dropdownOpen }) =>
+      $dropdownOpen &&
       `
       height:100vh;
       position:fixed;
