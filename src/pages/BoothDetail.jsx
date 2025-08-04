@@ -9,7 +9,7 @@ const BoothData = [
     title: 'To:Utopia - Try Everything with AI',
     description:
       '기술의 발전은 예측 불가능성에 대한 두려움을 동반해왔지만, 우리는 그것을 기회로 바꾸며 더 나은 삶을 만들어왔습니다. 이 부스에서는 한국 사회의 예술, 의료, 교육 분야에서 나타나는 문제들을 AI와의 융합을 통해 어떻게 해결할 수 있는지를 제시합니다. 이를 통해 AI를 두려운 존재가 아닌, 우리의 삶과 공존하며 함께 발전해나갈 존재로 인식하는 계기를 마련하고자 합니다.',
-    images: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    images: [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     title: '빅브라더 v.2050: AI is watching you',
@@ -37,7 +37,9 @@ const BoothDetail = () => {
           {BoothData[boothId - 1].images.map((image, index) => (
             <ImageBox key={index} alt={`Booth ${boothId} Image ${index + 1}`} />
           ))}
-          <SpareBox>Global Korean Studies Forum</SpareBox>
+          <SpareBox imageLen={BoothData[boothId - 1].images.length}>
+            Global Korean Studies Forum
+          </SpareBox>
         </ImageGridBox>
       </Content>
     </Container>
@@ -142,7 +144,7 @@ const ImageGridBox = styled.div`
   padding: 0 2rem;
   margin-bottom: 27.6rem;
   /* background: var(--background-tertiary); */
-  
+
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 50%);
     gap: 0.4rem;
@@ -166,8 +168,8 @@ const ImageBox = styled.img`
 `;
 
 const SpareBox = styled.div`
-  width: 100%;
-  aspect-ratio: 25 / 36;
+  width: ${(props) => (4 - (props.imageLen % 4)) * 100}%;
+  aspect-ratio: ${(props) => 4 - (props.imageLen % 4)} * 25/ 36;
   background: var(--Background-Glass, rgba(16, 16, 16, 0.4));
   padding: 2.6rem 0 0 2.25rem;
   display: inline-flex;
@@ -183,6 +185,8 @@ const SpareBox = styled.div`
   @media (max-width: 768px) {
     font-size: 2.05rem;
     padding: 1.2rem 0 0 1.2rem;
+    width: ${(props) => (2 - (props.imageLen % 2)) * 100}%;
+    aspect-ratio: ${(props) => 2 - (props.imageLen % 2)} * 25/ 36;
   }
 `;
 
