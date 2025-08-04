@@ -15,14 +15,15 @@ const SectionCard = ({ title, children }) => {
 };
 
 const CardWrapper = styled.section`
-  width: calc(71.4/106*100%);
+  width: calc(71.4 / 106 * 100%);
   display: flex;
   flex-direction: column;
   gap: 2rem;
   align-items: flex-start;
 
   @media (max-width: 768px) {
-    width:calc(29.1/31.5*100%);
+    width: calc(29.1 / 31.5 * 100%);
+    gap: 1.4rem;
   }
 `;
 
@@ -47,6 +48,18 @@ const TitleWrapper = styled.div`
     font-weight: 400;
     line-height: 100%; /* 3.6rem */
     letter-spacing: -0.036rem;
+  }
+
+  @media (max-width: 768px) {
+    > img {
+      width: calc(3.8 * 1.25rem);
+      height: calc(3.8 * 1.25rem);
+    }
+
+    > h2 {
+      font-size: 2.4rem;
+      letter-spacing: -0.024rem;
+    }
   }
 `;
 
