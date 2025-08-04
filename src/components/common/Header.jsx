@@ -5,7 +5,10 @@ import logoImg from '../../assets//images/_GKSF Logo.svg';
 import hamburgerIcon from '../../assets/icons/hamburg.svg';
 import closeIcon from '../../assets/icons/close.svg';
 import { useEffect, useState } from 'react';
-import { GlassEffect, GlassEffectWithTransparentBg } from '../../style/common';
+import {
+  GlassEffectWithBlurryBg,
+  GlassEffectWithTransparentBg
+} from '../../style/common';
 
 export default function Header() {
   const [currentTab, setCurrentTab] = useState('');
@@ -193,7 +196,9 @@ const Logo = styled.div`
   }
 `;
 
-const NavWrapper = styled(GlassEffect)`
+
+const NavWrapper = styled(GlassEffectWithBlurryBg)`
+
   display: flex;
   padding: 0.6rem 0.8rem;
   /* height: 4.2rem; */
