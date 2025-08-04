@@ -27,45 +27,45 @@ export default function Header() {
 
   return (
     <div>
-      <HeaderSection DropdownOpen={DropdownOpen}>
-        <HeaderWrapper DropdownOpen={DropdownOpen}>
+      <HeaderSection $dropdownOpen={DropdownOpen}>
+        <HeaderWrapper $dropdownOpen={DropdownOpen}>
           <Logo>
             <img src={logoImg} onClick={() => navigate('/')} />
           </Logo>
           <NavWrapper>
             <Tab
-              isActive={currentTab === '/about'}
+              $isActive={currentTab === '/about'}
               onClick={() => navigate('/about')}
             >
               <p>ABOUT</p>
             </Tab>
             <DropdownContainer>
               <Tab
-                isActive={currentTab === '/booth'}
+                $isActive={currentTab === '/booth'}
                 onClick={() => navigate('/booth')}
               >
                 <p>BOOTH</p>
               </Tab>
               <DropdownMenu>
-                <DropdownItem onClick={() => navigate('/booth/1')}>
+                <DropdownItem onClick={() => navigate('/boothDetail/1')}>
                   <p>BOOTH A</p>
                 </DropdownItem>
-                <DropdownItem onClick={() => navigate('/booth/2')}>
+                <DropdownItem onClick={() => navigate('/boothDetail/2')}>
                   <p>BOOTH B</p>
                 </DropdownItem>
-                <DropdownItem onClick={() => navigate('/booth/3')}>
+                <DropdownItem onClick={() => navigate('/boothDetail/3')}>
                   <p>BOOTH C</p>
                 </DropdownItem>
               </DropdownMenu>
             </DropdownContainer>
             <Tab
-              isActive={currentTab === '/session'}
+              $isActive={currentTab === '/session'}
               onClick={() => navigate('/session')}
             >
               <p>SESSION</p>
             </Tab>
             <Tab
-              isActive={currentTab === '/archiving'}
+              $isActive={currentTab === '/archiving'}
               onClick={() => navigate('/archiving')}
             >
               <p>ARCHIVING</p>
@@ -93,20 +93,20 @@ export default function Header() {
               <p>BOOTH</p>
             </Tab>
             <Tab
-              isIndent={true}
-              onClick={() => handleMobileTabClick('/booth/1')}
+              $isIndent={true}
+              onClick={() => handleMobileTabClick('/boothDetail/1')}
             >
               <p>BOOTH A</p>
             </Tab>
             <Tab
-              isIndent={true}
-              onClick={() => handleMobileTabClick('/booth/2')}
+              $isIndent={true}
+              onClick={() => handleMobileTabClick('/boothDetail/2')}
             >
               <p>BOOTH B</p>
             </Tab>
             <Tab
-              isIndent={true}
-              onClick={() => handleMobileTabClick('/booth/3')}
+              $isIndent={true}
+              onClick={() => handleMobileTabClick('/boothDetail/3')}
             >
               <p>BOOTH C</p>
             </Tab>
@@ -141,8 +141,8 @@ const HeaderSection = styled.header`
     flex-direction: column;
     align-items: center;
 
-    ${({ DropdownOpen }) =>
-      DropdownOpen &&
+    ${({ $DropdownOpen }) =>
+      $DropdownOpen &&
       `
       height:100vh;
       position:fixed;
@@ -161,48 +161,12 @@ const HeaderWrapper = styled.div`
 
   @media (max-width: 768px) {
     padding: 0.6rem 2.4rem;
-    border-radius: 10rem;
 
-    ${({ DropdownOpen }) =>
-      !DropdownOpen &&
+    ${({ $DropdownOpen }) =>
+      !$DropdownOpen &&
       `
-      position: relative;
-      backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
-
-      & > * {
-        position: relative;
-        z-index: 1;
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: 10rem;
-        padding: 1px;
-        background:
-          linear-gradient(rgba(16, 16, 16, 0.4), rgba(16, 16, 16, 0.4)),
-          linear-gradient(
-            108deg,
-            #fff 0%,
-            rgba(255, 255, 255, 0.4) 40%,
-            rgba(255, 255, 255, 0.03) 98.74%
-          );
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: 10rem;
-        background: var(--Background-Glass, rgba(16, 16, 16, 0.4));
-        z-index: -1;
-      }
+      ${GlassEffectWithTransparentBg.componentStyle.rules};
+      border-radius:10rem;
     `}
   }
 `;
@@ -268,8 +232,8 @@ const Tab = styled.button`
     letter-spacing: 0.028rem;
   }
 
-  ${({ isActive }) =>
-    isActive &&
+  ${({ $isActive }) =>
+    $isActive &&
     `
     position: relative;
    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
@@ -312,7 +276,7 @@ const Tab = styled.button`
     display: flex;
     flex-direction: row;
     height: 6rem;
-    padding-left: ${({ isIndent }) => (isIndent ? `3.4rem` : `1.6rem`)};
+    padding-left: ${({ $isIndent }) => ($isIndent ? `3.4rem` : `1.6rem`)};
     align-items: center;
     justify-content: flex-start;
   }
