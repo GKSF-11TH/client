@@ -115,6 +115,7 @@ const Title = styled.h1`
 `;
 
 const CardWrapper = styled.div`
+  cursor: pointer;
   width: 100%;
   padding: 0.9rem 0;
   display: flex;
