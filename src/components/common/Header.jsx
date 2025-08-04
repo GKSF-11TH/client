@@ -44,13 +44,13 @@ export default function Header() {
                 <p>BOOTH</p>
               </Tab>
               <DropdownMenu>
-                <DropdownItem onClick={() => navigate('/booth/1')}>
+                <DropdownItem onClick={() => navigate('/boothDetail/1')}>
                   <p>BOOTH A</p>
                 </DropdownItem>
-                <DropdownItem onClick={() => navigate('/booth/2')}>
+                <DropdownItem onClick={() => navigate('/boothDetail/2')}>
                   <p>BOOTH B</p>
                 </DropdownItem>
-                <DropdownItem onClick={() => navigate('/booth/3')}>
+                <DropdownItem onClick={() => navigate('/boothDetail/3')}>
                   <p>BOOTH C</p>
                 </DropdownItem>
               </DropdownMenu>
