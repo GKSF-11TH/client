@@ -109,6 +109,7 @@ const Title = styled.h1`
     font-size: 3.2rem;
     line-height: 127%;
     margin-bottom: 2.8rem;
+    padding: 0 2rem;
   }
 `;
 
@@ -129,31 +130,31 @@ const Description = styled.p`
     font-size: 1.6rem;
     line-height: 140%;
     margin-bottom: 5rem;
+    padding: 0 2rem;
   }
 `;
 
 const ImageGridBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 25%);
   gap: 0.8rem;
   width: 100%;
   padding: 0 2rem;
   margin-bottom: 27.6rem;
   /* background: var(--background-tertiary); */
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
+  
   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50%);
     gap: 0.4rem;
+    margin-bottom: 8.48rem;
+    padding: 0 1.7rem;
   }
 
-  @media (max-width: 480px) {
-    grid-template-columns: repeat(1, 1fr);
-    gap: 0.8rem;
-  }
+  /* @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+  } */
 `;
 
 const ImageBox = styled.img`
@@ -180,7 +181,7 @@ const SpareBox = styled.div`
   letter-spacing: -0.042rem;
 
   @media (max-width: 768px) {
-    font-size: 2.65rem;
+    font-size: 2.05rem;
     padding: 1.2rem 0 0 1.2rem;
   }
 `;
