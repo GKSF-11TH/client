@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const Booth = () => {
-  return <div>booth</div>;
+  return <></>;
 };
 
 export default Booth;
