@@ -68,21 +68,25 @@ const Container = styled.div`
   min-height: 100vh;
   color: #fff;
   font-family: 'Pretendard', 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Header = styled.header`
-  padding-top: 130px;
-  padding-bottom: 10px;
+  padding-top: clamp(13rem, 8vh, 13rem);
+  padding-bottom: clamp(0.5rem, 1vh, 1rem);
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: clamp(1rem, 2vh, 1.5rem);
+  flex-shrink: 0;
   @media (max-width: 900px) {
-    gap: 20px;
+    gap: 2rem;
   }
   @media (max-width: 600px) {
-    padding-top: 110px;
-    gap: 16px;
+    padding-top: 11rem;
+    gap: 1.6rem;
   }
 `;
 
@@ -92,75 +96,76 @@ const Title = styled.h1`
   -webkit-text-stroke-width: 0.4px;
   -webkit-text-stroke-color: #fff;
   font-family: Syncopate;
-  font-size: 36px;
+  font-size: clamp(2rem, 4vw, 3.6rem);
   font-style: normal;
   font-weight: 400;
-  line-height: 100%; /* 36px */
+  line-height: 100%;
   letter-spacing: -0.36px;
-  padding-bottom: 24px;
+  padding-bottom: clamp(1rem, 2vh, 2.4rem);
   @media (max-width: 900px) {
     font-size: 2.2rem;
   }
   @media (max-width: 600px) {
     font-size: 1.5rem;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 `;
 
 const Subtitle = styled.p`
   color: var(--Text-Primary, #fbfbfb);
   text-align: center;
-
-  /* Desktop/Body/16_R */
   font-family: 'IBM Plex Mono';
-  font-size: 16px;
+  font-size: clamp(1rem, 1.5vw, 1.6rem);
   font-style: normal;
   font-weight: 400;
-  line-height: 140%; /* 22.4px */
+  line-height: 140%;
   letter-spacing: 0.16px;
-  padding-bottom: 28px;
+  padding-bottom: clamp(1rem, 2vh, 2.8rem);
+  max-width: 80ch;
+  margin: 0 auto;
   @media (max-width: 900px) {
     font-size: 1.05rem;
-    margin-bottom: 28px;
+    margin-bottom: 2.8rem;
   }
   @media (max-width: 600px) {
     font-size: 0.98rem;
-    margin-bottom: 18px;
+    margin-bottom: 1.8rem;
   }
 `;
 
 const NavWrapper = styled.div`
   display: flex;
-  width: 660px;
-  height: 64px;
-  padding: 10px 8px 8px 8px;
+  width: clamp(50rem, 80vw, 66rem);
+  height: clamp(4rem, 8vh, 6.4rem);
+  padding: clamp(0.5rem, 1vh, 1rem) clamp(0.4rem, 1vw, 0.8rem);
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: clamp(0.3rem, 1.5vw, 1rem);
   border-radius: 100px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 0.1rem solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   margin: 0 auto;
+  flex-shrink: 0;
   @media (max-width: 900px) {
     width: 90%;
-    max-width: 600px;
-    height: 56px;
-    gap: 8px;
-    padding: 8px 6px 10px 6px;
-    margin: 0 auto 32px auto;
+    max-width: 60rem;
+    height: 5.6rem;
+    gap: clamp(0.3rem, 1.5vw, 0.8rem);
+    padding: 0.8rem 0.6rem 1rem 0.6rem;
+    margin: 0 auto 3.2rem auto;
   }
   @media (max-width: 600px) {
     width: 90%;
-    height: 52px;
+    height: 5.2rem;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 4px;
-    padding: 7px 5px 14px 5px;
-    margin: 0 auto 24px auto;
+    gap: clamp(0.2rem, 1vw, 0.4rem);
+    padding: 0.7rem 0.5rem 1.4rem 0.5rem;
+    margin: 0 auto 2.4rem auto;
     border-radius: 100px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 0.1rem solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   }
@@ -168,74 +173,86 @@ const NavWrapper = styled.div`
 
 const Tab = styled.button.attrs(() => ({}))`
   display: flex;
-  width: 150px;
-  height: 48px;
+  width: clamp(6rem, 12vw, 15rem);
+  height: clamp(3rem, 5vh, 4.8rem);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 36px;
+  border-radius: 3.6rem;
   border: ${(props) =>
     props.$active
-      ? '0.794px solid var(--Glass, rgba(255, 255, 255, 0.2))'
+      ? '0.0794rem solid var(--Glass, rgba(255, 255, 255, 0.2))'
       : 'none'};
   background: ${(props) =>
     props.$active ? 'rgba(255, 255, 255, 0.15)' : 'transparent'};
   color: #fff;
   font-family: 'SF Pro', 'Pretendard', 'Syncopate', sans-serif;
-  font-size: 16px;
+  font-size: clamp(0.7rem, 1.2vw, 1.6rem);
   font-weight: 500;
   cursor: pointer;
   outline: none;
   transition: all 0.18s cubic-bezier(0.4, 1.2, 0.6, 1);
   white-space: nowrap;
   transform: ${(props) =>
-    props.$active ? 'translateY(-1px)' : 'translateY(0)'};
+    props.$active ? 'translateY(-0.1rem)' : 'translateY(0)'};
   backdrop-filter: ${(props) =>
     props.$active ? 'blur(calc(var(--Glass-L, 30px) / 2))' : 'none'};
-  padding: 10px;
+  padding: clamp(0.3rem, 0.8vw, 1rem);
   margin: 0;
   &:hover {
     background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-1px);
+    transform: translateY(-0.1rem);
     backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   }
   &:active {
     background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    transform: translateY(-0.2rem);
     backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   }
   @media (max-width: 900px) {
-    width: 110px;
-    height: 40px;
-    font-size: 15px;
+    width: clamp(6rem, 12vw, 11rem);
+    height: clamp(3rem, 5vh, 4rem);
+    font-size: clamp(0.7rem, 1.3vw, 1.5rem);
   }
   @media (max-width: 600px) {
-    width: 80px;
-    height: 36px;
-    font-size: 12px;
+    width: clamp(4rem, 10vw, 8rem);
+    height: clamp(2.5rem, 4vh, 3.6rem);
+    font-size: clamp(0.6rem, 1.1vw, 1.2rem);
   }
 `;
 
+const MainContent = styled.main`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(2rem, 4vh, 4rem) 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+`;
+
 const SessionTitle = styled.h2`
-  padding-bottom: 15px;
+  padding-bottom: clamp(1rem, 2vh, 1.5rem);
   font-family: 'DesignHouse', sans-serif;
-  font-size: 1.7rem;
-  font-size: 24px;
+  font-size: clamp(1.5rem, 2.5vw, 2.4rem);
   font-weight: 400;
   text-align: center;
-  margin-top: 45px;
-  margin-bottom: 36px;
+  margin-top: clamp(1.5rem, 4vh, 4.5rem);
+  margin-bottom: clamp(2rem, 4vh, 3.6rem);
   letter-spacing: 0.04em;
   line-height: 1.3;
   color: #fff;
-  text-shadow: 0 2px 12px #2e3c5d55;
+  text-shadow: 0 0.2rem 1.2rem #2e3c5d55;
+  width: 100%;
   @media (max-width: 900px) {
-    margin-top: 40px;
+    margin-top: 4rem;
   }
   @media (max-width: 600px) {
     font-size: 1.2rem;
-    margin-top: 30px;
-    margin-bottom: 16px;
+    margin-top: 3rem;
+    margin-bottom: 1.6rem;
   }
 `;
 
@@ -244,33 +261,35 @@ const InfoRow = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  gap: 40px;
-  margin-bottom: 32px;
+  gap: clamp(2rem, 4vw, 4rem);
+  margin-bottom: clamp(2rem, 4vh, 3.2rem);
+  width: 100%;
   @media (max-width: 900px) {
-    gap: 40px;
+    gap: 4rem;
   }
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 2.4rem;
   }
 `;
 
 const SpeakerImg = styled.img`
-  width: 260px;
-  height: 260px;
+  width: clamp(12rem, 20vw, 26rem);
+  height: clamp(12rem, 20vw, 26rem);
   object-fit: cover;
-  border-radius: 24px;
+  border-radius: 2.4rem;
   background: #222;
-  box-shadow: 0 0 32px #4f8cff33;
-  border: 4px solid #4f8cff33;
+  box-shadow: 0 0 3.2rem #4f8cff33;
+  border: 0.4rem solid #4f8cff33;
+  flex-shrink: 0;
   @media (max-width: 900px) {
-    width: 180px;
-    height: 180px;
+    width: 18rem;
+    height: 18rem;
   }
   @media (max-width: 600px) {
-    width: 140px;
-    height: 140px;
+    width: 14rem;
+    height: 14rem;
   }
 `;
 
@@ -279,34 +298,34 @@ const InfoCol = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  height: 250px;
+  height: clamp(15rem, 25vh, 25rem);
   width: 90%;
-  max-width: 420px;
+  max-width: 42rem;
   @media (max-width: 900px) {
-    height: 180px;
+    height: 18rem;
   }
   @media (max-width: 600px) {
     align-items: center;
     text-align: center;
     width: 100%;
     max-width: 100%;
-    height: 140px;
+    height: 14rem;
   }
 `;
 
 const SpeakerGroup = styled.div``;
 
 const SpeakerTitle = styled.div`
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
   color: var(--text-tertiary);
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   font-family: 'IBM Plex Mono', monospace;
 `;
 
 const Speaker = styled.div`
-  font-size: 1.13rem;
+  font-size: clamp(1rem, 1.3vw, 1.13rem);
   color: var(--Text-Primary, #fbfbfb);
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -316,16 +335,16 @@ const Speaker = styled.div`
 const ContentGroup = styled.div``;
 
 const ContentTitle = styled.div`
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
   color: var(--text-tertiary);
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   font-family: 'IBM Plex Mono', monospace;
 `;
 
 const Content = styled.div`
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
   color: var(--Text-Primary, #fbfbfb);
   line-height: 1.7;
   font-family: 'IBM Plex Mono', monospace;
@@ -334,25 +353,26 @@ const Content = styled.div`
 const StructureGroup = styled.div``;
 
 const Structure = styled.div`
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
   color: var(--Text-Primary, #fbfbfb);
   font-weight: 500;
   font-family: 'IBM Plex Mono', monospace;
 `;
 
 const StructureTitle = styled.div`
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
   color: var(--text-tertiary);
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   font-family: 'IBM Plex Mono', monospace;
 `;
 
 const BottomSpace = styled.div`
-  height: 80px;
+  height: clamp(2rem, 4vh, 8rem);
+  flex-shrink: 0;
   @media (max-width: 600px) {
-    height: 48px;
+    height: 4.8rem;
   }
 `;
 
@@ -381,7 +401,7 @@ const Session = () => {
           ))}
         </NavWrapper>
       </Header>
-      <main>
+      <MainContent>
         <SessionTitle>{session.title}</SessionTitle>
         <InfoRow>
           <SpeakerImg src={session.img} alt={session.speaker} />
@@ -400,7 +420,7 @@ const Session = () => {
             </StructureGroup>
           </InfoCol>
         </InfoRow>
-      </main>
+      </MainContent>
       <BottomSpace />
       <Footer />
     </Container>

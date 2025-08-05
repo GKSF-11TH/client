@@ -8,16 +8,20 @@ const Container = styled.div`
   min-height: 100vh;
   color: #fff;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Header = styled.header`
-  padding-top: 130px;
+  padding-top: clamp(13rem, 8vh, 13rem);
   text-align: center;
+  flex-shrink: 0;
   @media (max-width: 900px) {
-    padding-top: 60px;
+    padding-top: 6rem;
   }
   @media (max-width: 600px) {
-    padding-top: 32px;
+    padding-top: 3.2rem;
   }
 `;
 
@@ -27,71 +31,84 @@ const Title = styled.h1`
   -webkit-text-stroke-width: 0.4px;
   -webkit-text-stroke-color: #fff;
   font-family: Syncopate;
-  font-size: 36px;
+  font-size: clamp(2rem, 4vw, 3.6rem);
   font-style: normal;
   font-weight: 400;
-  line-height: 100%; /* 36px */
+  line-height: 100%;
   letter-spacing: -0.36px;
-  padding-bottom: 24px;
+  padding-bottom: clamp(1.5rem, 3vh, 2.4rem);
   @media (max-width: 900px) {
     font-size: 2.2rem;
   }
   @media (max-width: 600px) {
     font-size: 1.5rem;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
 `;
 
 const Subtitle = styled.p`
   color: var(--Text-Primary, #fbfbfb);
   text-align: center;
-
-  /* Desktop/Body/16_R */
   font-family: 'IBM Plex Mono';
-  font-size: 16px;
+  font-size: clamp(1rem, 1.5vw, 1.6rem);
   font-style: normal;
   font-weight: 400;
-  line-height: 140%; /* 22.4px */
+  line-height: 140%;
   letter-spacing: 0.16px;
-  padding-bottom: 90px;
+  padding-bottom: clamp(3rem, 8vh, 9rem);
+  max-width: 80ch;
+  margin: 0 auto;
   @media (max-width: 900px) {
     font-size: 1.05rem;
-    margin-bottom: 28px;
+    margin-bottom: 2.8rem;
   }
   @media (max-width: 600px) {
     font-size: 0.98rem;
-    margin-bottom: 18px;
+    margin-bottom: 1.8rem;
   }
+`;
+
+const MainContent = styled.main`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(2rem, 4vh, 4rem) 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 `;
 
 const CardRow = styled.div`
   display: flex;
   justify-content: center;
-  gap: 48px;
-  margin-bottom: 80px;
+  gap: clamp(2rem, 5vw, 4.8rem);
+  margin-bottom: clamp(3rem, 8vh, 8rem);
+  width: 100%;
   @media (max-width: 900px) {
-    gap: 24px;
-    margin-bottom: 40px;
+    gap: 2.4rem;
+    margin-bottom: 4rem;
   }
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 1.6rem;
+    margin-bottom: 2.4rem;
   }
 `;
 
 const Card = styled.div`
   display: flex;
-  width: 340px;
-  height: 230px;
-  padding: 32px;
+  width: clamp(20rem, 30vw, 34rem);
+  height: clamp(15rem, 20vh, 23rem);
+  padding: clamp(2rem, 4vw, 3.2rem);
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   position: relative;
-  border-radius: 18px;
-  border: 1.4px solid var(--Glass, rgba(255, 255, 255, 0.4));
+  border-radius: 1.8rem;
+  border: 0.14rem solid var(--Glass, rgba(255, 255, 255, 0.4));
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   cursor: pointer;
@@ -99,14 +116,14 @@ const Card = styled.div`
     box-shadow 0.2s,
     border-color 0.2s;
   @media (max-width: 900px) {
-    width: 260px;
-    height: 180px;
-    padding: 24px 18px;
+    width: 26rem;
+    height: 18rem;
+    padding: 2.4rem 1.8rem;
   }
   @media (max-width: 600px) {
     width: 90vw;
-    height: 140px;
-    padding: 16px 12px;
+    height: 14rem;
+    padding: 1.6rem 1.2rem;
   }
 `;
 
@@ -115,16 +132,16 @@ const CardTitle = styled.div`
   -webkit-text-stroke-width: 0.14px;
   -webkit-text-stroke-color: #fff;
   font-family: 'IBM Plex Mono';
-  font-size: 15px;
+  font-size: clamp(0.9rem, 1.2vw, 1.5rem);
   font-style: normal;
   font-weight: 400;
   line-height: 140%;
   letter-spacing: 0.144px;
   @media (max-width: 900px) {
-    font-size: 14px;
+    font-size: 1.4rem;
   }
   @media (max-width: 600px) {
-    font-size: 13px;
+    font-size: 1.3rem;
   }
 `;
 
@@ -136,16 +153,24 @@ const CardAction = styled.div`
   color: #fff;
   text-align: center;
   font-family: 'IBM Plex Mono';
-  font-size: 16px;
+  font-size: clamp(1rem, 1.3vw, 1.6rem);
   font-style: normal;
   font-weight: 400;
   line-height: 140%;
   letter-spacing: 0.16px;
   @media (max-width: 900px) {
-    font-size: 14px;
+    font-size: 1.4rem;
   }
   @media (max-width: 600px) {
-    font-size: 13px;
+    font-size: 1.3rem;
+  }
+`;
+
+const BottomSpace = styled.div`
+  height: clamp(2rem, 4vh, 8rem);
+  flex-shrink: 0;
+  @media (max-width: 600px) {
+    height: 4.8rem;
   }
 `;
 
@@ -161,7 +186,7 @@ const Participation = () => {
           포럼에 참여하고 여러분의 소감을 방명록에 공유해 보세요.
         </Subtitle>
       </Header>
-      <main>
+      <MainContent>
         <CardRow>
           <Card onClick={() => setShowPreapply(true)}>
             <CardTitle>Pre-Apply</CardTitle>
@@ -172,7 +197,8 @@ const Participation = () => {
             <CardAction>방명록 작성하기</CardAction>
           </Card>
         </CardRow>
-      </main>
+      </MainContent>
+      <BottomSpace />
       {showGuestbook && <Guestbook onClose={() => setShowGuestbook(false)} />}
       {showPreapply && <Preapply onClose={() => setShowPreapply(false)} />}
       <Footer />
