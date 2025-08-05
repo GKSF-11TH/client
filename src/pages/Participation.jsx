@@ -83,7 +83,7 @@ const MainContent = styled.main`
 const CardRow = styled.div`
   display: flex;
   justify-content: center;
-  gap: clamp(2rem, 5vw, 4.8rem);
+  gap: 6rem;
   margin-bottom: clamp(3rem, 8vh, 8rem);
   width: 100%;
   @media (max-width: 900px) {
@@ -100,9 +100,9 @@ const CardRow = styled.div`
 
 const Card = styled.div`
   display: flex;
-  width: clamp(20rem, 30vw, 34rem);
-  height: clamp(15rem, 20vh, 23rem);
-  padding: clamp(2rem, 4vw, 3.2rem);
+  width: 34rem;
+  height: 23rem;
+  padding: 3.2rem;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
