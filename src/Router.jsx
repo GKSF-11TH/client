@@ -1,12 +1,13 @@
-import { createBrowserRouter } from "react-router-dom";
-import Booth from "./pages/Booth";
-import About from "./pages/About";
-import Session from "./pages/Session";
-import Archiving from "./pages/Archiving";
-import Participation from "./pages/Participation";
-import Landing from "./pages/Landing";
-import Header from "./components/common/Header";
-import Error from "./pages/Error";
+import { createBrowserRouter } from 'react-router-dom';
+import Booth from './pages/Booth';
+import About from './pages/About';
+import Session from './pages/Session';
+import Archiving from './pages/Archiving';
+import Participation from './pages/Participation';
+import Landing from './pages/Landing';
+import Header from './components/common/Header';
+import Error from './pages/Error';
+import BoothDetail from './pages/BoothDetail';
 
 const router = createBrowserRouter([
   {
@@ -14,31 +15,35 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "/",
-        element: <Landing />,
+        path: '/',
+        element: <Landing />
       },
       {
-        path: "/about",
-        element: <About />,
+        path: '/about',
+        element: <About />
       },
       {
-        path: "/booth",
-        element: <Booth />,
+        path: '/booth',
+        element: <Booth />
       },
       {
-        path: "/session",
-        element: <Session />,
+        path: '/boothDetail/:boothId',
+        element: <BoothDetail />
       },
       {
-        path: "/archiving",
-        element: <Archiving />,
+        path: '/session',
+        element: <Session />
       },
       {
-        path: "/participation",
-        element: <Participation />,
+        path: '/archiving',
+        element: <Archiving />
       },
-    ],
-  },
+      {
+        path: '/participation',
+        element: <Participation />
+      }
+    ]
+  }
 ]);
 
 export default router;
