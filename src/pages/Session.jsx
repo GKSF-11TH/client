@@ -1,7 +1,410 @@
-import React from "react";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Footer from '../components/common/Footer';
+
+const sessions = [
+  {
+    id: 1,
+    title: '생각은 AI가 하고, 나는 멈췄다?: AI 리터러시 교육이 필요한 지금',
+    time: '10:00 - 11:00',
+    place: 'Main Hall',
+    tags: ['AI', '리터러시', '교육'],
+    speaker: '구본권 한겨레 사람과 디지털 연구소장',
+    content:
+      '생성형 AI는 단순한 도구를 넘어 삶 전반에 영향을 미치는 기반 기술로 자리잡고 있으며, 이에 따라 AI 리터러시 교육의 중요성도 높아지고 있다. 본 세션은 AI 의존이 사고력 저하를 초래할 수 있다는 우려와 학습 능력을 향상시킬 수 있다는 기대 사이에서 균형점을 모색하고자 한다. 나아가 인간의 주체성을 잃지 않고 AI를 효과적으로 활용할 수 있는 방법에 대해 함께 고민해보고자 한다.',
+    structure: '강연 및 청중 질의응답',
+    img: '/src/assets/images/speaker1.jpeg'
+  },
+  {
+    id: 2,
+    title: '스포츠 산업, AI라는 코치를 만나다',
+    time: '11:15 - 12:15',
+    place: 'Room 2',
+    tags: ['스포츠', 'AI', '산업'],
+    speaker: '정용철 서강대학교 교육대학원 스포츠전공 주임교수',
+    content:
+      '대한민국의 스포츠와 AI에 대한 현주소에 대해 이야기하고, 스포츠와 AI 기술의 융합이 어떻게 변화하고 있는지를 조망하고자 합니다. 이를 통해 스포츠 산업 내 AI 기술의 활용 가능성을 모색하고, 나아가 AI와 스포츠 심리학의 융합이 가져올 새로운 패러다임을 공유함으로써 스포츠 산업의 미래 발전에 기여하고자 합니다.',
+    structure: '강연 및 미니 토크쇼',
+    img: '/src/assets/images/speaker2.png'
+  },
+  {
+    id: 3,
+    title: 'AI와 청년 일자리: 함께 가는 법을 묻다',
+    time: '13:30 - 14:30',
+    place: 'Room 3',
+    tags: ['AI', '청년', '일자리'],
+    speaker:
+      '이금룡 코글로닷컴 회장 /  양승엽 한국노동연구원 사회정책연구본부 부연구위원',
+    content:
+      'AI 기술의 발전으로 노동시장이 빠르게 재편되면서, 청년층은 일자리 불확실성에 직면하고 있습니다. 본 세션에서는 AI로 인해 변화하는 노동시장 속에서 청년이 갖춰야 할 역량과 정부·기업의 역할, 사람과 기술의 공존 방안을 고용주와 노동자의 관점에서 함께 모색합니다.',
+    structure: '심포지엄 및 청중 질의응답',
+    img: '/src/assets/images/speaker3.png'
+  },
+  {
+    id: 4,
+    title: 'AI와 교육: 혁신과 불평등의 경계에서',
+    time: '14:45 - 15:45',
+    place: 'Main Hall',
+    tags: ['AI', '교육', '격차'],
+    speaker: '김현아 경일초등학교 교장 / 한정윤 고운영센터 부연구위원',
+    content:
+      'AI와 교육의 접목에 관한 제도적 기반과 실제 교육 현장의 경험을 폭넓게 바라보며 AI 기반 교육의 현재와 미래 전망을 탐구합니다. 또한 AI 기반 교육의 확산이 초래할 수 있는 교육 격차 문제를 진단하고, 이를 해소하기 위한 실천적 방안에 대해 다양한 관점에서 논의하고자 합니다.',
+    structure: '심포지엄 및 청중 질의응답',
+    img: '/src/assets/images/speaker4.png'
+  },
+  {
+    id: 5,
+    title: '문화와 창의성',
+    speaker: '최수정, 문화기획자',
+    content: '창의적 문화 활동이 사회에 미치는 영향과 사례를 공유합니다.',
+    structure: '케이스 스터디',
+    img: '/src/assets/images/speaker5.png'
+  }
+];
+
+const tabs = ['세션 A', '세션 B', '세션 C', '세션 D', '세션 E'];
+
+const Container = styled.div`
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Pretendard', 'Montserrat', sans-serif;
+`;
+
+const Header = styled.header`
+  padding-top: 130px;
+  padding-bottom: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  @media (max-width: 900px) {
+    gap: 20px;
+  }
+  @media (max-width: 600px) {
+    padding-top: 110px;
+    gap: 16px;
+  }
+`;
+
+const Title = styled.h1`
+  color: var(--Text-Primary, #fbfbfb);
+  text-align: center;
+  -webkit-text-stroke-width: 0.4px;
+  -webkit-text-stroke-color: #fff;
+  font-family: Syncopate;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 36px */
+  letter-spacing: -0.36px;
+  padding-bottom: 24px;
+  @media (max-width: 900px) {
+    font-size: 2.2rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+`;
+
+const Subtitle = styled.p`
+  color: var(--Text-Primary, #fbfbfb);
+  text-align: center;
+
+  /* Desktop/Body/16_R */
+  font-family: 'IBM Plex Mono';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 22.4px */
+  letter-spacing: 0.16px;
+  padding-bottom: 28px;
+  @media (max-width: 900px) {
+    font-size: 1.05rem;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 600px) {
+    font-size: 0.98rem;
+    margin-bottom: 18px;
+  }
+`;
+
+const NavWrapper = styled.div`
+  display: flex;
+  width: 660px;
+  height: 64px;
+  padding: 10px 8px 8px 8px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
+  margin: 0 auto;
+  @media (max-width: 900px) {
+    width: 90%;
+    max-width: 600px;
+    height: 56px;
+    gap: 8px;
+    padding: 8px 6px 10px 6px;
+    margin: 0 auto 32px auto;
+  }
+  @media (max-width: 600px) {
+    width: 90%;
+    height: 52px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    padding: 7px 5px 14px 5px;
+    margin: 0 auto 24px auto;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
+  }
+`;
+
+const Tab = styled.button.attrs(() => ({}))`
+  display: flex;
+  width: 150px;
+  height: 48px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 36px;
+  border: ${(props) =>
+    props.$active
+      ? '0.794px solid var(--Glass, rgba(255, 255, 255, 0.2))'
+      : 'none'};
+  background: ${(props) =>
+    props.$active ? 'rgba(255, 255, 255, 0.15)' : 'transparent'};
+  color: #fff;
+  font-family: 'SF Pro', 'Pretendard', 'Syncopate', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.18s cubic-bezier(0.4, 1.2, 0.6, 1);
+  white-space: nowrap;
+  transform: ${(props) =>
+    props.$active ? 'translateY(-1px)' : 'translateY(0)'};
+  backdrop-filter: ${(props) =>
+    props.$active ? 'blur(calc(var(--Glass-L, 30px) / 2))' : 'none'};
+  padding: 10px;
+  margin: 0;
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
+  }
+  &:active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
+  }
+  @media (max-width: 900px) {
+    width: 110px;
+    height: 40px;
+    font-size: 15px;
+  }
+  @media (max-width: 600px) {
+    width: 80px;
+    height: 36px;
+    font-size: 12px;
+  }
+`;
+
+const SessionTitle = styled.h2`
+  padding-bottom: 15px;
+  font-family: 'DesignHouse', sans-serif;
+  font-size: 1.7rem;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 45px;
+  margin-bottom: 36px;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  color: #fff;
+  text-shadow: 0 2px 12px #2e3c5d55;
+  @media (max-width: 900px) {
+    margin-top: 40px;
+  }
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+    margin-top: 30px;
+    margin-bottom: 16px;
+  }
+`;
+
+const InfoRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 32px;
+  @media (max-width: 900px) {
+    gap: 40px;
+  }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+`;
+
+const SpeakerImg = styled.img`
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 24px;
+  background: #222;
+  box-shadow: 0 0 32px #4f8cff33;
+  border: 4px solid #4f8cff33;
+  @media (max-width: 900px) {
+    width: 180px;
+    height: 180px;
+  }
+  @media (max-width: 600px) {
+    width: 140px;
+    height: 140px;
+  }
+`;
+
+const InfoCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 250px;
+  width: 90%;
+  max-width: 420px;
+  @media (max-width: 900px) {
+    height: 180px;
+  }
+  @media (max-width: 600px) {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    height: 140px;
+  }
+`;
+
+const SpeakerGroup = styled.div``;
+
+const SpeakerTitle = styled.div`
+  font-size: 1.05rem;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-family: 'IBM Plex Mono', monospace;
+`;
+
+const Speaker = styled.div`
+  font-size: 1.13rem;
+  color: var(--Text-Primary, #fbfbfb);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  font-family: 'IBM Plex Mono', monospace;
+`;
+
+const ContentGroup = styled.div``;
+
+const ContentTitle = styled.div`
+  font-size: 1.05rem;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-family: 'IBM Plex Mono', monospace;
+`;
+
+const Content = styled.div`
+  font-size: 1.05rem;
+  color: var(--Text-Primary, #fbfbfb);
+  line-height: 1.7;
+  font-family: 'IBM Plex Mono', monospace;
+`;
+
+const StructureGroup = styled.div``;
+
+const Structure = styled.div`
+  font-size: 1.05rem;
+  color: var(--Text-Primary, #fbfbfb);
+  font-weight: 500;
+  font-family: 'IBM Plex Mono', monospace;
+`;
+
+const StructureTitle = styled.div`
+  font-size: 1.05rem;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-family: 'IBM Plex Mono', monospace;
+`;
+
+const BottomSpace = styled.div`
+  height: 80px;
+  @media (max-width: 600px) {
+    height: 48px;
+  }
+`;
 
 const Session = () => {
-  return <div>session</div>;
+  const [selectedTab, setSelectedTab] = useState(0);
+  const session = sessions[selectedTab];
+
+  return (
+    <Container>
+      <Header>
+        <Title>SESSION</Title>
+        <Subtitle>
+          '위기의 한국, 미래로의 도약: Korea in Crisis, New Leap to the
+          Future'에서 뻗어나온 <br />
+          다섯가지 소주제로 다섯 개의 세션을 진행합니다.
+        </Subtitle>
+        <NavWrapper>
+          {tabs.map((tab, idx) => (
+            <Tab
+              key={tab}
+              $active={selectedTab === idx}
+              onClick={() => setSelectedTab(idx)}
+            >
+              {tab}
+            </Tab>
+          ))}
+        </NavWrapper>
+      </Header>
+      <main>
+        <SessionTitle>{session.title}</SessionTitle>
+        <InfoRow>
+          <SpeakerImg src={session.img} alt={session.speaker} />
+          <InfoCol>
+            <SpeakerGroup>
+              <SpeakerTitle>연사자</SpeakerTitle>
+              <Speaker>{session.speaker}</Speaker>
+            </SpeakerGroup>
+            <ContentGroup>
+              <ContentTitle>세션 내용</ContentTitle>
+              <Content>{session.content}</Content>
+            </ContentGroup>
+            <StructureGroup>
+              <StructureTitle>세션 구성</StructureTitle>
+              <Structure>{session.structure}</Structure>
+            </StructureGroup>
+          </InfoCol>
+        </InfoRow>
+      </main>
+      <BottomSpace />
+      <Footer />
+    </Container>
+  );
 };
 
 export default Session;
