@@ -65,14 +65,13 @@ const sessions = [
 const tabs = ['세션 A', '세션 B', '세션 C', '세션 D', '세션 E'];
 
 const Container = styled.div`
-  background: linear-gradient(180deg, #2e3c5d 0%, #000 60%);
   min-height: 100vh;
   color: #fff;
   font-family: 'Pretendard', 'Montserrat', sans-serif;
 `;
 
 const Header = styled.header`
-  padding-top: 120px;
+  padding-top: 130px;
   padding-bottom: 10px;
   text-align: center;
   display: flex;

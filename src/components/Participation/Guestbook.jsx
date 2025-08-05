@@ -16,8 +16,10 @@ const Overlay = styled.div`
 `;
 
 const Modal = styled.div`
-  background: linear-gradient(135deg, #181c22 0%, #111 100%);
   border-radius: 24px;
+  border: 1px solid var(--Glass, rgba(255, 255, 255, 0.4));
+  background: var(--Background-Glass, rgba(16, 16, 16, 0.4));
+  backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   max-width: 820px;
   width: 90vw;
   padding: 52px 40px 32px 40px;
@@ -49,14 +51,14 @@ const CloseBtn = styled.button`
 
 const Title = styled.h2`
   text-align: center;
-  font-size: 1.7rem;
-  font-family: 'Syncopate', 'SF Pro', sans-serif;
-  font-weight: 700;
+  font-size: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
   margin-bottom: 36px;
   letter-spacing: 0.04em;
   color: #fff;
   @media (max-width: 600px) {
-    font-size: 1.2rem;
+    font-size: 20px;
     margin-bottom: 18px;
   }
 `;
@@ -71,11 +73,11 @@ const Form = styled.form`
 `;
 
 const Label = styled.label`
-  font-size: 1.08rem;
-  font-family: 'SF Pro', 'SUITE-Regular', sans-serif;
-  font-weight: 600;
+  font-size: 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
   margin-bottom: 8px;
-  color: #fff;
+  color: #919191;
   display: block;
 `;
 
@@ -85,17 +87,17 @@ const Input = styled.input`
   border: none;
   border-bottom: 2px solid;
   border-image: linear-gradient(90deg, #222, #222) 1;
-  color: #fff;
-  font-size: 1.08rem;
+  color: #919191;
+  font-size: 14px;
   padding: 8px 0;
   margin-bottom: 4px;
   outline: none;
   box-shadow: none;
-  font-family: 'SF Pro', 'SUITE-Regular', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   &::placeholder {
     color: #bbb;
-    font-size: 1rem;
-    font-family: 'SF Pro', 'SUITE-Regular', sans-serif;
+    font-size: 14px;
+    font-family: 'IBM Plex Mono', monospace;
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
@@ -105,24 +107,23 @@ const Input = styled.input`
   }
 `;
 
-// 댓글도 input으로 변경
 const CommentInput = styled.input`
   width: 100%;
   background: transparent;
   border: none;
   border-bottom: 2px solid;
   border-image: linear-gradient(90deg, #222, #222) 1;
-  color: #fff;
-  font-size: 1.08rem;
+  color: #919191;
+  font-size: 14px;
   padding: 8px 0;
   margin-bottom: 4px;
   outline: none;
   box-shadow: none;
-  font-family: 'SF Pro', 'SUITE-Regular', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   &::placeholder {
     color: #bbb;
-    font-size: 1rem;
-    font-family: 'SF Pro', 'SUITE-Regular', sans-serif;
+    font-size: 14px;
+    font-family: 'IBM Plex Mono', monospace;
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
@@ -136,7 +137,7 @@ const BtnRow = styled.div`
   display: flex;
   justify-content: center;
   gap: 24px;
-  margin-top: 32px;
+  margin-top: 15px;
   @media (max-width: 600px) {
     gap: 12px;
     margin-top: 18px;
@@ -149,8 +150,8 @@ const Button = styled.button`
   border: none;
   border-radius: 10px;
   padding: 12px 32px;
-  font-size: 1.08rem;
-  font-family: 'SF Pro', 'SUITE-Regular', sans-serif;
+  font-size: 14px;
+  font-family: 'IBM Plex Mono', monospace;
   cursor: pointer;
   width: 160px;
   transition: background 0.2s;
@@ -159,7 +160,7 @@ const Button = styled.button`
   }
   @media (max-width: 600px) {
     padding: 8px 16px;
-    font-size: 0.95rem;
+    font-size: 14px;
     width: 100px;
   }
 `;

@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Guestbook from '../components/common/Guestbook';
-import Preapply from '../components/common/Preapply';
+import Guestbook from '../components/Participation/Guestbook.jsx';
+import Preapply from '../components/Participation/Preapply.jsx';
 import Footer from '../components/common/Footer';
 
 const Container = styled.div`
-  background: linear-gradient(180deg, #2e3c5d 0%, #000 60%);
   min-height: 100vh;
   color: #fff;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
 `;
 
 const Header = styled.header`
-  padding-top: 125px;
+  padding-top: 130px;
   text-align: center;
   @media (max-width: 900px) {
     padding-top: 60px;
@@ -92,9 +91,9 @@ const Card = styled.div`
   justify-content: flex-start;
   position: relative;
   border-radius: 18px;
-  border: 1.4px solid rgba(255, 255, 255, 0.2);
+  border: 1.4px solid var(--Glass, rgba(255, 255, 255, 0.4));
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   cursor: pointer;
   transition:
     box-shadow 0.2s,
