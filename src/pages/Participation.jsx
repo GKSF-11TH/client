@@ -1,11 +1,34 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import BackgroundImage from '../assets/images/booth-gradient-bg.png';
+import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import Guestbook from '../components/Participation/Guestbook.jsx';
 import Preapply from '../components/Participation/Preapply.jsx';
 import Footer from '../components/common/Footer';
 import { GlassEffectWithBlurryBg } from '../style/common.js';
 
+const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('${BackgroundImage}');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    background-image: url('${MobileBackgroundImage}');
+    background-position: center top;
+    height: 230rem;
+  }
+`;
+
 const Container = styled.div`
+  position: relative;
+  width: 100vw;
   min-height: 100vh;
   color: #fff;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
@@ -15,6 +38,8 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
+  position: relative;
+  z-index: 1;
   padding-top: 14rem;
   text-align: center;
   flex-shrink: 0;
@@ -29,14 +54,14 @@ const Header = styled.header`
 const Title = styled.h1`
   color: var(--Text-Primary, #fbfbfb);
   text-align: center;
-  -webkit-text-stroke-width: 0.4px;
+  -webkit-text-stroke-width: 0.04rem;
   -webkit-text-stroke-color: #fff;
   font-family: Syncopate;
   font-size: clamp(2rem, 4vw, 3.6rem);
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
-  letter-spacing: -0.36px;
+  letter-spacing: -0.036rem;
   padding-bottom: clamp(1.5rem, 3vh, 2.4rem);
   @media (max-width: 900px) {
     font-size: 2.2rem;
@@ -54,7 +79,7 @@ const Subtitle = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 140%;
-  letter-spacing: 0.16px;
+  letter-spacing: 0.016rem;
   padding-bottom: clamp(3rem, 8vh, 9rem);
   max-width: 80ch;
   margin: 0 auto;
@@ -69,6 +94,8 @@ const Subtitle = styled.p`
 `;
 
 const MainContent = styled.main`
+  position: relative;
+  z-index: 1;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -110,7 +137,7 @@ const Card = styled(GlassEffectWithBlurryBg)`
   align-items: flex-start;
   justify-content: flex-start;
   position: relative;
-  border-radius: 18px !important;
+  border-radius: 1.8rem !important;
   background: rgba(255, 255, 255, 0.05);
   cursor: pointer;
   transition:
@@ -118,39 +145,39 @@ const Card = styled(GlassEffectWithBlurryBg)`
     border-color 0.2s;
 
   &::before {
-    border-radius: 18px !important;
+    border-radius: 1.8rem !important;
   }
 
   &::after {
-    border-radius: 18px !important;
+    border-radius: 1.8rem !important;
     background: rgba(255, 255, 255, 0.05);
   }
   @media (max-width: 600px) {
     width: 70vw;
     height: 20rem;
     padding: 1.6rem 1.2rem;
-    border-radius: 18px !important;
+    border-radius: 1.8rem !important;
 
     &::before {
-      border-radius: 18px !important;
+      border-radius: 1.8rem !important;
     }
 
     &::after {
-      border-radius: 18px !important;
+      border-radius: 1.8rem !important;
     }
   }
 `;
 
 const CardTitle = styled.div`
   color: #fff;
-  -webkit-text-stroke-width: 0.14px;
+  -webkit-text-stroke-width: 0.014rem;
   -webkit-text-stroke-color: #fff;
   font-family: 'IBM Plex Mono';
   font-size: clamp(0.9rem, 1.2vw, 1.5rem);
   font-style: normal;
   font-weight: 400;
   line-height: 140%;
-  letter-spacing: 0.144px;
+  letter-spacing: 0.0144rem;
   @media (max-width: 900px) {
     font-size: 1.4rem;
   }
@@ -171,7 +198,7 @@ const CardAction = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 140%;
-  letter-spacing: 0.16px;
+  letter-spacing: 0.016rem;
   @media (max-width: 900px) {
     font-size: 1.4rem;
   }
@@ -194,6 +221,7 @@ const Participation = () => {
 
   return (
     <Container>
+      <Background />
       <Header>
         <Title>PARTICIPATION</Title>
         <Subtitle>

@@ -1,13 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
+import BackgroundImage from '../assets/images/booth-gradient-bg.png';
+import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import Card from '../components/Archiving/Card';
 import ArchiveItem from '../components/Archiving/ArchiveItem';
 import Footer from '../components/common/Footer';
 
-const MainContainer = styled.main`
+const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
   width: 100%;
+  height: 100%;
+  background-image: url('${BackgroundImage}');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    background-image: url('${MobileBackgroundImage}');
+    background-position: center top;
+    height: 230rem;
+  }
+`;
+
+const MainContainer = styled.main`
+  width: 100vw;
   overflow: hidden;
   position: relative;
+  z-index: 1;
 `;
 
 const ContentWrapper = styled.div`
@@ -37,23 +59,23 @@ const MainContent = styled.div`
 const Heading = styled.h1`
   position: absolute;
   top: 15rem;
-  left: calc(50% - 580px);
+  left: calc(50% - 58rem);
   color: #fff;
-  -webkit-text-stroke-width: 0.4px;
+  -webkit-text-stroke-width: 0.04rem;
   -webkit-text-stroke-color: #fff;
   font-family: Syncopate;
   font-size: 5.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
-  letter-spacing: -0.58px;
+  letter-spacing: -0.058rem;
   text-align: left;
 
   @media (max-width: 768px) {
     top: 7.5rem;
     left: 4rem;
     font-size: 3rem;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.03rem;
   }
 `;
 
@@ -136,7 +158,7 @@ const ForumTitle = styled.h2`
   font-size: 3.4rem;
   font-style: normal;
   font-weight: 400;
-  letter-spacing: -0.34px;
+  letter-spacing: -0.034rem;
   line-height: 100%;
   color: white;
   margin: 0;
@@ -175,7 +197,7 @@ const MobileItemGroup = styled.div`
 
 const MobileHorizontalSeparator = styled.div`
   position: absolute;
-  width: 150px;
+  width: 15rem;
   height: 0.1rem;
   background: #bbb;
   bottom: -6rem;
@@ -183,7 +205,7 @@ const MobileHorizontalSeparator = styled.div`
 
 const MobileVerticalSeparator = styled.div`
   position: absolute;
-  height: 186.5px;
+  height: 18.65rem;
   width: 0.1rem;
   background: #bbb;
   top: 0;
@@ -194,6 +216,7 @@ const MobileVerticalSeparator = styled.div`
 const DesktopMain = () => {
   return (
     <MainContainer data-model-id="764:13808">
+      <Background />
       <ContentWrapper>
         <MainContent>
           <Heading>
@@ -281,6 +304,7 @@ const DesktopMain = () => {
 const MobileMain = () => {
   return (
     <MainContainer>
+      <Background />
       <ContentWrapper>
         <MainContent>
           <Heading>

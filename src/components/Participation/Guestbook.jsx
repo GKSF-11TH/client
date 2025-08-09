@@ -22,13 +22,13 @@ const Overlay = styled.div`
 `;
 
 const Modal = styled.div`
-  border-radius: 24px;
-  border: 1px solid var(--Glass, rgba(255, 255, 255, 0.4));
+  border-radius: 2.4rem;
+  border: 0.1rem solid var(--Glass, rgba(255, 255, 255, 0.4));
   background: var(--Background-Glass, rgba(16, 16, 16, 0.4));
   backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
-  max-width: 820px;
+  max-width: 82rem;
   width: 90vw;
-  padding: 52px 40px 32px 40px;
+  padding: 5.2rem 4rem 3.2rem 4rem;
   box-sizing: border-box;
   color: #fff;
   position: relative;
@@ -36,14 +36,14 @@ const Modal = styled.div`
 
   @media (max-width: 600px) {
     display: flex !important;
-    width: 300px !important;
-    height: 500px !important;
-    padding: 32px !important;
+    width: 30rem !important;
+    height: 50rem !important;
+    padding: 3.2rem !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 10px !important;
-    border-radius: 18px !important;
-    border: 1.4px solid var(--Glass, rgba(255, 255, 255, 0.4)) !important;
+    gap: 1rem !important;
+    border-radius: 1.8rem !important;
+    border: 0.14rem solid var(--Glass, rgba(255, 255, 255, 0.4)) !important;
     background: rgba(255, 255, 255, 0.05) !important;
     backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2)) !important;
   }
@@ -51,54 +51,54 @@ const Modal = styled.div`
 
 const CloseBtn = styled.button`
   position: absolute;
-  top: 32px;
-  right: 32px;
+  top: 3.2rem;
+  right: 3.2rem;
   background: none;
   border: none;
   color: #fff;
   font-size: 2rem;
   cursor: pointer;
   @media (max-width: 600px) {
-    top: 16px;
-    right: 16px;
+    top: 1.6rem;
+    right: 1.6rem;
     font-size: 1.4rem;
   }
 `;
 
 const Title = styled.h2`
   text-align: center;
-  font-size: 20px;
+  font-size: 2rem;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  margin-bottom: 36px;
+  margin-bottom: 3.6rem;
   letter-spacing: 0.04em;
   color: #fff;
   @media (max-width: 600px) {
-    font-size: 16px;
-    margin-bottom: 40px;
+    font-size: 1.6rem;
+    margin-bottom: 4rem;
   }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 3.2rem;
   @media (max-width: 600px) {
-    gap: 40px;
+    gap: 4rem;
   }
 `;
 
 const Label = styled.label`
-  font-size: 14px;
+  font-size: 1.4rem;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   color: #919191;
   display: block;
 
   @media (max-width: 600px) {
-    font-size: 12px;
-    margin-bottom: 12px;
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
   }
 `;
 
@@ -106,32 +106,32 @@ const Input = styled.input`
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 2px solid;
+  border-bottom: 0.2rem solid;
   border-image: linear-gradient(90deg, #222, #222) 1;
   color: #919191;
-  font-size: 14px;
-  padding: 8px 0;
-  margin-bottom: 4px;
+  font-size: 1.4rem;
+  padding: 0.8rem 0;
+  margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
   font-family: 'IBM Plex Mono', monospace;
   &::placeholder {
     color: #bbb;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-family: 'IBM Plex Mono', monospace;
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
-    border-bottom: 2px solid;
+    border-bottom: 0.2rem solid;
     outline: none;
     box-shadow: none;
   }
 
   @media (max-width: 600px) {
-    font-size: 12px;
-    padding: 12px 0;
+    font-size: 1.2rem;
+    padding: 1.2rem 0;
     &::placeholder {
-      font-size: 12px;
+      font-size: 1.2rem;
     }
   }
 `;
@@ -140,32 +140,32 @@ const CommentInput = styled.input`
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 2px solid;
+  border-bottom: 0.2rem solid;
   border-image: linear-gradient(90deg, #222, #222) 1;
   color: #919191;
-  font-size: 14px;
-  padding: 8px 0;
-  margin-bottom: 4px;
+  font-size: 1.4rem;
+  padding: 0.8rem 0;
+  margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
   font-family: 'IBM Plex Mono', monospace;
   &::placeholder {
     color: #bbb;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-family: 'IBM Plex Mono', monospace;
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
-    border-bottom: 2px solid;
+    border-bottom: 0.2rem solid;
     outline: none;
     box-shadow: none;
   }
 
   @media (max-width: 600px) {
-    font-size: 12px;
-    padding: 12px 0;
+    font-size: 1.2rem;
+    padding: 1.2rem 0;
     &::placeholder {
-      font-size: 12px;
+      font-size: 1.2rem;
     }
   }
 `;
@@ -173,9 +173,9 @@ const CommentInput = styled.input`
 const BtnRow = styled.div`
   display: flex;
   justify-content: center;
-  gap: 24px;
+  gap: 2.4rem;
   @media (max-width: 600px) {
-    gap: 20px;
+    gap: 2rem;
   }
 `;
 
@@ -183,20 +183,20 @@ const Button = styled.button`
   background: #232323;
   color: #fff;
   border: none;
-  border-radius: 10px;
-  padding: 12px 32px;
-  font-size: 14px;
+  border-radius: 1rem;
+  padding: 1.2rem 3.2rem;
+  font-size: 1.4rem;
   font-family: 'IBM Plex Mono', monospace;
   cursor: pointer;
-  width: 160px;
+  width: 16rem;
   transition: background 0.2s;
   &:hover {
     background: #444;
   }
   @media (max-width: 600px) {
-    padding: 8px 16px;
-    font-size: 12px;
-    width: 100px;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.2rem;
+    width: 10rem;
   }
 `;
 

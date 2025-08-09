@@ -18,18 +18,18 @@ const Overlay = styled.div`
     position: absolute;
     align-items: flex-start;
     padding-top: ${({ $isSessionStep }) =>
-      $isSessionStep ? '180px' : '250px'};
+      $isSessionStep ? '18rem' : '25rem'};
   }
 `;
 
 const Modal = styled.div`
-  border-radius: 24px;
-  border: 1px solid var(--Glass, rgba(255, 255, 255, 0.4));
+  border-radius: 2.4rem;
+  border: 0.1rem solid var(--Glass, rgba(255, 255, 255, 0.4));
   background: var(--Background-Glass, rgba(16, 16, 16, 0.4));
   backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
-  max-width: 820px;
+  max-width: 82rem;
   width: 90vw;
-  padding: 52px 40px 32px 40px;
+  padding: 5.2rem 4rem 3.2rem 4rem;
   box-sizing: border-box;
   color: #fff;
   position: relative;
@@ -40,14 +40,14 @@ const Modal = styled.div`
 
   @media (max-width: 600px) {
     display: flex !important;
-    width: 300px !important;
-    height: 500px !important;
-    padding: 32px !important;
+    width: 30rem !important;
+    height: 50rem !important;
+    padding: 3.2rem !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 10px !important;
-    border-radius: 18px !important;
-    border: 1.4px solid var(--Glass, rgba(255, 255, 255, 0.4)) !important;
+    gap: 1rem !important;
+    border-radius: 1.8rem !important;
+    border: 0.14rem solid var(--Glass, rgba(255, 255, 255, 0.4)) !important;
     background: rgba(255, 255, 255, 0.05) !important;
     backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2)) !important;
   }
@@ -55,15 +55,15 @@ const Modal = styled.div`
   /* 세션 선택 단계일 때 모바일에서 높이 증가 */
   @media (max-width: 600px) {
     &.session-step {
-      height: 650px !important;
+      height: 65rem !important;
     }
   }
 `;
 
 const CloseBtn = styled.button`
   position: absolute;
-  top: 32px;
-  right: 32px;
+  top: 3.2rem;
+  right: 3.2rem;
   background: none;
   border: none;
   color: #fff;
@@ -71,41 +71,41 @@ const CloseBtn = styled.button`
   cursor: pointer;
   font-family: 'SF Pro', sans-serif;
   @media (max-width: 600px) {
-    top: 16px;
-    right: 16px;
+    top: 1.6rem;
+    right: 1.6rem;
     font-size: 1.4rem;
   }
 `;
 
 const Title = styled.h2`
   text-align: center;
-  font-size: 20px;
+  font-size: 2rem;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  margin-bottom: 36px;
+  margin-bottom: 3.6rem;
   letter-spacing: 0.04em;
   color: #fff;
   @media (max-width: 600px) {
-    font-size: 20px;
-    margin-bottom: 30px;
+    font-size: 2rem;
+    margin-bottom: 3rem;
   }
 `;
 
 const Section = styled.div`
-  margin-bottom: 32px;
+  margin-bottom: 3.2rem;
 `;
 
 const Label = styled.label`
-  font-size: 14px;
+  font-size: 1.4rem;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   color: #919191;
   display: block;
 
   @media (max-width: 600px) {
-    font-size: 12px;
-    margin-bottom: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
   }
 `;
 

@@ -228,7 +228,7 @@ const Footer = () => {
           <SectionTitle>Follow Us</SectionTitle>
           <SocialIcons>
             <SocialIconLink
-              href="https://instagram.com"
+              href="https://www.instagram.com/gksf_official/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
