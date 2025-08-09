@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import GKSFLogo from '../../assets/images/_GKSF Logo.svg';
 import LogoText from '../../assets/images/Logo Text.svg';
 import YouTubeLogo from '../../assets/images/youtube logo.png';
@@ -11,6 +11,12 @@ const FooterContainer = styled.footer`
   padding: 30px 0 8px 0;
   font-family: 'SF Pro Text', sans-serif;
   width: 100%;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+  @media (max-width: 900px) {
+    padding: 30px 0 190px 0;
+  }
 `;
 
 const FooterContent = styled.div`
@@ -124,13 +130,15 @@ const NavLink = styled.li`
   font-family: 'SF Pro Text', sans-serif;
   cursor: pointer;
   transition: color 0.15s;
-  a {
-    color: inherit;
-    text-decoration: none;
-    &:hover {
-      color: #fff;
-    }
+  user-select: none;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
+
+  &:hover {
+    color: #fff;
   }
+
   @media (max-width: 900px) {
     font-size: 14px;
   }
@@ -176,6 +184,18 @@ const Copyright = styled.div`
 `;
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleClick = (path) => {
+    console.log('Footer link clicked:', path);
+    try {
+      navigate(path);
+    } catch (error) {
+      console.log('Navigation failed, using window.location.href');
+      window.location.href = path;
+    }
+  };
+
   return (
     <FooterContainer>
       <FooterContent>
@@ -191,23 +211,15 @@ const Footer = () => {
         <NavigationSection>
           <SectionTitle>Navigation</SectionTitle>
           <NavLinks>
-            <NavLink>
-              <Link to="/">Home</Link>
+            <NavLink onClick={() => handleClick('/')}>Home</NavLink>
+            <NavLink onClick={() => handleClick('/about')}>About</NavLink>
+            <NavLink onClick={() => handleClick('/booth')}>Booth</NavLink>
+            <NavLink onClick={() => handleClick('/session')}>Session</NavLink>
+            <NavLink onClick={() => handleClick('/archiving')}>
+              Archiving
             </NavLink>
-            <NavLink>
-              <Link to="/about">About</Link>
-            </NavLink>
-            <NavLink>
-              <Link to="/booth">Booth</Link>
-            </NavLink>
-            <NavLink>
-              <Link to="/session">Session</Link>
-            </NavLink>
-            <NavLink>
-              <Link to="/archiving">Archiving</Link>
-            </NavLink>
-            <NavLink>
-              <Link to="/participation">Participation</Link>
+            <NavLink onClick={() => handleClick('/participation')}>
+              Participation
             </NavLink>
           </NavLinks>
         </NavigationSection>

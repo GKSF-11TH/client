@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Guestbook from '../components/Participation/Guestbook.jsx';
 import Preapply from '../components/Participation/Preapply.jsx';
 import Footer from '../components/common/Footer';
+import { GlassEffectWithBlurryBg } from '../style/common.js';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -14,14 +15,14 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  padding-top: clamp(13rem, 8vh, 13rem);
+  padding-top: 14rem;
   text-align: center;
   flex-shrink: 0;
   @media (max-width: 900px) {
     padding-top: 6rem;
   }
   @media (max-width: 600px) {
-    padding-top: 3.2rem;
+    padding-top: 14rem;
   }
 `;
 
@@ -41,8 +42,7 @@ const Title = styled.h1`
     font-size: 2.2rem;
   }
   @media (max-width: 600px) {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
   }
 `;
 
@@ -60,11 +60,11 @@ const Subtitle = styled.p`
   margin: 0 auto;
   @media (max-width: 900px) {
     font-size: 1.05rem;
-    margin-bottom: 2.8rem;
   }
   @media (max-width: 600px) {
-    font-size: 0.98rem;
-    margin-bottom: 1.8rem;
+    font-size: 1.2rem;
+    padding-bottom: 4.5rem;
+    white-space: pre-line;
   }
 `;
 
@@ -74,10 +74,13 @@ const MainContent = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: clamp(2rem, 4vh, 4rem) 1rem;
+  padding: clamp(3.5rem, 4vh, 4rem) 1rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  @media (max-width: 600px) {
+    padding-top: 0.5rem;
+  }
 `;
 
 const CardRow = styled.div`
@@ -93,12 +96,12 @@ const CardRow = styled.div`
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: center;
-    gap: 1.6rem;
-    margin-bottom: 2.4rem;
+    gap: 4.5rem;
+    margin-bottom: 2.5rem;
   }
 `;
 
-const Card = styled.div`
+const Card = styled(GlassEffectWithBlurryBg)`
   display: flex;
   width: 34rem;
   height: 23rem;
@@ -107,23 +110,34 @@ const Card = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   position: relative;
-  border-radius: 1.8rem;
-  border: 0.14rem solid var(--Glass, rgba(255, 255, 255, 0.4));
+  border-radius: 18px !important;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   cursor: pointer;
   transition:
     box-shadow 0.2s,
     border-color 0.2s;
-  @media (max-width: 900px) {
-    width: 26rem;
-    height: 18rem;
-    padding: 2.4rem 1.8rem;
+
+  &::before {
+    border-radius: 18px !important;
+  }
+
+  &::after {
+    border-radius: 18px !important;
+    background: rgba(255, 255, 255, 0.05);
   }
   @media (max-width: 600px) {
-    width: 90vw;
-    height: 14rem;
+    width: 70vw;
+    height: 20rem;
     padding: 1.6rem 1.2rem;
+    border-radius: 18px !important;
+
+    &::before {
+      border-radius: 18px !important;
+    }
+
+    &::after {
+      border-radius: 18px !important;
+    }
   }
 `;
 
@@ -167,7 +181,7 @@ const CardAction = styled.div`
 `;
 
 const BottomSpace = styled.div`
-  height: clamp(2rem, 4vh, 8rem);
+  height: clamp(4rem, 8vh, 12rem);
   flex-shrink: 0;
   @media (max-width: 600px) {
     height: 4.8rem;
@@ -183,7 +197,7 @@ const Participation = () => {
       <Header>
         <Title>PARTICIPATION</Title>
         <Subtitle>
-          포럼에 참여하고 여러분의 소감을 방명록에 공유해 보세요.
+          포럼에 참여하고 여러분의 소감을{'\n'}방명록에 공유해 보세요.
         </Subtitle>
       </Header>
       <MainContent>

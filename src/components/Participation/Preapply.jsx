@@ -9,10 +9,17 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 1000;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 600px) {
+    position: absolute;
+    align-items: flex-start;
+    padding-top: ${({ $isSessionStep }) =>
+      $isSessionStep ? '180px' : '250px'};
+  }
 `;
 
 const Modal = styled.div`
@@ -30,9 +37,26 @@ const Modal = styled.div`
   font-family:
     'SF Pro', 'SUITE-Regular', 'Syncopate', 'IBM Plex Mono', 'Be Okay',
     sans-serif;
+
   @media (max-width: 600px) {
-    padding: 24px 12px 16px 12px;
-    max-width: 98vw;
+    display: flex !important;
+    width: 300px !important;
+    height: 500px !important;
+    padding: 32px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border-radius: 18px !important;
+    border: 1.4px solid var(--Glass, rgba(255, 255, 255, 0.4)) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2)) !important;
+  }
+
+  /* 세션 선택 단계일 때 모바일에서 높이 증가 */
+  @media (max-width: 600px) {
+    &.session-step {
+      height: 650px !important;
+    }
   }
 `;
 
@@ -63,7 +87,7 @@ const Title = styled.h2`
   color: #fff;
   @media (max-width: 600px) {
     font-size: 20px;
-    margin-bottom: 18px;
+    margin-bottom: 30px;
   }
 `;
 
@@ -75,9 +99,14 @@ const Label = styled.label`
   font-size: 14px;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   color: #919191;
   display: block;
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
 `;
 
 const Input = styled.input`
@@ -104,6 +133,14 @@ const Input = styled.input`
     outline: none;
     box-shadow: none;
   }
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+    padding: 12px 0;
+    &::placeholder {
+      font-size: 12px;
+    }
+  }
 `;
 
 const CheckboxGroup = styled.div`
@@ -118,11 +155,33 @@ const CheckboxLabel = styled.label`
   margin-bottom: 8px;
   cursor: pointer;
   color: #919191;
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
 `;
 
 const Checkbox = styled.input`
   margin-right: 10px;
-  accent-color: #2e3c5d;
+  accent-color: #000000;
+  width: 18px;
+  height: 18px;
+`;
+
+const SessionDesc = styled.div`
+  margin-left: 24px;
+  margin-top: 4px;
+  color: #aaa;
+  font-size: 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  line-height: 1.4;
+
+  @media (min-width: 601px) {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
 `;
 
 const BtnRow = styled.div`
@@ -131,8 +190,8 @@ const BtnRow = styled.div`
   gap: 24px;
   margin-top: 32px;
   @media (max-width: 600px) {
-    gap: 12px;
-    margin-top: 18px;
+    gap: 20px;
+    margin-top: 40px;
   }
 `;
 
@@ -158,7 +217,7 @@ const Button = styled.button`
   }
   @media (max-width: 600px) {
     padding: 8px 16px;
-    font-size: 14px;
+    font-size: 12px;
     width: 100px;
   }
 `;
@@ -211,6 +270,9 @@ const Preapply = ({ onClose }) => {
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // 세션 선택 단계일 때 모달 높이를 늘리기 위한 조건부 스타일
+  const modalStyle = step === 2 ? { height: '900px !important' } : {};
 
   const sessionOptions = [
     {
@@ -291,8 +353,8 @@ const Preapply = ({ onClose }) => {
 
   return (
     <>
-      <Overlay>
-        <Modal>
+      <Overlay $isSessionStep={step === 2}>
+        <Modal style={modalStyle} className={step === 2 ? 'session-step' : ''}>
           <CloseBtn onClick={onClose} aria-label="닫기">
             ×
           </CloseBtn>
@@ -356,39 +418,40 @@ const Preapply = ({ onClose }) => {
                         style={{
                           fontWeight: 400,
                           marginBottom: '8px',
-                          fontFamily: "'SF Pro', 'SUITE-Regular', sans-serif"
+                          fontFamily: "'IBM Plex Mono', monospace",
+                          fontSize: '14px'
                         }}
                       >
                         {group.date}
                       </div>
+                      <div
+                        style={{
+                          width: '100%',
+                          height: '1px',
+                          background: '#333',
+                          marginBottom: '12px'
+                        }}
+                      />
                       <CheckboxGroup>
                         {group.items.map((item) => (
-                          <CheckboxLabel key={item.key}>
-                            <Checkbox
-                              type="checkbox"
-                              checked={form.sessions.includes(item.key)}
-                              onChange={() => handleSessionChange(item.key)}
-                            />
-                            <span
-                              style={{
-                                fontWeight: 400,
-                                fontFamily: "'IBM Plex Mono', monospace"
-                              }}
-                            >
-                              {item.label}
-                            </span>
-                            <span
-                              style={{
-                                marginLeft: '8px',
-                                color: '#aaa',
-                                fontSize: '0.98rem',
-                                fontFamily:
-                                  "'SF Pro', 'SUITE-Regular', sans-serif"
-                              }}
-                            >
-                              {item.desc}
-                            </span>
-                          </CheckboxLabel>
+                          <div key={item.key} style={{ marginBottom: '16px' }}>
+                            <CheckboxLabel>
+                              <Checkbox
+                                type="checkbox"
+                                checked={form.sessions.includes(item.key)}
+                                onChange={() => handleSessionChange(item.key)}
+                              />
+                              <span
+                                style={{
+                                  fontWeight: 400,
+                                  fontFamily: "'IBM Plex Mono', monospace"
+                                }}
+                              >
+                                {item.label}
+                              </span>
+                            </CheckboxLabel>
+                            <SessionDesc>{item.desc}</SessionDesc>
+                          </div>
                         ))}
                       </CheckboxGroup>
                     </div>

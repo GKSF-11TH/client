@@ -18,6 +18,7 @@ export default function Header() {
 
   useEffect(() => {
     setCurrentTab(location.pathname);
+    window.scrollTo(0, 0);
   }, [location]);
 
   const handleMobileTabClick = (path) => {

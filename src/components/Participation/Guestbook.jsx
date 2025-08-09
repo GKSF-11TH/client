@@ -9,10 +9,16 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 1000;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 600px) {
+    position: absolute;
+    align-items: flex-start;
+    padding-top: 250px;
+  }
 `;
 
 const Modal = styled.div`
@@ -27,9 +33,19 @@ const Modal = styled.div`
   color: #fff;
   position: relative;
   box-shadow: none;
+
   @media (max-width: 600px) {
-    padding: 24px 12px 16px 12px;
-    max-width: 98vw;
+    display: flex !important;
+    width: 300px !important;
+    height: 500px !important;
+    padding: 32px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border-radius: 18px !important;
+    border: 1.4px solid var(--Glass, rgba(255, 255, 255, 0.4)) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2)) !important;
   }
 `;
 
@@ -58,8 +74,8 @@ const Title = styled.h2`
   letter-spacing: 0.04em;
   color: #fff;
   @media (max-width: 600px) {
-    font-size: 20px;
-    margin-bottom: 18px;
+    font-size: 16px;
+    margin-bottom: 40px;
   }
 `;
 
@@ -68,7 +84,7 @@ const Form = styled.form`
   flex-direction: column;
   gap: 32px;
   @media (max-width: 600px) {
-    gap: 18px;
+    gap: 40px;
   }
 `;
 
@@ -79,6 +95,11 @@ const Label = styled.label`
   margin-bottom: 8px;
   color: #919191;
   display: block;
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
 `;
 
 const Input = styled.input`
@@ -104,6 +125,14 @@ const Input = styled.input`
     border-bottom: 2px solid;
     outline: none;
     box-shadow: none;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+    padding: 12px 0;
+    &::placeholder {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -131,16 +160,22 @@ const CommentInput = styled.input`
     outline: none;
     box-shadow: none;
   }
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+    padding: 12px 0;
+    &::placeholder {
+      font-size: 12px;
+    }
+  }
 `;
 
 const BtnRow = styled.div`
   display: flex;
   justify-content: center;
   gap: 24px;
-  margin-top: 15px;
   @media (max-width: 600px) {
-    gap: 12px;
-    margin-top: 18px;
+    gap: 20px;
   }
 `;
 
@@ -160,7 +195,7 @@ const Button = styled.button`
   }
   @media (max-width: 600px) {
     padding: 8px 16px;
-    font-size: 14px;
+    font-size: 12px;
     width: 100px;
   }
 `;

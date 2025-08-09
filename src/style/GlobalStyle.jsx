@@ -69,6 +69,8 @@ button{
 
   /* 🧊 Glass */
   --glass-l: 30px;
+  --Glass: rgba(255, 255, 255, 0.40);
+  --Glass-L: 30px;
 }
 
 
