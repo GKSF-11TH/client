@@ -166,7 +166,7 @@ const HeaderWrapper = styled.div`
     ${({ $DropdownOpen }) =>
       !$DropdownOpen &&
       `
-      ${GlassEffectWithTransparentBg.componentStyle.rules};
+      ${GlassEffectWithBlurryBg.componentStyle.rules};
       border-radius:10rem;
     `}
   }
