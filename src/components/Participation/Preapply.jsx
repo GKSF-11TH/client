@@ -113,67 +113,67 @@ const Input = styled.input`
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 2px solid;
+  border-bottom: 0.2rem solid;
   border-image: linear-gradient(90deg, #222, #222) 1;
   color: #919191;
-  font-size: 14px;
-  padding: 8px 0;
-  margin-bottom: 4px;
+  font-size: 1.4rem;
+  padding: 0.8rem 0;
+  margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
   font-family: 'IBM Plex Mono', monospace;
   &::placeholder {
     color: #bbb;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-family: 'IBM Plex Mono', monospace;
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
-    border-bottom: 2px solid;
+    border-bottom: 0.2rem solid;
     outline: none;
     box-shadow: none;
   }
 
   @media (max-width: 600px) {
-    font-size: 12px;
-    padding: 12px 0;
+    font-size: 1.2rem;
+    padding: 1.2rem 0;
     &::placeholder {
-      font-size: 12px;
+      font-size: 1.2rem;
     }
   }
 `;
 
 const CheckboxGroup = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 `;
 
 const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-family: 'IBM Plex Mono', monospace;
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   cursor: pointer;
   color: #919191;
 
   @media (max-width: 600px) {
-    font-size: 12px;
-    margin-bottom: 12px;
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
   }
 `;
 
 const Checkbox = styled.input`
-  margin-right: 10px;
+  margin-right: 1rem;
   accent-color: #000000;
-  width: 18px;
-  height: 18px;
+  width: 1.8rem;
+  height: 1.8rem;
 `;
 
 const SessionDesc = styled.div`
-  margin-left: 24px;
-  margin-top: 4px;
+  margin-left: 2.4rem;
+  margin-top: 0.4rem;
   color: #aaa;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-family: 'IBM Plex Mono', monospace;
   line-height: 1.4;
 
@@ -187,11 +187,11 @@ const SessionDesc = styled.div`
 const BtnRow = styled.div`
   display: flex;
   justify-content: center;
-  gap: 24px;
-  margin-top: 32px;
+  gap: 2.4rem;
+  margin-top: 3.2rem;
   @media (max-width: 600px) {
-    gap: 20px;
-    margin-top: 40px;
+    gap: 2rem;
+    margin-top: 4rem;
   }
 `;
 
@@ -199,12 +199,12 @@ const Button = styled.button`
   background: #232323;
   color: #fff;
   border: none;
-  border-radius: 10px;
-  padding: 12px 32px;
-  font-size: 14px;
+  border-radius: 1rem;
+  padding: 1.2rem 3.2rem;
+  font-size: 1.4rem;
   font-family: 'IBM Plex Mono', monospace;
   cursor: pointer;
-  width: 160px;
+  width: 16rem;
   transition:
     background 0.2s,
     color 0.2s;
@@ -216,9 +216,9 @@ const Button = styled.button`
     color: #aaa;
   }
   @media (max-width: 600px) {
-    padding: 8px 16px;
-    font-size: 12px;
-    width: 100px;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.2rem;
+    width: 10rem;
   }
 `;
 
@@ -228,14 +228,14 @@ const SuccessOverlay = styled(Overlay)`
 
 const SuccessModal = styled.div`
   background: linear-gradient(135deg, #2e3c5d 0%, #3a7bd5 100%);
-  border-radius: 18px;
-  max-width: 400px;
+  border-radius: 1.8rem;
+  max-width: 40rem;
   width: 90vw;
-  padding: 48px 32px 32px 32px;
+  padding: 4.8rem 3.2rem 3.2rem 3.2rem;
   box-sizing: border-box;
   color: #fff;
   text-align: center;
-  box-shadow: 0 0 32px #222;
+  box-shadow: 0 0 3.2rem #222;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -244,20 +244,20 @@ const SuccessModal = styled.div`
 
 const CheckIcon = styled.div`
   font-size: 2.8rem;
-  margin-bottom: 18px;
+  margin-bottom: 1.8rem;
 `;
 
 const SuccessTitle = styled.div`
   font-size: 1.2rem;
   font-family: 'Syncopate', 'SF Pro', sans-serif;
   font-weight: 400;
-  margin-bottom: 12px;
+  margin-bottom: 1.2rem;
 `;
 
 const SuccessDesc = styled.div`
   font-size: 1rem;
   font-family: 'SF Pro', 'SUITE-Regular', sans-serif;
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 `;
 
 const Preapply = ({ onClose }) => {
