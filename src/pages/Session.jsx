@@ -89,7 +89,7 @@ const Background = styled.div`
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
     background-position: center top;
-    height: 230rem;
+    height: 120rem;
   }
 `;
 
@@ -287,6 +287,7 @@ const SpeakerImg = styled.img`
   width: 30rem;
   height: 30rem;
   object-fit: cover;
+  object-position: center top;
   border-radius: 2.4rem;
   background: #222;
   box-shadow: 0 0 3.2rem #4f8cff33;

@@ -22,7 +22,7 @@ const Background = styled.div`
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
     background-position: center top;
-    height: 230rem;
+    height: 120rem;
   }
 `;
 

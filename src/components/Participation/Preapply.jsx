@@ -55,7 +55,7 @@ const Modal = styled.div`
   /* 세션 선택 단계일 때 모바일에서 높이 증가 */
   @media (max-width: 600px) {
     &.session-step {
-      height: 65rem !important;
+      height: 64rem !important;
     }
   }
 `;
@@ -104,8 +104,8 @@ const Label = styled.label`
   display: block;
 
   @media (max-width: 600px) {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    margin-bottom: 1.6rem;
   }
 `;
 
@@ -135,10 +135,10 @@ const Input = styled.input`
   }
 
   @media (max-width: 600px) {
-    font-size: 1.2rem;
-    padding: 1.2rem 0;
+    font-size: 1rem;
+    padding: 1rem 0;
     &::placeholder {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
   }
 `;
@@ -157,8 +157,8 @@ const CheckboxLabel = styled.label`
   color: #919191;
 
   @media (max-width: 600px) {
-    font-size: 1.2rem;
-    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -167,6 +167,11 @@ const Checkbox = styled.input`
   accent-color: #000000;
   width: 1.8rem;
   height: 1.8rem;
+
+  @media (max-width: 600px) {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
 `;
 
 const SessionDesc = styled.div`
@@ -181,6 +186,11 @@ const SessionDesc = styled.div`
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    margin-left: 2rem;
   }
 `;
 
@@ -217,9 +227,27 @@ const Button = styled.button`
   }
   @media (max-width: 600px) {
     padding: 0.8rem 1.6rem;
-    font-size: 1.2rem;
-    width: 10rem;
+    font-size: 1rem;
+    width: 9rem;
   }
+`;
+
+const SuccessButton = styled.button`
+  border-radius: var(--Radius-S, 8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--Background-Tertiary, rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(33.70908737182617px);
+  display: flex;
+  width: 166px;
+  padding: 12px 23px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  cursor: pointer;
+  font-size: 1.4rem;
 `;
 
 const SuccessOverlay = styled(Overlay)`
@@ -227,11 +255,14 @@ const SuccessOverlay = styled(Overlay)`
 `;
 
 const SuccessModal = styled.div`
-  background: linear-gradient(135deg, #2e3c5d 0%, #3a7bd5 100%);
+  background: url('/src/assets/images/PreapplyModal.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 1.8rem;
   max-width: 40rem;
   width: 90vw;
-  padding: 4.8rem 3.2rem 3.2rem 3.2rem;
+  height: 30rem;
   box-sizing: border-box;
   color: #fff;
   text-align: center;
@@ -239,6 +270,8 @@ const SuccessModal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 4rem;
   font-family: 'SF Pro', 'Syncopate', sans-serif;
 `;
 
@@ -413,13 +446,18 @@ const Preapply = ({ onClose }) => {
                 <Section>
                   <Label>4. 참가 희망 세션을 선택해주세요</Label>
                   {sessionOptions.map((group) => (
-                    <div key={group.date} style={{ marginBottom: '18px' }}>
+                    <div
+                      key={group.date}
+                      style={{
+                        marginBottom: window.innerWidth <= 600 ? '12px' : '18px'
+                      }}
+                    >
                       <div
                         style={{
                           fontWeight: 400,
                           marginBottom: '8px',
                           fontFamily: "'IBM Plex Mono', monospace",
-                          fontSize: '14px'
+                          fontSize: window.innerWidth <= 600 ? '12px' : '14px'
                         }}
                       >
                         {group.date}
@@ -434,7 +472,13 @@ const Preapply = ({ onClose }) => {
                       />
                       <CheckboxGroup>
                         {group.items.map((item) => (
-                          <div key={item.key} style={{ marginBottom: '16px' }}>
+                          <div
+                            key={item.key}
+                            style={{
+                              marginBottom:
+                                window.innerWidth <= 600 ? '12px' : '16px'
+                            }}
+                          >
                             <CheckboxLabel>
                               <Checkbox
                                 type="checkbox"
@@ -473,10 +517,9 @@ const Preapply = ({ onClose }) => {
       {showSuccess && (
         <SuccessOverlay>
           <SuccessModal>
-            <CheckIcon>✓</CheckIcon>
-            <SuccessTitle>신청이 완료되었습니다</SuccessTitle>
-            <SuccessDesc>포럼 소개 홈페이지를 더 둘러볼까요?</SuccessDesc>
-            <Button onClick={handleSuccessClose}>홈으로 이동하기</Button>
+            <SuccessButton onClick={handleSuccessClose}>
+              홈으로 이동하기
+            </SuccessButton>
           </SuccessModal>
         </SuccessOverlay>
       )}
