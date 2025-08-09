@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import BackgroundImage from '../assets/images/booth-gradient-bg.png';
+import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import Footer from '../components/common/Footer';
 
 const sessions = [
@@ -65,45 +67,65 @@ const sessions = [
 const tabs = ['세션 A', '세션 B', '세션 C', '세션 D', '세션 E'];
 
 const Container = styled.div`
+  position: relative;
+  width: 100vw;
   min-height: 100vh;
   color: #fff;
   font-family: 'Pretendard', 'Montserrat', sans-serif;
 `;
 
+const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('${BackgroundImage}');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    background-image: url('${MobileBackgroundImage}');
+    background-position: center top;
+    height: 230rem;
+  }
+`;
+
 const Header = styled.header`
-  padding-top: 130px;
-  padding-bottom: 10px;
+  position: relative;
+  z-index: 1;
+  padding-top: 14rem;
+  padding-bottom: 1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  @media (max-width: 900px) {
-    gap: 20px;
-  }
+  gap: 1.5rem;
   @media (max-width: 600px) {
-    padding-top: 110px;
-    gap: 16px;
+    padding-top: 13rem;
+    gap: 0;
   }
 `;
 
 const Title = styled.h1`
   color: var(--Text-Primary, #fbfbfb);
   text-align: center;
-  -webkit-text-stroke-width: 0.4px;
+  -webkit-text-stroke-width: 0.04rem;
   -webkit-text-stroke-color: #fff;
   font-family: Syncopate;
-  font-size: 36px;
+  font-size: 3.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 100%; /* 36px */
-  letter-spacing: -0.36px;
-  padding-bottom: 24px;
+  line-height: 100%;
+  letter-spacing: -0.036rem;
+  padding-bottom: 2.4rem;
   @media (max-width: 900px) {
     font-size: 2.2rem;
   }
   @media (max-width: 600px) {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -113,129 +135,132 @@ const Subtitle = styled.p`
 
   /* Desktop/Body/16_R */
   font-family: 'IBM Plex Mono';
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 140%; /* 22.4px */
-  letter-spacing: 0.16px;
-  padding-bottom: 28px;
+  line-height: 140%;
+  letter-spacing: 0.016rem;
+  padding-bottom: 2.8rem;
   @media (max-width: 900px) {
     font-size: 1.05rem;
-    margin-bottom: 28px;
+    margin-bottom: 2.8rem;
   }
   @media (max-width: 600px) {
-    font-size: 0.98rem;
-    margin-bottom: 18px;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
   }
 `;
 
 const NavWrapper = styled.div`
   display: flex;
-  width: 660px;
-  height: 64px;
-  padding: 10px 8px 8px 8px;
+  width: 66rem;
+  height: 6.4rem;
+  padding: 1rem 0.8rem 0.8rem 0.8rem;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  border-radius: 100px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
+  gap: 1rem;
   margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.1rem solid rgba(255, 255, 255, 0.1);
+  border-radius: 3.6rem;
+  backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   @media (max-width: 900px) {
     width: 90%;
-    max-width: 600px;
-    height: 56px;
-    gap: 8px;
-    padding: 8px 6px 10px 6px;
-    margin: 0 auto 32px auto;
+    max-width: 60rem;
+    height: 5.6rem;
+    gap: 0.8rem;
+    padding: 0.8rem 0.6rem 1rem 0.6rem;
+    margin: 0 auto 3.2rem auto;
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
   }
   @media (max-width: 600px) {
     width: 90%;
-    height: 52px;
+    height: 9rem;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 4px;
-    padding: 7px 5px 14px 5px;
-    margin: 0 auto 24px auto;
-    border-radius: 100px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
+    align-content: center;
+    gap: 0.6rem;
+    padding: 1.2rem 0 0 0;
+    margin: 0 auto 2.2rem auto;
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
   }
 `;
 
 const Tab = styled.button.attrs(() => ({}))`
   display: flex;
-  width: 150px;
-  height: 48px;
+  width: 15rem;
+  height: 4.8rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 36px;
+  border-radius: 3.6rem;
   border: ${(props) =>
     props.$active
-      ? '0.794px solid var(--Glass, rgba(255, 255, 255, 0.2))'
+      ? '0.0794rem solid var(--Glass, rgba(255, 255, 255, 0.2))'
       : 'none'};
   background: ${(props) =>
     props.$active ? 'rgba(255, 255, 255, 0.15)' : 'transparent'};
   color: #fff;
   font-family: 'SF Pro', 'Pretendard', 'Syncopate', sans-serif;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 500;
   cursor: pointer;
   outline: none;
   transition: all 0.18s cubic-bezier(0.4, 1.2, 0.6, 1);
   white-space: nowrap;
   transform: ${(props) =>
-    props.$active ? 'translateY(-1px)' : 'translateY(0)'};
+    props.$active ? 'translateY(-0.1rem)' : 'translateY(0)'};
   backdrop-filter: ${(props) =>
     props.$active ? 'blur(calc(var(--Glass-L, 30px) / 2))' : 'none'};
-  padding: 10px;
+  padding: 1rem;
   margin: 0;
   &:hover {
     background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-1px);
+    transform: translateY(-0.1rem);
     backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   }
   &:active {
     background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    transform: translateY(-0.2rem);
     backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   }
   @media (max-width: 900px) {
-    width: 110px;
-    height: 40px;
-    font-size: 15px;
+    width: 11rem;
+    height: 4rem;
+    font-size: 1.5rem;
   }
   @media (max-width: 600px) {
-    width: 80px;
-    height: 36px;
-    font-size: 12px;
+    width: 8.5rem;
+    height: 3.2rem;
+    font-size: 1.1rem;
   }
 `;
 
 const SessionTitle = styled.h2`
-  padding-bottom: 15px;
+  padding-bottom: 2rem;
   font-family: 'DesignHouse', sans-serif;
-  font-size: 1.7rem;
-  font-size: 24px;
+  font-size: 3rem;
   font-weight: 400;
   text-align: center;
-  margin-top: 45px;
-  margin-bottom: 36px;
+  margin-top: 4.5rem;
+  margin-bottom: 3.6rem;
   letter-spacing: 0.04em;
   line-height: 1.3;
   color: #fff;
-  text-shadow: 0 2px 12px #2e3c5d55;
+  text-shadow: 0 0.2rem 1.2rem #2e3c5d55;
   @media (max-width: 900px) {
-    margin-top: 40px;
+    margin-top: 4rem;
   }
   @media (max-width: 600px) {
-    font-size: 1.2rem;
-    margin-top: 30px;
-    margin-bottom: 16px;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.6rem;
+    white-space: pre-line;
   }
 `;
 
@@ -244,33 +269,31 @@ const InfoRow = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  gap: 40px;
-  margin-bottom: 32px;
+  gap: 4rem;
+  margin-bottom: 3.2rem;
   @media (max-width: 900px) {
-    gap: 40px;
+    gap: 4rem;
+    padding-left: 1.5rem;
   }
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 4.4rem;
+    padding-left: 1rem;
   }
 `;
 
 const SpeakerImg = styled.img`
-  width: 260px;
-  height: 260px;
+  width: 30rem;
+  height: 30rem;
   object-fit: cover;
-  border-radius: 24px;
+  border-radius: 2.4rem;
   background: #222;
-  box-shadow: 0 0 32px #4f8cff33;
-  border: 4px solid #4f8cff33;
-  @media (max-width: 900px) {
-    width: 180px;
-    height: 180px;
-  }
+  box-shadow: 0 0 3.2rem #4f8cff33;
+  border: 0.2rem solid #4f8cff33;
   @media (max-width: 600px) {
-    width: 140px;
-    height: 140px;
+    width: 25rem;
+    height: 25rem;
   }
 `;
 
@@ -279,34 +302,37 @@ const InfoCol = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  height: 250px;
+  height: 29rem;
   width: 90%;
-  max-width: 420px;
+  max-width: 42rem;
   @media (max-width: 900px) {
-    height: 180px;
+    height: 18rem;
+    padding-left: 0.5rem;
   }
   @media (max-width: 600px) {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     width: 100%;
     max-width: 100%;
-    height: 140px;
+    height: 33rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 `;
 
 const SpeakerGroup = styled.div``;
 
 const SpeakerTitle = styled.div`
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   color: var(--text-tertiary);
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   font-family: 'IBM Plex Mono', monospace;
 `;
 
 const Speaker = styled.div`
-  font-size: 1.13rem;
+  font-size: 1.3rem;
   color: var(--Text-Primary, #fbfbfb);
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -316,16 +342,16 @@ const Speaker = styled.div`
 const ContentGroup = styled.div``;
 
 const ContentTitle = styled.div`
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   color: var(--text-tertiary);
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   font-family: 'IBM Plex Mono', monospace;
 `;
 
 const Content = styled.div`
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   color: var(--Text-Primary, #fbfbfb);
   line-height: 1.7;
   font-family: 'IBM Plex Mono', monospace;
@@ -334,25 +360,25 @@ const Content = styled.div`
 const StructureGroup = styled.div``;
 
 const Structure = styled.div`
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   color: var(--Text-Primary, #fbfbfb);
   font-weight: 500;
   font-family: 'IBM Plex Mono', monospace;
 `;
 
 const StructureTitle = styled.div`
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   color: var(--text-tertiary);
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   font-family: 'IBM Plex Mono', monospace;
 `;
 
 const BottomSpace = styled.div`
-  height: 80px;
+  height: 8rem;
   @media (max-width: 600px) {
-    height: 48px;
+    height: 4.8rem;
   }
 `;
 
@@ -362,11 +388,11 @@ const Session = () => {
 
   return (
     <Container>
+      <Background />
       <Header>
         <Title>SESSION</Title>
         <Subtitle>
-          '위기의 한국, 미래로의 도약: Korea in Crisis, New Leap to the
-          Future'에서 뻗어나온 <br />
+          'AI 혁명과 한국'에서 뻗어나온 <br />
           다섯가지 소주제로 다섯 개의 세션을 진행합니다.
         </Subtitle>
         <NavWrapper>
@@ -381,8 +407,12 @@ const Session = () => {
           ))}
         </NavWrapper>
       </Header>
-      <main>
-        <SessionTitle>{session.title}</SessionTitle>
+      <main style={{ position: 'relative', zIndex: 1 }}>
+        <SessionTitle>
+          {session.title.includes(':')
+            ? session.title.replace(':', ':\n')
+            : session.title}
+        </SessionTitle>
         <InfoRow>
           <SpeakerImg src={session.img} alt={session.speaker} />
           <InfoCol>
@@ -402,7 +432,9 @@ const Session = () => {
         </InfoRow>
       </main>
       <BottomSpace />
-      <Footer />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <Footer />
+      </div>
     </Container>
   );
 };

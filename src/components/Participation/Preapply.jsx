@@ -9,20 +9,27 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 1000;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 600px) {
+    position: absolute;
+    align-items: flex-start;
+    padding-top: ${({ $isSessionStep }) =>
+      $isSessionStep ? '18rem' : '25rem'};
+  }
 `;
 
 const Modal = styled.div`
-  border-radius: 24px;
-  border: 1px solid var(--Glass, rgba(255, 255, 255, 0.4));
+  border-radius: 2.4rem;
+  border: 0.1rem solid var(--Glass, rgba(255, 255, 255, 0.4));
   background: var(--Background-Glass, rgba(16, 16, 16, 0.4));
   backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
-  max-width: 820px;
+  max-width: 82rem;
   width: 90vw;
-  padding: 52px 40px 32px 40px;
+  padding: 5.2rem 4rem 3.2rem 4rem;
   box-sizing: border-box;
   color: #fff;
   position: relative;
@@ -30,16 +37,33 @@ const Modal = styled.div`
   font-family:
     'SF Pro', 'SUITE-Regular', 'Syncopate', 'IBM Plex Mono', 'Be Okay',
     sans-serif;
+
   @media (max-width: 600px) {
-    padding: 24px 12px 16px 12px;
-    max-width: 98vw;
+    display: flex !important;
+    width: 30rem !important;
+    height: 50rem !important;
+    padding: 3.2rem !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    border-radius: 1.8rem !important;
+    border: 0.14rem solid var(--Glass, rgba(255, 255, 255, 0.4)) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2)) !important;
+  }
+
+  /* 세션 선택 단계일 때 모바일에서 높이 증가 */
+  @media (max-width: 600px) {
+    &.session-step {
+      height: 65rem !important;
+    }
   }
 `;
 
 const CloseBtn = styled.button`
   position: absolute;
-  top: 32px;
-  right: 32px;
+  top: 3.2rem;
+  right: 3.2rem;
   background: none;
   border: none;
   color: #fff;
@@ -47,92 +71,127 @@ const CloseBtn = styled.button`
   cursor: pointer;
   font-family: 'SF Pro', sans-serif;
   @media (max-width: 600px) {
-    top: 16px;
-    right: 16px;
+    top: 1.6rem;
+    right: 1.6rem;
     font-size: 1.4rem;
   }
 `;
 
 const Title = styled.h2`
   text-align: center;
-  font-size: 20px;
+  font-size: 2rem;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  margin-bottom: 36px;
+  margin-bottom: 3.6rem;
   letter-spacing: 0.04em;
   color: #fff;
   @media (max-width: 600px) {
-    font-size: 20px;
-    margin-bottom: 18px;
+    font-size: 2rem;
+    margin-bottom: 3rem;
   }
 `;
 
 const Section = styled.div`
-  margin-bottom: 32px;
+  margin-bottom: 3.2rem;
 `;
 
 const Label = styled.label`
-  font-size: 14px;
+  font-size: 1.4rem;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  margin-bottom: 8px;
+  margin-bottom: 2rem;
   color: #919191;
   display: block;
+
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const Input = styled.input`
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 2px solid;
+  border-bottom: 0.2rem solid;
   border-image: linear-gradient(90deg, #222, #222) 1;
   color: #919191;
-  font-size: 14px;
-  padding: 8px 0;
-  margin-bottom: 4px;
+  font-size: 1.4rem;
+  padding: 0.8rem 0;
+  margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
   font-family: 'IBM Plex Mono', monospace;
   &::placeholder {
     color: #bbb;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-family: 'IBM Plex Mono', monospace;
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
-    border-bottom: 2px solid;
+    border-bottom: 0.2rem solid;
     outline: none;
     box-shadow: none;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+    padding: 1.2rem 0;
+    &::placeholder {
+      font-size: 1.2rem;
+    }
   }
 `;
 
 const CheckboxGroup = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 `;
 
 const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-family: 'IBM Plex Mono', monospace;
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   cursor: pointer;
   color: #919191;
+
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const Checkbox = styled.input`
-  margin-right: 10px;
-  accent-color: #2e3c5d;
+  margin-right: 1rem;
+  accent-color: #000000;
+  width: 1.8rem;
+  height: 1.8rem;
+`;
+
+const SessionDesc = styled.div`
+  margin-left: 2.4rem;
+  margin-top: 0.4rem;
+  color: #aaa;
+  font-size: 1.4rem;
+  font-family: 'IBM Plex Mono', monospace;
+  line-height: 1.4;
+
+  @media (min-width: 601px) {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
 `;
 
 const BtnRow = styled.div`
   display: flex;
   justify-content: center;
-  gap: 24px;
-  margin-top: 32px;
+  gap: 2.4rem;
+  margin-top: 3.2rem;
   @media (max-width: 600px) {
-    gap: 12px;
-    margin-top: 18px;
+    gap: 2rem;
+    margin-top: 4rem;
   }
 `;
 
@@ -140,12 +199,12 @@ const Button = styled.button`
   background: #232323;
   color: #fff;
   border: none;
-  border-radius: 10px;
-  padding: 12px 32px;
-  font-size: 14px;
+  border-radius: 1rem;
+  padding: 1.2rem 3.2rem;
+  font-size: 1.4rem;
   font-family: 'IBM Plex Mono', monospace;
   cursor: pointer;
-  width: 160px;
+  width: 16rem;
   transition:
     background 0.2s,
     color 0.2s;
@@ -157,9 +216,9 @@ const Button = styled.button`
     color: #aaa;
   }
   @media (max-width: 600px) {
-    padding: 8px 16px;
-    font-size: 14px;
-    width: 100px;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.2rem;
+    width: 10rem;
   }
 `;
 
@@ -169,14 +228,14 @@ const SuccessOverlay = styled(Overlay)`
 
 const SuccessModal = styled.div`
   background: linear-gradient(135deg, #2e3c5d 0%, #3a7bd5 100%);
-  border-radius: 18px;
-  max-width: 400px;
+  border-radius: 1.8rem;
+  max-width: 40rem;
   width: 90vw;
-  padding: 48px 32px 32px 32px;
+  padding: 4.8rem 3.2rem 3.2rem 3.2rem;
   box-sizing: border-box;
   color: #fff;
   text-align: center;
-  box-shadow: 0 0 32px #222;
+  box-shadow: 0 0 3.2rem #222;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -185,20 +244,20 @@ const SuccessModal = styled.div`
 
 const CheckIcon = styled.div`
   font-size: 2.8rem;
-  margin-bottom: 18px;
+  margin-bottom: 1.8rem;
 `;
 
 const SuccessTitle = styled.div`
   font-size: 1.2rem;
   font-family: 'Syncopate', 'SF Pro', sans-serif;
   font-weight: 400;
-  margin-bottom: 12px;
+  margin-bottom: 1.2rem;
 `;
 
 const SuccessDesc = styled.div`
   font-size: 1rem;
   font-family: 'SF Pro', 'SUITE-Regular', sans-serif;
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
 `;
 
 const Preapply = ({ onClose }) => {
@@ -211,6 +270,9 @@ const Preapply = ({ onClose }) => {
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // 세션 선택 단계일 때 모달 높이를 늘리기 위한 조건부 스타일
+  const modalStyle = step === 2 ? { height: '900px !important' } : {};
 
   const sessionOptions = [
     {
@@ -291,8 +353,8 @@ const Preapply = ({ onClose }) => {
 
   return (
     <>
-      <Overlay>
-        <Modal>
+      <Overlay $isSessionStep={step === 2}>
+        <Modal style={modalStyle} className={step === 2 ? 'session-step' : ''}>
           <CloseBtn onClick={onClose} aria-label="닫기">
             ×
           </CloseBtn>
@@ -356,39 +418,40 @@ const Preapply = ({ onClose }) => {
                         style={{
                           fontWeight: 400,
                           marginBottom: '8px',
-                          fontFamily: "'SF Pro', 'SUITE-Regular', sans-serif"
+                          fontFamily: "'IBM Plex Mono', monospace",
+                          fontSize: '14px'
                         }}
                       >
                         {group.date}
                       </div>
+                      <div
+                        style={{
+                          width: '100%',
+                          height: '1px',
+                          background: '#333',
+                          marginBottom: '12px'
+                        }}
+                      />
                       <CheckboxGroup>
                         {group.items.map((item) => (
-                          <CheckboxLabel key={item.key}>
-                            <Checkbox
-                              type="checkbox"
-                              checked={form.sessions.includes(item.key)}
-                              onChange={() => handleSessionChange(item.key)}
-                            />
-                            <span
-                              style={{
-                                fontWeight: 400,
-                                fontFamily: "'IBM Plex Mono', monospace"
-                              }}
-                            >
-                              {item.label}
-                            </span>
-                            <span
-                              style={{
-                                marginLeft: '8px',
-                                color: '#aaa',
-                                fontSize: '0.98rem',
-                                fontFamily:
-                                  "'SF Pro', 'SUITE-Regular', sans-serif"
-                              }}
-                            >
-                              {item.desc}
-                            </span>
-                          </CheckboxLabel>
+                          <div key={item.key} style={{ marginBottom: '16px' }}>
+                            <CheckboxLabel>
+                              <Checkbox
+                                type="checkbox"
+                                checked={form.sessions.includes(item.key)}
+                                onChange={() => handleSessionChange(item.key)}
+                              />
+                              <span
+                                style={{
+                                  fontWeight: 400,
+                                  fontFamily: "'IBM Plex Mono', monospace"
+                                }}
+                              >
+                                {item.label}
+                              </span>
+                            </CheckboxLabel>
+                            <SessionDesc>{item.desc}</SessionDesc>
+                          </div>
                         ))}
                       </CheckboxGroup>
                     </div>

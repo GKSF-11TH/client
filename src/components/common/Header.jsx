@@ -18,6 +18,7 @@ export default function Header() {
 
   useEffect(() => {
     setCurrentTab(location.pathname);
+    window.scrollTo(0, 0);
   }, [location]);
 
   const handleMobileTabClick = (path) => {
@@ -165,7 +166,7 @@ const HeaderWrapper = styled.div`
     ${({ $DropdownOpen }) =>
       !$DropdownOpen &&
       `
-      ${GlassEffectWithTransparentBg.componentStyle.rules};
+      ${GlassEffectWithBlurryBg.componentStyle.rules};
       border-radius:10rem;
     `}
   }
