@@ -8,6 +8,7 @@ import Landing from './pages/Landing';
 import Header from './components/common/Header';
 import Error from './pages/Error';
 import BoothDetail from './pages/BoothDetail';
+import ArchivingDetail from './pages/ArchivingDetail';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/archiving',
         element: <Archiving />
+      },
+      {
+        path: '/archiving/:edition',
+        element: <ArchivingDetail />
       },
       {
         path: '/participation',

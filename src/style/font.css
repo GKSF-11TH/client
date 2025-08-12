@@ -80,6 +80,13 @@
 
 @font-face {
   font-family: 'SF Pro';
+  src: url('../assets/fonts/SF-Pro-Text-Bold.otf') format('opentype');
+  font-weight: 1200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
   src: url('../assets/fonts/designhouseLight.ttf') format('opentype');
   font-weight: 300;
   font-style: normal;

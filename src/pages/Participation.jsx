@@ -8,7 +8,7 @@ import Footer from '../components/common/Footer';
 import { GlassEffectWithBlurryBg } from '../style/common.js';
 
 const Background = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 0;
@@ -29,17 +29,21 @@ const Background = styled.div`
 const Container = styled.div`
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  height: 95rem;
   color: #fff;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    height: 165.3rem;
+  }
 `;
 
 const Header = styled.header`
   position: relative;
-  z-index: 1;
+  z-index: 11;
   padding-top: 14rem;
   text-align: center;
   flex-shrink: 0;
@@ -138,7 +142,7 @@ const Card = styled(GlassEffectWithBlurryBg)`
   justify-content: flex-start;
   position: relative;
   border-radius: 1.8rem !important;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(36, 35, 35, 0.05);
   cursor: pointer;
   transition:
     box-shadow 0.2s,
@@ -232,11 +236,11 @@ const Participation = () => {
         <CardRow>
           <Card onClick={() => setShowPreapply(true)}>
             <CardTitle>Pre-Apply</CardTitle>
-            <CardAction>사전신청하기</CardAction>
+            <CardAction>사전 신청</CardAction>
           </Card>
           <Card onClick={() => setShowGuestbook(true)}>
             <CardTitle>Guestbook</CardTitle>
-            <CardAction>방명록 작성하기</CardAction>
+            <CardAction>방명록 작성</CardAction>
           </Card>
         </CardRow>
       </MainContent>

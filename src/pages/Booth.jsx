@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import BackgroundImage from '../assets/images/booth-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import BoothCard from '../components/Booth/BoothCard';
+import Footer from '../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 
 const CardText = [
@@ -46,6 +47,9 @@ const Booth = () => {
           ))}
         </CardWrapper>
       </Content>
+      <div style={{ position: 'relative', zIndex: 1, marginTop: 'auto' }}>
+        <Footer />
+      </div>
     </Container>
   );
 };
@@ -54,16 +58,16 @@ const Container = styled.div`
   position: relative;
   width: 100vw;
   min-height: 100vh;
-  padding: 5rem 17rem 0 17rem;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 768px) {
-    padding: 5rem 2rem 8.5rem 2rem;
     overflow-y: hidden;
   }
 `;
 
 const Background = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 0;
@@ -83,18 +87,18 @@ const Background = styled.div`
 
 const Content = styled.div`
   position: relative;
-  z-index: 1;
+  z-index: 11;
   width: 100%;
-  padding: 9rem 12rem 0 12rem;
+  padding: 14rem 17rem 12rem 17rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 17.4rem;
-  gap: calc(17.4 / 96 * 100vh);
+  gap: 9.4rem;
+  flex: 1;
 
   @media (max-width: 768px) {
     gap: 7.2rem;
-    padding: 6.7rem 4.8rem 0 4.8rem;
+    padding: 11.7rem 2rem 4rem 2rem;
   }
 `;
 

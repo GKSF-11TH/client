@@ -281,7 +281,7 @@ const CheckIcon = styled.div`
 `;
 
 const SuccessTitle = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-family: 'Syncopate', 'SF Pro', sans-serif;
   font-weight: 400;
   margin-bottom: 1.2rem;

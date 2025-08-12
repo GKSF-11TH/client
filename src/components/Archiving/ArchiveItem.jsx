@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import gksf11_Logo from '../../assets/images/_GKSF11_로고.png';
 
 const ArchiveItemContainer = styled.div`
@@ -47,6 +48,8 @@ const LogoImage = styled.img`
 `;
 
 const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
+  const navigate = useNavigate();
+
   const formatEdition = (text) => {
     if (!isMobile) return text;
 
@@ -56,9 +59,17 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
     });
   };
 
+  const handleClick = () => {
+    // edition에서 숫자 부분만 추출 (예: "11st GKSF" -> "11")
+    const editionNumber = edition.match(/(\d+)/)?.[1];
+    if (editionNumber) {
+      navigate(`/archiving/${editionNumber}`);
+    }
+  };
+
   return (
     <ArchiveItemContainer $isMobile={isMobile}>
-      <Card $isMobile={isMobile}>
+      <Card $isMobile={isMobile} onClick={handleClick}>
         {hasLogo && <LogoImage src={gksf11_Logo} alt="GKSF Logo" />}
       </Card>
       <EditionTitle $isMobile={isMobile}>{formatEdition(edition)}</EditionTitle>

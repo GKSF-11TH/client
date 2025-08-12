@@ -7,7 +7,7 @@ import ArchiveItem from '../components/Archiving/ArchiveItem';
 import Footer from '../components/common/Footer';
 
 const Background = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 0;
@@ -29,7 +29,7 @@ const MainContainer = styled.main`
   width: 100vw;
   overflow: hidden;
   position: relative;
-  z-index: 1;
+  z-index: 11;
 `;
 
 const ContentWrapper = styled.div`
