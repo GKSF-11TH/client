@@ -97,7 +97,7 @@ const Label = styled.label`
   display: block;
 
   @media (max-width: 600px) {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 1.2rem;
   }
 `;
@@ -128,10 +128,10 @@ const Input = styled.input`
   }
 
   @media (max-width: 600px) {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     padding: 1.2rem 0;
     &::placeholder {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
   }
 `;
@@ -162,10 +162,10 @@ const CommentInput = styled.input`
   }
 
   @media (max-width: 600px) {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     padding: 1.2rem 0;
     &::placeholder {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
   }
 `;
@@ -195,7 +195,7 @@ const Button = styled.button`
   }
   @media (max-width: 600px) {
     padding: 0.8rem 1.6rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     width: 10rem;
   }
 `;
@@ -251,7 +251,7 @@ const Guestbook = ({ onClose }) => {
             <Input
               id="affiliation"
               type="text"
-              placeholder="소속을 작성해주세요 ex. 연구기획팀, 서강대 경영학과"
+              placeholder="소속을 작성해주세요 ex. 서강대 글로벌한국학과"
               value={affiliation}
               onChange={(e) => setAffiliation(e.target.value)}
             />

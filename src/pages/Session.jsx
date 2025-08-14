@@ -69,13 +69,17 @@ const tabs = ['세션 A', '세션 B', '세션 C', '세션 D', '세션 E'];
 const Container = styled.div`
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  height: 105rem;
   color: #fff;
   font-family: 'Pretendard', 'Montserrat', sans-serif;
+
+  @media (max-width: 768px) {
+    height: 165.3rem;
+  }
 `;
 
 const Background = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 0;
@@ -89,13 +93,13 @@ const Background = styled.div`
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
     background-position: center top;
-    height: 230rem;
+    height: 165.3rem;
   }
 `;
 
 const Header = styled.header`
   position: relative;
-  z-index: 1;
+  z-index: 11;
   padding-top: 14rem;
   padding-bottom: 1rem;
   text-align: center;
@@ -146,7 +150,7 @@ const Subtitle = styled.p`
     margin-bottom: 2.8rem;
   }
   @media (max-width: 600px) {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
   }
 `;
@@ -206,9 +210,9 @@ const Tab = styled.button.attrs(() => ({}))`
   background: ${(props) =>
     props.$active ? 'rgba(255, 255, 255, 0.15)' : 'transparent'};
   color: #fff;
-  font-family: 'SF Pro', 'Pretendard', 'Syncopate', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 300;
   cursor: pointer;
   outline: none;
   transition: all 0.18s cubic-bezier(0.4, 1.2, 0.6, 1);
@@ -287,6 +291,7 @@ const SpeakerImg = styled.img`
   width: 30rem;
   height: 30rem;
   object-fit: cover;
+  object-position: center top;
   border-radius: 2.4rem;
   background: #222;
   box-shadow: 0 0 3.2rem #4f8cff33;
@@ -323,7 +328,7 @@ const InfoCol = styled.div`
 const SpeakerGroup = styled.div``;
 
 const SpeakerTitle = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--text-tertiary);
   margin-bottom: 0.8rem;
   font-weight: 600;
@@ -342,7 +347,7 @@ const Speaker = styled.div`
 const ContentGroup = styled.div``;
 
 const ContentTitle = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--text-tertiary);
   margin-bottom: 0.8rem;
   font-weight: 600;
@@ -351,7 +356,7 @@ const ContentTitle = styled.div`
 `;
 
 const Content = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--Text-Primary, #fbfbfb);
   line-height: 1.7;
   font-family: 'IBM Plex Mono', monospace;
@@ -360,14 +365,14 @@ const Content = styled.div`
 const StructureGroup = styled.div``;
 
 const Structure = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--Text-Primary, #fbfbfb);
   font-weight: 500;
   font-family: 'IBM Plex Mono', monospace;
 `;
 
 const StructureTitle = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--text-tertiary);
   margin-bottom: 0.8rem;
   font-weight: 600;

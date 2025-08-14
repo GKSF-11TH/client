@@ -71,12 +71,11 @@ const Background = styled.div`
   height: 100%;
   background-image: url('${BackgroundImage}');
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   background-repeat: no-repeat;
 
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
-    background-position: center top;
     height: 230rem;
   }
 `;
@@ -101,13 +100,13 @@ const Content = styled.div`
 const Title = styled.h1`
   color: var(--text-primary);
   text-align: center;
-  -webkit-text-stroke-width: 0.04rem;
+  -webkit-text-stroke-width: 0.4px;
   -webkit-text-stroke-color: var(--text-primary);
   font-family: Syncopate;
   font-size: 3.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 100%;
+  line-height: 100%; /* 3.6rem */
   letter-spacing: -0.036rem;
 
   @media (max-width: 768px) {
