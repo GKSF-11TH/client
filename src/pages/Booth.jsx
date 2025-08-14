@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import BackgroundImage from '../assets/images/booth-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import BoothCard from '../components/Booth/BoothCard';
-import Footer from '../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
 
 const CardText = [
@@ -47,9 +46,6 @@ const Booth = () => {
           ))}
         </CardWrapper>
       </Content>
-      <div style={{ position: 'relative', zIndex: 1, marginTop: 'auto' }}>
-        <Footer />
-      </div>
     </Container>
   );
 };
@@ -58,16 +54,16 @@ const Container = styled.div`
   position: relative;
   width: 100vw;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  padding: 5rem 17rem 0 17rem;
 
   @media (max-width: 768px) {
+    padding: 5rem 2rem 8.5rem 2rem;
     overflow-y: hidden;
   }
 `;
 
 const Background = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
@@ -75,43 +71,42 @@ const Background = styled.div`
   height: 100%;
   background-image: url('${BackgroundImage}');
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   background-repeat: no-repeat;
 
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
-    background-position: center top;
     height: 230rem;
   }
 `;
 
 const Content = styled.div`
   position: relative;
-  z-index: 11;
+  z-index: 1;
   width: 100%;
-  padding: 14rem 17rem 12rem 17rem;
+  padding: 9rem 12rem 0 12rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 9.4rem;
-  flex: 1;
+  gap: 17.4rem;
+  gap: calc(17.4 / 96 * 100vh);
 
   @media (max-width: 768px) {
     gap: 7.2rem;
-    padding: 11.7rem 2rem 4rem 2rem;
+    padding: 6.7rem 4.8rem 0 4.8rem;
   }
 `;
 
 const Title = styled.h1`
   color: var(--text-primary);
   text-align: center;
-  -webkit-text-stroke-width: 0.04rem;
+  -webkit-text-stroke-width: 0.4px;
   -webkit-text-stroke-color: var(--text-primary);
   font-family: Syncopate;
   font-size: 3.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 100%;
+  line-height: 100%; /* 3.6rem */
   letter-spacing: -0.036rem;
 
   @media (max-width: 768px) {
