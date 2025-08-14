@@ -7,6 +7,7 @@ import VideoSection from '../components/Landing/videoSection';
 import BoothAndSession from '../components/Landing/boothAndSession';
 import Info from '../components/Landing/info'
 import GuestBook from '../components/Landing/guestBook';
+import gksAiImage from '../assets/images/GKS_AI.png';
 
 const Landing = () => {
   const [hideIntro, setHideIntro] = useState(false);
@@ -91,7 +92,7 @@ const Landing = () => {
       <GksAiContainer>
         <GksAiPill>
           <Orb>
-            <img src='/src/assets/images/GKS_AI.png' alt='gksAI' style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%'}}/>
+            <img src={gksAiImage} alt='gksAI' style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%'}}/>
           </Orb>
           <GksAiText>
             {sectionTexts[currentSection]}

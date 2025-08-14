@@ -1,7 +1,7 @@
 // Header.jsx
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import logoImg from '../../assets//images/_GKSF Logo.svg';
+import logoImg from '../../assets/images/_GKSF Logo.svg';
 import hamburgerIcon from '../../assets/icons/hamburg.svg';
 import closeIcon from '../../assets/icons/close.svg';
 import { useEffect, useState } from 'react';

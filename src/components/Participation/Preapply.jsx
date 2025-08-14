@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import preapplyModalImage from '../../assets/images/PreapplyModal.png';
 
 const Overlay = styled.div`
   position: fixed;
@@ -255,7 +256,7 @@ const SuccessOverlay = styled(Overlay)`
 `;
 
 const SuccessModal = styled.div`
-  background: url('/src/assets/images/PreapplyModal.png');
+  background: url(${preapplyModalImage});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
