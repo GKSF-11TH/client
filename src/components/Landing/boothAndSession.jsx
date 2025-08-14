@@ -11,7 +11,7 @@ import {
   CardContainer, Card3D, CardFace, CardBack
 } from '../../style/LandingStyle';
 import gksAiImage from '../../assets/images/GKSAI.png';
-import bgImage from '../../assets/images/bg.png';
+import bgImage from '../../assets/images/BG.png';
 import card1_1Image from '../../assets/images/card1_1.svg';
 import card1_2Image from '../../assets/images/card1_2.png';
 import card2_1Image from '../../assets/images/card2_1.svg';
