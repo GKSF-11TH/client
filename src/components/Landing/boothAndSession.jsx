@@ -10,6 +10,12 @@ import {
   BoothAndSessionHeader,
   CardContainer, Card3D, CardFace, CardBack
 } from '../../style/LandingStyle';
+import gksAiImage from '../../assets/images/GKSAI.png';
+import bgImage from '../../assets/images/bg.png';
+import card1_1Image from '../../assets/images/card1_1.svg';
+import card1_2Image from '../../assets/images/card1_2.png';
+import card2_1Image from '../../assets/images/card2_1.svg';
+import card2_2Image from '../../assets/images/card2_2.png';
 
 const BoothAndSession = () => {
   const [flippedCards, setFlippedCards] = useState({ booth: false, session: false });
@@ -34,9 +40,9 @@ const BoothAndSession = () => {
         </BoothAndSessionSub>
       </BoothAndSessionHeader>
       <BoothAndSessionCardRow>
-      <OrbBg1 src="/src/assets/images/GKSAI.png" alt="orb" />
-      <OrbBg2 src="/src/assets/images/GKSAI.png" alt="orb" />
-      <Bg src="/src/assets/images/bg.png" alt="bg" />
+      <OrbBg1 src={gksAiImage} alt="orb" />
+      <OrbBg2 src={gksAiImage} alt="orb" />
+      <Bg src={bgImage} alt="bg" />
         {/* BOOTH 카드 */}
         <CardContainer
             style={{
@@ -53,7 +59,7 @@ const BoothAndSession = () => {
      
             <CardFace>
               <img
-                src="/src/assets/images/card1_1.svg"
+                src={card1_1Image}
                 alt="Booth Front"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '1rem' }}
               />
@@ -61,7 +67,7 @@ const BoothAndSession = () => {
     
             <CardBack>
               <img
-                src="/src/assets/images/card1_2.png"
+                src={card1_2Image}
                 alt="Booth Back"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '1rem' }}
               />
@@ -83,14 +89,14 @@ const BoothAndSession = () => {
           <Card3D className={flippedCards.session ? 'rotate-y-180' : ''}>
           <CardFace>
               <img
-                src="/src/assets/images/card2_1.svg"
+                src={card2_1Image}
                 alt="Booth Front"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '1rem' }}
               />
             </CardFace>
             <CardBack>
               <img
-                src="/src/assets/images/card2_2.png"
+                src={card2_2Image}
                 alt="Booth Back"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '1rem' }}
               />

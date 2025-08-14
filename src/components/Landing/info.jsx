@@ -6,6 +6,7 @@ import {
   InfoOrbBg, InfoContent,
   InfoAnchorArea, InfoAnchorCard, InfoAnchorText, InfoAnchorButton
 } from '../../style/LandingStyle';
+import orbImage from '../../assets/images/orb.png';
 
 const Info = () => {
   const { isMobile } = useResponsive(); 
@@ -149,7 +150,7 @@ const Info = () => {
 
 
       <InfoOrbBg
-        src="/src/assets/images/orb.png"
+        src={orbImage}
         alt="orb"
         $topPx={orbStyle.topPx}
         $leftPercent={orbStyle.leftPercent}
