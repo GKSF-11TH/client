@@ -227,7 +227,7 @@ const DesktopMain = () => {
           <ArchiveGrid>
             <ArchiveRow>
               <ItemGroup>
-                <ArchiveItem edition="11st GKSF" hasLogo={true} />
+                <ArchiveItem edition="11th GKSF" hasLogo={true} />
                 <HorizontalSeparator />
               </ItemGroup>
               <VerticalSeparator />

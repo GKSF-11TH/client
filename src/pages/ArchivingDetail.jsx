@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { useParams, useNavigate } from 'react-router-dom';
 import archivingData from '../components/Archiving/archivingData.json';
 import Footer from '../components/common/Footer';
+import BackgroundImage from '../assets/images/booth-detail-gradient-bg.png';
+import MobileBackgroundImage from '../assets/images/booth-detail-gradient-bg-mobile.png';
 
 // Styled Components
 const PageContainer = styled.div`
-  background-color: #0e0e0e;
-  min-height: 100vh;
   position: relative;
   width: 100vw;
+  min-height: 100vh;
   font-family: 'IBM Plex Mono', Helvetica;
   margin: 0 auto;
   display: flex;
@@ -33,10 +34,11 @@ const MainTitle = styled.div`
   letter-spacing: -0.72px;
   line-height: 100%;
   position: relative;
+  z-index: 1;
   white-space: nowrap;
   margin-bottom: 10rem;
   align-self: flex-start;
-  margin-left: 39.5rem;
+  margin-left: 23.5rem;
 
   @media (max-width: 768px) {
     font-size: 4.8rem;
@@ -51,6 +53,7 @@ const ContentContainer = styled.div`
   box-shadow: 0px 4px 4px #00000040;
   min-height: 100vh;
   position: relative;
+  z-index: 1;
   width: 106rem;
   max-width: 90vw;
   display: flex;
@@ -114,50 +117,63 @@ const HeroContent = styled.div`
 `;
 
 const HeroTitle = styled.div`
-  color: #ffffff;
-  font-family: 'Syncopate', Helvetica;
-  font-size: 4.2rem;
+  color: #fff;
+  font-family: Syncopate;
+  font-size: 42px;
   font-style: normal;
   font-weight: 400;
-  letter-spacing: -0.42px;
   line-height: 100%;
-  margin-top: -1px;
-  margin-bottom: 6.6rem;
+  letter-spacing: -0.42px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   text-align: left;
 
   @media (max-width: 768px) {
     font-size: 3.2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     text-align: left;
   }
 `;
 
 const HeroSubtitle = styled.p`
-  color: #fbfbfb;
-  font-family: 'IBM Plex Mono', Helvetica;
-  font-size: 3.2rem;
+  color: var(--Text-Primary, #fbfbfb);
+  font-family: 'IBM Plex Mono';
+  font-size: 32px;
   font-style: normal;
   font-weight: 500;
-  letter-spacing: -0.32px;
   line-height: 100%;
+  letter-spacing: -0.32px;
   margin: 0;
-  margin-bottom: 12.2rem;
+  margin-bottom: 3rem;
   text-align: left;
 
   @media (max-width: 768px) {
     font-size: 2.4rem;
-    margin-bottom: 6rem;
+    margin-bottom: 1.5rem;
     text-align: left;
   }
 `;
 
+const HeroDivider = styled.div`
+  background: #fff;
+  width: 475px;
+  height: 1px;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+`;
+
 const HeroDescription = styled.p`
-  color: #ffffff;
-  font-family: 'SF Pro-Regular', Helvetica;
-  font-size: 2.4rem;
+  color: #fff;
+  font-family: 'SF Pro';
+  font-size: 24px;
+  font-style: normal;
   font-weight: 400;
+  line-height: 170%;
   letter-spacing: -0.24px;
-  line-height: 1.7;
   margin: 0;
   text-align: left;
 
@@ -165,6 +181,24 @@ const HeroDescription = styled.p`
     font-size: 1.4rem;
     line-height: 1.6;
     text-align: left;
+  }
+`;
+
+const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('${BackgroundImage}');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    background-image: url('${MobileBackgroundImage}');
+    background-position: center top;
   }
 `;
 
@@ -194,7 +228,9 @@ const SegmentedControlContainer = styled.div`
   align-self: center;
 
   &::before {
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     background: linear-gradient(
       108deg,
@@ -203,7 +239,7 @@ const SegmentedControlContainer = styled.div`
       rgba(255, 255, 255, 0.03) 100%
     );
     border-radius: 100px;
-    content: "";
+    content: '';
     inset: 0;
     mask-composite: exclude;
     padding: 1px;
@@ -315,7 +351,9 @@ const ContentCard = styled.div`
   width: 100%;
 
   &::before {
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     background: linear-gradient(
       169deg,
@@ -325,7 +363,7 @@ const ContentCard = styled.div`
       rgba(255, 255, 255, 0.1) 100%
     );
     border-radius: 20px;
-    content: "";
+    content: '';
     inset: 0;
     mask-composite: exclude;
     padding: 1px;
@@ -408,7 +446,9 @@ const SessionControlContainer = styled.div`
   align-self: center;
 
   &::before {
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     background: linear-gradient(
       108deg,
@@ -417,7 +457,7 @@ const SessionControlContainer = styled.div`
       rgba(255, 255, 255, 0.03) 100%
     );
     border-radius: 100px;
-    content: "";
+    content: '';
     inset: 0;
     mask-composite: exclude;
     padding: 1px;
@@ -530,7 +570,9 @@ const SessionCard = styled.div`
   width: 100%;
 
   &::before {
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     background: linear-gradient(
       169deg,
@@ -539,7 +581,7 @@ const SessionCard = styled.div`
       rgba(255, 255, 255, 0.1) 100%
     );
     border-radius: 20px;
-    content: "";
+    content: '';
     inset: 0;
     mask-composite: exclude;
     padding: 1px;
@@ -633,13 +675,16 @@ const ArchivingDetail = () => {
   }
 
   // 부스와 세션을 분리
-  const booths = event.sections.filter(section => section.type === 'booth');
-  const sessions = event.sections.filter(section => section.type === 'session');
+  const booths = event.sections.filter((section) => section.type === 'booth');
+  const sessions = event.sections.filter(
+    (section) => section.type === 'session'
+  );
 
   return (
     <PageContainer>
+      <Background />
       <MainTitle>{event.title}</MainTitle>
-      
+
       <ContentContainer>
         {/* Hero Section */}
         <HeroSection>
@@ -647,18 +692,15 @@ const ArchivingDetail = () => {
             src="https://c.animaapp.com/me8tr3vkphaONr/img/10---------------1-1.png"
             alt="GKSF Event"
           />
-          
+
           <HeroContent>
             <HeroTitle>{event.heroTitle}</HeroTitle>
-            
-            <HeroSubtitle>
-              {event.heroSubtitle}
-            </HeroSubtitle>
-            
-            <HeroDescription>
-              {event.heroDescription}
-            </HeroDescription>
-            
+
+            <HeroSubtitle>{event.heroSubtitle}</HeroSubtitle>
+
+            <HeroDivider />
+
+            <HeroDescription>{event.heroDescription}</HeroDescription>
           </HeroContent>
         </HeroSection>
 
@@ -666,12 +708,14 @@ const ArchivingDetail = () => {
         <SegmentedControlContainer>
           <SegmentedControlFrame>
             {booths.map((booth, index) => (
-              <SegmentButton 
+              <SegmentButton
                 key={booth.id}
                 onClick={() => setActiveBooth(index)}
                 className={activeBooth === index ? 'active' : ''}
               >
-                <div><span>부스 {String.fromCharCode(65 + index)}</span></div>
+                <div>
+                  <span>부스 {String.fromCharCode(65 + index)}</span>
+                </div>
               </SegmentButton>
             ))}
           </SegmentedControlFrame>
@@ -680,7 +724,9 @@ const ArchivingDetail = () => {
         {/* Booth Section - 카드만 포함 */}
         <BoothSection>
           <ContentCard>
-            <CardTitle>{booths[activeBooth]?.title || '부스 정보가 없습니다'}</CardTitle>
+            <CardTitle>
+              {booths[activeBooth]?.title || '부스 정보가 없습니다'}
+            </CardTitle>
             <CardDescription>
               {booths[activeBooth]?.description || '부스 설명이 없습니다'}
             </CardDescription>
@@ -691,27 +737,39 @@ const ArchivingDetail = () => {
         <SessionControlContainer>
           <SessionControlFrame>
             {/* 위쪽 줄: 세션 A, B, C */}
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+            <div
+              style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}
+            >
               {sessions.slice(0, 3).map((session, index) => (
-                <SessionButton 
+                <SessionButton
                   key={session.id}
                   onClick={() => setActiveSession(index)}
                   className={activeSession === index ? 'active' : ''}
                 >
-                  <div><span>세션 {String.fromCharCode(65 + index)}</span></div>
+                  <div>
+                    <span>세션 {String.fromCharCode(65 + index)}</span>
+                  </div>
                 </SessionButton>
               ))}
             </div>
             {/* 아래쪽 줄: 세션 D, E */}
             {sessions.length > 3 && (
-              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '1rem',
+                  justifyContent: 'center'
+                }}
+              >
                 {sessions.slice(3).map((session, index) => (
-                  <SessionButton 
+                  <SessionButton
                     key={session.id}
                     onClick={() => setActiveSession(index + 3)}
-                    className={activeSession === (index + 3) ? 'active' : ''}
+                    className={activeSession === index + 3 ? 'active' : ''}
                   >
-                    <div><span>세션 {String.fromCharCode(65 + index + 3)}</span></div>
+                    <div>
+                      <span>세션 {String.fromCharCode(65 + index + 3)}</span>
+                    </div>
                   </SessionButton>
                 ))}
               </div>
@@ -726,23 +784,31 @@ const ArchivingDetail = () => {
               {sessions[activeSession]?.title || '세션 정보가 없습니다'}
             </SessionTitle>
             <SessionDescription>
-              <span className="bold">연사자<br /></span>
-              <span className="regular">
-                {sessions[activeSession]?.speaker || '연사자 정보가 없습니다'}<br /><br />
+              <span className="bold">
+                연사자
+                <br />
               </span>
-              <span className="bold">세션 설명<br /></span>
+              <span className="regular">
+                {sessions[activeSession]?.speaker || '연사자 정보가 없습니다'}
+                <br />
+                <br />
+              </span>
+              <span className="bold">
+                세션 설명
+                <br />
+              </span>
               <span className="regular">
                 {sessions[activeSession]?.description || '세션 설명이 없습니다'}
               </span>
             </SessionDescription>
           </SessionCard>
-                 </SessionSection>
-       </ContentContainer>
-       
-               <div style={{ marginTop: '16rem' }} />
-        <Footer />
-      </PageContainer>
-    );
-  };
+        </SessionSection>
+      </ContentContainer>
+
+      <div style={{ marginTop: '16rem' }} />
+      <Footer />
+    </PageContainer>
+  );
+};
 
 export default ArchivingDetail;
