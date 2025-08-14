@@ -1,132 +1,222 @@
 import React from 'react';
 import styled from 'styled-components';
+import BackgroundImage from '../assets/images/booth-gradient-bg.png';
+import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import Card from '../components/Archiving/Card';
 import ArchiveItem from '../components/Archiving/ArchiveItem';
 import Footer from '../components/common/Footer';
 
-const MainContainer = styled.main`
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
   width: 100%;
+  height: 100%;
+  background-image: url('${BackgroundImage}');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    background-image: url('${MobileBackgroundImage}');
+    background-position: center top;
+    height: 230rem;
+  }
+`;
+
+const MainContainer = styled.main`
+  width: 100vw;
   overflow: hidden;
   position: relative;
+  z-index: 11;
 `;
 
 const ContentWrapper = styled.div`
   position: relative;
-  width: 146.4rem;
-  height: 239.3rem;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
+  height: 155rem;
+
+  @media (max-width: 768px) {
+    height: 165.3rem;
+  }
 `;
 
 const MainContent = styled.div`
   position: absolute;
-  width: 110rem;
-  height: 224.3rem;
-  top: 5rem;
-  left: 19.4rem;
+  width: 100%;
+  max-width: 1000px;
+  height: 185rem;
+  top: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media (max-width: 768px) {
+    top: 6rem;
+  }
 `;
 
 const Heading = styled.h1`
   position: absolute;
-  top: 18.8rem;
-  left: 2rem;
+  top: 15rem;
+  left: calc(50% - 58rem);
   color: #fff;
-  -webkit-text-stroke-width: 0.4px;
+  -webkit-text-stroke-width: 0.04rem;
   -webkit-text-stroke-color: #fff;
   font-family: Syncopate;
-  font-size: 7.2rem;
+  font-size: 5.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
-  letter-spacing: -0.72px;
+  letter-spacing: -0.058rem;
+  text-align: left;
+
+  @media (max-width: 768px) {
+    top: 7.5rem;
+    left: 4rem;
+    font-size: 3rem;
+    letter-spacing: -0.03rem;
+  }
 `;
 
 const ArchiveGrid = styled.div`
   position: absolute;
-  width: 110rem;
-  height: 216.6rem;
-  top: 47.7rem;
-  left: 0;
-  background-size: 100% 100%;
+  width: 100%;
+  height: 180rem;
+  top: 38rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.5rem;
 `;
 
 const ArchiveRow = styled.div`
   display: flex;
-  width: 106.2rem;
-  height: 38.8rem;
+  width: 100%;
+  max-width: 1000px;
+  height: 31rem;
   align-items: center;
-  gap: 2.9rem;
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+  justify-content: center;
+  gap: 2.4rem;
 `;
 
-const SecondRow = styled(ArchiveRow)`
-  top: 46.6rem;
-`;
+const SecondRow = styled(ArchiveRow)``;
+const ThirdRow = styled(ArchiveRow)``;
 
-const ThirdRow = styled.div`
-  position: absolute;
-  width: 106.2rem;
-  height: 44.8rem;
-  top: 88.2rem;
-  left: 1.9rem;
-`;
-
-const ThirdRowContent = styled.div`
+const ItemGroup = styled.div`
+  position: relative;
   display: flex;
-  width: 106.2rem;
-  height: 38.8rem;
+  flex-direction: column;
   align-items: center;
-  gap: 2.9rem;
-  position: absolute;
-  top: 3rem;
-  left: 0;
-`;
-
-const FourthRow = styled(ArchiveRow)`
-  top: 135.8rem;
+  gap: 0.2rem;
 `;
 
 const HorizontalSeparator = styled.div`
   position: absolute;
-  width: 31.5rem;
+  width: 25rem;
   height: 0.1rem;
   background: #bbb;
-  top: ${({ $top }) => $top || '0rem'};
-  left: ${({ $left }) => $left || '0rem'};
+  bottom: -1.6rem;
 `;
 
 const VerticalSeparator = styled.div`
-  height: 38.8rem;
+  height: calc(100% - 1rem);
   width: 0.1rem;
   background: #bbb;
+  flex-shrink: 0;
+  align-self: flex-start;
 `;
 
-const ForumCard = styled(Card)`
+const ForumCardContainer = styled.div`
   position: relative;
-  width: 31.5rem;
-  height: 38.8rem;
+  width: 25rem;
+  height: 31rem;
+`;
+
+const ForumCard = styled.div`
+  width: 25rem;
+  height: 30rem;
+  flex-shrink: 0;
   background-color: rgba(255, 255, 255, 0.1);
-  border: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #555;
+    box-shadow: 0 0 2rem rgba(255, 255, 255, 0.1);
+  }
 `;
 
 const ForumTitle = styled.h2`
-  position: absolute;
-  top: 2.5rem;
-  left: 2.3rem;
+  text-align: left;
   font-family: 'Syncopate', Helvetica;
-  font-size: 4.2rem;
+  font-size: 3.4rem;
   font-style: normal;
   font-weight: 400;
-  letter-spacing: -0.42px;
+  letter-spacing: -0.034rem;
   line-height: 100%;
   color: white;
+  margin: 0;
+  padding: 1.6rem;
+  white-space: pre-line;
+`;
+
+// Mobile Components
+const MobileArchiveGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rem;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
+
+const MobileArchiveRow = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+`;
+
+const MobileItemGroup = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const MobileHorizontalSeparator = styled.div`
+  position: absolute;
+  width: 15rem;
+  height: 0.1rem;
+  background: #bbb;
+  bottom: -6rem;
+`;
+
+const MobileVerticalSeparator = styled.div`
+  position: absolute;
+  height: 18.65rem;
+  width: 0.1rem;
+  background: #bbb;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const DesktopMain = () => {
   return (
     <MainContainer data-model-id="764:13808">
+      <Background />
       <ContentWrapper>
         <MainContent>
           <Heading>
@@ -136,54 +226,73 @@ const DesktopMain = () => {
           </Heading>
           <ArchiveGrid>
             <ArchiveRow>
-              <ArchiveItem edition="11st GKSF" hasLogo={true} />
-              <HorizontalSeparator $top="41rem" $left="0rem" />
-              <VerticalSeparator></VerticalSeparator>
-              <ArchiveItem edition="10th GKSF" />
-              <HorizontalSeparator $top="41rem" $left="37.5rem" />
-              <VerticalSeparator></VerticalSeparator>
-              <ArchiveItem edition="9th GKSF" />
-              <HorizontalSeparator $top="41rem" $left="74.6rem" />
+              <ItemGroup>
+                <ArchiveItem edition="11th GKSF" hasLogo={true} />
+                <HorizontalSeparator />
+              </ItemGroup>
+              <VerticalSeparator />
+              <ItemGroup>
+                <ArchiveItem edition="10th GKSF" />
+                <HorizontalSeparator />
+              </ItemGroup>
+              <VerticalSeparator />
+              <ItemGroup>
+                <ArchiveItem edition="9th GKSF" />
+                <HorizontalSeparator />
+              </ItemGroup>
+              <VerticalSeparator />
+              <ItemGroup>
+                <ArchiveItem edition="8th GKSF" />
+                <HorizontalSeparator />
+              </ItemGroup>
             </ArchiveRow>
             <SecondRow>
-              <ArchiveItem edition="8th GKSF" />
-              <HorizontalSeparator $top="41rem" $left="0rem" />
-              <VerticalSeparator></VerticalSeparator>
-              <ArchiveItem edition="7th GKSF" />
-              <HorizontalSeparator $top="41rem" $left="37.5rem" />
-              <VerticalSeparator></VerticalSeparator>
-              <ArchiveItem edition="6th GKSF" />
-              <HorizontalSeparator $top="41rem" $left="74.6rem" />
+              <ItemGroup>
+                <ArchiveItem edition="7th GKSF" />
+                <HorizontalSeparator />
+              </ItemGroup>
+              <VerticalSeparator />
+              <ItemGroup>
+                <ArchiveItem edition="6th GKSF" />
+                <HorizontalSeparator />
+              </ItemGroup>
+              <VerticalSeparator />
+              <ItemGroup>
+                <ArchiveItem edition="5th GKSF" />
+                <HorizontalSeparator />
+              </ItemGroup>
+              <VerticalSeparator />
+              <ItemGroup>
+                <ArchiveItem edition="4th GKSF" />
+                <HorizontalSeparator />
+              </ItemGroup>
             </SecondRow>
             <ThirdRow>
-              <ThirdRowContent>
-                <ArchiveItem edition="5th GKSF" />
-                <HorizontalSeparator $top="41rem" $left="0rem" />
-                <VerticalSeparator></VerticalSeparator>
-                <ArchiveItem edition="4th GKSF" />
-                <HorizontalSeparator $top="41rem" $left="37.5rem" />
-                <VerticalSeparator></VerticalSeparator>
+              <ItemGroup>
                 <ArchiveItem edition="3rd GKSF" />
-                <HorizontalSeparator $top="41rem" $left="74.6rem" />
-              </ThirdRowContent>
+              </ItemGroup>
+              <VerticalSeparator />
+              <ItemGroup>
+                <ArchiveItem edition="2nd GKSF" />
+              </ItemGroup>
+              <VerticalSeparator />
+              <ItemGroup>
+                <ArchiveItem edition="1st GKSF" />
+              </ItemGroup>
+              <VerticalSeparator />
+              <ItemGroup>
+                <ForumCardContainer>
+                  <ForumCard>
+                    <ForumTitle>
+                      Global{'\n'}
+                      Korean{'\n'}
+                      Studies{'\n'}
+                      Forum
+                    </ForumTitle>
+                  </ForumCard>
+                </ForumCardContainer>
+              </ItemGroup>
             </ThirdRow>
-            <FourthRow>
-              <ArchiveItem edition="2nd GKSF" />
-              <VerticalSeparator></VerticalSeparator>
-              <ArchiveItem edition="1st GKSF" />
-              <VerticalSeparator></VerticalSeparator>
-              <ForumCard>
-                <ForumTitle>
-                  Global
-                  <br />
-                  Korean
-                  <br />
-                  Studies
-                  <br />
-                  Forum
-                </ForumTitle>
-              </ForumCard>
-            </FourthRow>
           </ArchiveGrid>
         </MainContent>
       </ContentWrapper>
@@ -192,4 +301,143 @@ const DesktopMain = () => {
   );
 };
 
-export default DesktopMain;
+const MobileMain = () => {
+  return (
+    <MainContainer>
+      <Background />
+      <ContentWrapper>
+        <MainContent>
+          <Heading>
+            GKSF
+            <br />
+            ARCHIVIING
+          </Heading>
+          <MobileArchiveGrid style={{ marginTop: '20rem' }}>
+            {/* 1행 */}
+            <MobileArchiveRow>
+              <MobileItemGroup>
+                <ArchiveItem
+                  edition="11st GKSF"
+                  hasLogo={true}
+                  isMobile={true}
+                />
+                <MobileHorizontalSeparator />
+              </MobileItemGroup>
+              <MobileVerticalSeparator />
+              <MobileItemGroup>
+                <ArchiveItem edition="10th GKSF" isMobile={true} />
+                <MobileHorizontalSeparator />
+              </MobileItemGroup>
+            </MobileArchiveRow>
+
+            {/* 2행 */}
+            <MobileArchiveRow>
+              <MobileItemGroup>
+                <ArchiveItem edition="9th GKSF" isMobile={true} />
+                <MobileHorizontalSeparator />
+              </MobileItemGroup>
+              <MobileVerticalSeparator />
+              <MobileItemGroup>
+                <ArchiveItem edition="8th GKSF" isMobile={true} />
+                <MobileHorizontalSeparator />
+              </MobileItemGroup>
+            </MobileArchiveRow>
+
+            {/* 3행 */}
+            <MobileArchiveRow>
+              <MobileItemGroup>
+                <ArchiveItem edition="7th GKSF" isMobile={true} />
+                <MobileHorizontalSeparator />
+              </MobileItemGroup>
+              <MobileVerticalSeparator />
+              <MobileItemGroup>
+                <ArchiveItem edition="6th GKSF" isMobile={true} />
+                <MobileHorizontalSeparator />
+              </MobileItemGroup>
+            </MobileArchiveRow>
+
+            {/* 4행 */}
+            <MobileArchiveRow>
+              <MobileItemGroup>
+                <ArchiveItem edition="5th GKSF" isMobile={true} />
+                <MobileHorizontalSeparator />
+              </MobileItemGroup>
+              <MobileVerticalSeparator />
+              <MobileItemGroup>
+                <ArchiveItem edition="4th GKSF" isMobile={true} />
+                <MobileHorizontalSeparator />
+              </MobileItemGroup>
+            </MobileArchiveRow>
+
+            {/* 5행 */}
+            <MobileArchiveRow>
+              <MobileItemGroup>
+                <ArchiveItem edition="3rd GKSF" isMobile={true} />
+                <MobileHorizontalSeparator />
+              </MobileItemGroup>
+              <MobileVerticalSeparator />
+              <MobileItemGroup>
+                <ArchiveItem edition="2nd GKSF" isMobile={true} />
+                <MobileHorizontalSeparator />
+              </MobileItemGroup>
+            </MobileArchiveRow>
+
+            {/* 6행 */}
+            <MobileArchiveRow style={{ alignItems: 'flex-start' }}>
+              <MobileItemGroup>
+                <ArchiveItem edition="1st GKSF" isMobile={true} />
+              </MobileItemGroup>
+              <MobileVerticalSeparator />
+              <MobileItemGroup>
+                <ForumCard
+                  style={{
+                    width: '150px',
+                    height: '190px',
+                    alignItems: 'flex-start',
+                    justifyContent: 'flex-start'
+                  }}
+                >
+                  <ForumTitle
+                    style={{
+                      fontSize: '23.134px',
+                      fontFamily: 'SF Pro',
+                      fontWeight: '120',
+                      letterSpacing: '-0.211px',
+                      lineHeight: '100%',
+                      padding: '7.821px 37.284px 70.88px 8.806px',
+                      textAlign: 'left',
+                      color: '#FFF'
+                    }}
+                  >
+                    Global{'\n'} Korean{'\n'}
+                    Studies{'\n'} Forum
+                  </ForumTitle>
+                </ForumCard>
+              </MobileItemGroup>
+            </MobileArchiveRow>
+          </MobileArchiveGrid>
+        </MainContent>
+      </ContentWrapper>
+      <Footer />
+    </MainContainer>
+  );
+};
+
+const Archiving = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile ? <MobileMain /> : <DesktopMain />;
+};
+
+export default Archiving;
