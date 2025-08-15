@@ -150,7 +150,7 @@ const Info = () => {
 
 
       <InfoOrbBg
-        src={orbImage}
+        src="/src/assets/images/orb.png"
         alt="orb"
         $topPx={orbStyle.topPx}
         $leftPercent={orbStyle.leftPercent}
@@ -189,6 +189,7 @@ const Info = () => {
           opacity: 0,
         }}
       />
+
       <InfoAnchorArea style={{ 
         opacity: showGlassBox ? 1 : 0, 
         transform: `translateY(${showGlassBox ? 0 : '200em'})`,

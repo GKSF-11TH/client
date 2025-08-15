@@ -74,7 +74,7 @@ export const MainTitle = styled.h1`
 
 export const IntroText = styled.div`
   position: absolute;
-  bottom: 50%;
+  bottom: 53%;
   right: 15%;
   max-width: 48rem;
   font-family: 'IBM Plex Mono', monospace;
@@ -82,7 +82,7 @@ export const IntroText = styled.div`
   font-style: normal;
   font-size: 1.5rem;
   line-height: 160%;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--Text-Primary);
   z-index: 20;
   transition: opacity 0.8s ease, transform 0.8s ease;
 
@@ -267,7 +267,7 @@ export const MainThemeButton = styled.button`
   @media (max-width: 768px) {
     right: 2rem; 
     top: auto;
-    margin-bottom: -2rem;
+    margin-bottom: 0rem;
     bottom: 0rem; 
     font-size: 1.2rem;
     padding: 0.9rem 1.5rem;
@@ -303,6 +303,7 @@ export const MainThemeSection = styled.div`
   @media (max-width: 768px) {
     width: 34rem;
     padding: 2rem 3rem;
+    margin-top: -1rem;
 
     &.visible {
     transition: all 0.5s ease;
@@ -401,31 +402,24 @@ export const IntroVideoSubtitle = styled.p`
   
   @media (max-width: 768px) {
     font-size: 1.3rem;
-  }// 왼쪽 정렬
+  }
 `;
 
-export const VideoBox = styled.div`
-  width: 100%;
-  max-width: 800px;
-  height: 400px;
-  background-color: #1a1a1a;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;       
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  border: 1px solid #333;
-  margin: 2rem auto 0;           
-  &:hover {
-    transform: scale(1.02);
-  }
+export const VideoBox = styled.h1`
+  position: absolute;
+  top: 40%;
+  left: 43%;
+  font-size: 1.875rem;
+  font-family: 'SF Pro', sans-serif;
+  font-weight: 400;
+  color: var(--text-primary);
+  text-align: center;
+
 
   @media (max-width: 768px) {
-    width: 34rem;
-    height: 16rem;
-    margin-top: -2rem;
+    top:50%;
+    left: 35%;
+    font-size: 1.3rem;
   }
 `;
 
@@ -443,35 +437,35 @@ const floatUpDown2 = keyframes`
 
 export const OrbBg1 = styled.img`
   position: absolute;
-  top: 44%;
-  left: 32%;
-  width: 18%;
+  top: 10%;
+  right: -10%;
+  transform: translateX(-50%);
+  width: 120%;
   opacity: 1;
   z-index: -10;
   animation: ${floatUpDown1} 4s ease-in-out infinite;
   pointer-events: none;
 
   @media (max-width: 768px) {
-    top: 30%;
-    left: 20%;
-    width: 60%;
+    top: 10%;
+    width: 120%;
   }
 `;
 
 export const OrbBg2 = styled.img`
   position: absolute;
-  top: 44%;
-  right: 32%;
-  width: 18%;
+  top: 0%;
+  left: -10%;
+  transform: translateX(-50%);
+  width: 120%;
   opacity: 1;
-  z-index: 1;
+  z-index: -10;
   animation: ${floatUpDown2} 6s ease-in-out infinite;
   pointer-events: none;
 
   @media (max-width: 768px) {
-    top: 60%;
-    right: 20%;
-    width: 60%;
+    top: 0%;
+    width: 120%;
   }
 `;
 
@@ -770,7 +764,7 @@ export const InfoCard = styled.div`
 export const InfoOrbBg = styled.img`
   position: absolute;
   left: ${({ $leftPercent }) => ($leftPercent !== undefined ? `${$leftPercent}%` : '40%')};
-  top: ${({ $topPx }) => ($topPx !== undefined ? `${$topPx}px` : '150px')};
+  top: ${({ $topPx }) => ($topPx !== undefined ? `${$topPx}px` : '220px')};
   width: ${({ $widthPercent }) => ($widthPercent !== undefined ? `${$widthPercent}%` : '140%')};
   transform: translateX(-50%) translateY(${({ $translateY }) => ($translateY !== undefined ? `${$translateY}px` : '0px')})
     scale(${({ $scale }) => ($scale !== undefined ? $scale : 1)});
@@ -779,11 +773,15 @@ export const InfoOrbBg = styled.img`
   filter: blur(0.5px);
   pointer-events: none;
   user-select: none;
-  transition: transform 0.15s ease-out, top 0.15s ease-out, left 0.15s ease-out, width 0.15s ease-out, opacity 0.4s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, top, left, width, opacity;
 
   @media (max-width: 768px) {
-    margin-top: 50rem;
+    margin-top: 48rem;
     width: 280%;
   }
 

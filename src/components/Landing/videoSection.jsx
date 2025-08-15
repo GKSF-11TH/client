@@ -21,14 +21,7 @@ const VideoSection = () => {
             </VideoTitle>
         </div>
         <VideoBox>
-          <div style={{
-            width: '0',
-            height: '0',
-            borderLeft: '30px solid white',
-            borderTop: '20px solid transparent',
-            borderBottom: '20px solid transparent',
-           
-          }} />
+        포럼 공식 영상 업로드 예정
         </VideoBox>
       </IntroVideoBox>
     </IntroVideoSection>
