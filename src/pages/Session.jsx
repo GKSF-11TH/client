@@ -5,7 +5,7 @@ import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png
 import Footer from '../components/common/Footer';
 import speaker1Image from '../assets/images/speaker1.jpeg';
 import speaker2Image from '../assets/images/speaker2.png';
-import speaker3Image from '../assets/images/speaker3.png';
+import speaker3Image from '../assets/images/speaker3.jpeg';
 import speaker4Image from '../assets/images/speaker4.png';
 import speaker5Image from '../assets/images/speaker5.png';
 
