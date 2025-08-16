@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import preapplyModalImage from '../../assets/images/PreapplyModal.png';
 
 const Overlay = styled.div`
@@ -295,6 +296,7 @@ const SuccessDesc = styled.div`
 `;
 
 const Preapply = ({ onClose }) => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({
     name: '',
@@ -416,6 +418,7 @@ const Preapply = ({ onClose }) => {
   const handleSuccessClose = () => {
     setShowSuccess(false);
     if (onClose) onClose();
+    navigate('/');
   };
 
   return (
