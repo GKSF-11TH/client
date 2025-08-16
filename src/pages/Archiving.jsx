@@ -4,7 +4,6 @@ import BackgroundImage from '../assets/images/booth-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import Card from '../components/Archiving/Card';
 import ArchiveItem from '../components/Archiving/ArchiveItem';
-import Footer from '../components/common/Footer';
 
 const Background = styled.div`
   position: fixed;
@@ -21,7 +20,6 @@ const Background = styled.div`
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
     background-position: center top;
-    height: 230rem;
   }
 `;
 
@@ -29,7 +27,7 @@ const MainContainer = styled.main`
   width: 100vw;
   overflow: hidden;
   position: relative;
-  z-index: 11;
+  z-index: 1;
 `;
 
 const ContentWrapper = styled.div`
@@ -82,7 +80,6 @@ const Heading = styled.h1`
 const ArchiveGrid = styled.div`
   position: absolute;
   width: 100%;
-  height: 180rem;
   top: 38rem;
   left: 50%;
   transform: translateX(-50%);
@@ -296,7 +293,6 @@ const DesktopMain = () => {
           </ArchiveGrid>
         </MainContent>
       </ContentWrapper>
-      <Footer />
     </MainContainer>
   );
 };
@@ -317,7 +313,7 @@ const MobileMain = () => {
             <MobileArchiveRow>
               <MobileItemGroup>
                 <ArchiveItem
-                  edition="11st GKSF"
+                  edition="11th GKSF"
                   hasLogo={true}
                   isMobile={true}
                 />
@@ -418,7 +414,6 @@ const MobileMain = () => {
           </MobileArchiveGrid>
         </MainContent>
       </ContentWrapper>
-      <Footer />
     </MainContainer>
   );
 };

@@ -4,7 +4,7 @@ import BackgroundImage from '../assets/images/booth-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import Guestbook from '../components/Participation/Guestbook.jsx';
 import Preapply from '../components/Participation/Preapply.jsx';
-import Footer from '../components/common/Footer';
+
 import { GlassEffectWithBlurryBg } from '../style/common.js';
 
 const Background = styled.div`
@@ -29,7 +29,7 @@ const Background = styled.div`
 const Container = styled.div`
   position: relative;
   width: 100vw;
-  height: 95rem;
+  height: 90rem;
   color: #fff;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
   display: flex;
@@ -37,7 +37,7 @@ const Container = styled.div`
   justify-content: center;
 
   @media (max-width: 768px) {
-    height: 165.3rem;
+    height: 85rem;
   }
 `;
 
@@ -66,7 +66,7 @@ const Title = styled.h1`
   font-weight: 400;
   line-height: 100%;
   letter-spacing: -0.036rem;
-  padding-bottom: clamp(1.5rem, 3vh, 2.4rem);
+  padding-bottom: 3rem;
   @media (max-width: 900px) {
     font-size: 2.2rem;
   }
@@ -84,7 +84,7 @@ const Subtitle = styled.p`
   font-weight: 400;
   line-height: 140%;
   letter-spacing: 0.016rem;
-  padding-bottom: clamp(3rem, 8vh, 9rem);
+  padding-bottom: 3rem;
   max-width: 80ch;
   margin: 0 auto;
   @media (max-width: 900px) {
@@ -144,9 +144,10 @@ const Card = styled(GlassEffectWithBlurryBg)`
   border-radius: 1.8rem !important;
   background: rgba(36, 35, 35, 0.05);
   cursor: pointer;
+  overflow: hidden;
   transition:
-    box-shadow 0.2s,
-    border-color 0.2s;
+    transform 0.5s ease,
+    opacity 0.5s ease;
 
   &::before {
     border-radius: 1.8rem !important;
@@ -154,7 +155,26 @@ const Card = styled(GlassEffectWithBlurryBg)`
 
   &::after {
     border-radius: 1.8rem !important;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--Background-Glass, rgba(16, 16, 16, 0.4));
+    transition:
+      background 0.5s ease,
+      opacity 0.5s ease;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+
+    &::after {
+      background: linear-gradient(
+        89deg,
+        rgba(16, 212, 141, 0.6) 5.4%,
+        rgba(34, 106, 223, 0.6) 40.92%,
+        rgba(19, 61, 231, 0.6) 73.07%,
+        rgba(84, 25, 234, 0.6) 95.62%
+      );
+      filter: blur(66px);
+      opacity: 0.8;
+    }
   }
   @media (max-width: 600px) {
     width: 70vw;
@@ -211,14 +231,6 @@ const CardAction = styled.div`
   }
 `;
 
-const BottomSpace = styled.div`
-  height: clamp(4rem, 8vh, 12rem);
-  flex-shrink: 0;
-  @media (max-width: 600px) {
-    height: 4.8rem;
-  }
-`;
-
 const Participation = () => {
   const [showGuestbook, setShowGuestbook] = useState(false);
   const [showPreapply, setShowPreapply] = useState(false);
@@ -244,10 +256,9 @@ const Participation = () => {
           </Card>
         </CardRow>
       </MainContent>
-      <BottomSpace />
+ 
       {showGuestbook && <Guestbook onClose={() => setShowGuestbook(false)} />}
       {showPreapply && <Preapply onClose={() => setShowPreapply(false)} />}
-      <Footer />
     </Container>
   );
 };

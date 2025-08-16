@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import BackgroundImage from '../assets/images/booth-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
-import Footer from '../components/common/Footer';
 import speaker1Image from '../assets/images/speaker1.jpeg';
 import speaker2Image from '../assets/images/speaker2.png';
 import speaker3Image from '../assets/images/speaker3.jpeg';
@@ -79,7 +78,7 @@ const Container = styled.div`
   font-family: 'Pretendard', 'Montserrat', sans-serif;
 
   @media (max-width: 768px) {
-    height: 165.3rem;
+    height: 100%;
   }
 `;
 
@@ -98,7 +97,6 @@ const Background = styled.div`
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
     background-position: center top;
-    height: 165.3rem;
   }
 `;
 
@@ -442,9 +440,6 @@ const Session = () => {
         </InfoRow>
       </main>
       <BottomSpace />
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <Footer />
-      </div>
     </Container>
   );
 };

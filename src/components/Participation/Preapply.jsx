@@ -42,8 +42,8 @@ const Modal = styled.div`
   @media (max-width: 600px) {
     display: flex !important;
     width: 30rem !important;
-    height: 50rem !important;
-    padding: 3.2rem !important;
+    height: 51rem !important;
+    padding: 5.2rem 1rem 0rem 1rem;
     flex-direction: column !important;
     align-items: center !important;
     gap: 1rem !important;
@@ -137,7 +137,6 @@ const Input = styled.input`
 
   @media (max-width: 600px) {
     font-size: 1rem;
-    padding: 1rem 0;
     &::placeholder {
       font-size: 1rem;
     }
@@ -360,6 +359,26 @@ const Preapply = ({ onClose }) => {
   };
 
   const handleNext = () => {
+    // 모든 필수 필드가 채워져 있는지 확인
+    if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) {
+      alert('모든 필수 항목을 입력해주세요.');
+      return;
+    }
+    
+    // 이메일 형식 검증
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      alert('올바른 이메일 형식을 입력해주세요.');
+      return;
+    }
+    
+    // 전화번호 형식 검증 (숫자만)
+    const phoneRegex = /^[0-9-+\s()]+$/;
+    if (!phoneRegex.test(form.phone)) {
+      alert('올바른 전화번호 형식을 입력해주세요.');
+      return;
+    }
+    
     setStep(2);
   };
 
@@ -369,6 +388,19 @@ const Preapply = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // 모든 필수 필드가 채워져 있는지 재확인
+    if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) {
+      alert('모든 필수 항목을 입력해주세요.');
+      return;
+    }
+    
+    // 세션 선택이 되어 있는지 확인
+    if (form.sessions.length === 0) {
+      alert('최소 하나의 세션을 선택해주세요.');
+      return;
+    }
+    
     setLoading(true);
     try {
       await axios.post('https://api.gksf11.com/preapply/', form);
@@ -445,7 +477,7 @@ const Preapply = ({ onClose }) => {
             {step === 2 && (
               <>
                 <Section>
-                  <Label>4. 참가 희망 세션을 선택해주세요</Label>
+                  <Label>4. 참가 희망 세션을 선택해주세요 *</Label>
                   {sessionOptions.map((group) => (
                     <div
                       key={group.date}
