@@ -77,7 +77,7 @@ export const IntroText = styled.div`
   bottom: 53%;
   right: 15%;
   max-width: 48rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   font-style: normal;
   font-size: 1.5rem;
@@ -160,7 +160,7 @@ export const GksAiPill = styled.div`
 
 export const GksAiText = styled.div`
   color: white;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 500;
   font-style: normal;
   font-size: 16px;
@@ -219,6 +219,7 @@ export const MainThemeTitle = styled.h1`
   color: var(--Text-Primary);
   text-align: left;
   margin-top: 3rem;
+  margin-left: 8rem;
 
   @media (max-width: 768px) {
     margin-left: 1rem;
@@ -232,7 +233,7 @@ export const MainThemeSubtitle = styled.h2`
   font-weight: 400;
   margin-bottom: 1rem;
   color: var(--Text-Primary);
-
+  margin-left: 8rem;
   text-align: left;
   line-height: 1.4;
 
@@ -245,7 +246,7 @@ export const MainThemeSubtitle = styled.h2`
 
 export const MainThemeButton = styled.button`
   position: absolute;
-  right: 14.37rem;
+  right: 10rem;
   top: 10%;
   background-color: var(--background-tertiary);
   color: var(--Text-Primary);
@@ -271,13 +272,14 @@ export const MainThemeButton = styled.button`
     bottom: 0rem; 
     font-size: 1.2rem;
     padding: 0.9rem 1.5rem;
+    margin-right: 1rem;
   }
 `;
 
 export const MainThemeSection = styled.div`
   text-align: left;
   margin-bottom: 2rem;
-  max-width: 90rem;
+  max-width: 100rem;
   margin-left: auto;
   margin-right: auto;
   background: rgba(255, 255, 255, 0.05);
@@ -301,9 +303,9 @@ export const MainThemeSection = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: 34rem;
-    padding: 2rem 3rem;
-    margin-top: -1rem;
+    width: calc(100% - 2rem); 
+    padding: 2rem;
+    margin: 0 auto 1.5rem; 
 
     &.visible {
     transition: all 0.5s ease;
@@ -329,7 +331,7 @@ export const MainThemeSectionTitle = styled.h3`
 
 export const MainThemeSectionContent = styled.div`
   font-size: 1.5rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 500;
   line-height: 140%;
   color: var(--Text-Primary);
@@ -374,12 +376,11 @@ export const VideoTitle = styled.div`
   padding: 4rem 2rem;
 
   @media (max-width: 768px) {
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
   }
 `;
 
 export const IntroVideoTitle = styled.h1`
-
   font-size:  3.375rem;
   font-family: "Syncopate", sans-serif;
   font-weight: 400;
@@ -387,8 +388,10 @@ export const IntroVideoTitle = styled.h1`
   color: var(--text-primary);
   text-align: left;             
   margin-top: 3rem;
+  margin-left: 8rem;
 
   @media (max-width: 768px) {
+    margin-left: 1rem;
     font-size: 2.5rem;
   }
 `;
@@ -398,9 +401,12 @@ export const IntroVideoSubtitle = styled.p`
   font-family: 'SF Pro', sans-serif;
   font-weight: 400;
   color: var(--text-primary);
-  text-align: left;     
+  text-align: left; 
+  margin-left: 8rem;
+
   
   @media (max-width: 768px) {
+    margin-left: 1rem;
     font-size: 1.3rem;
   }
 `;
@@ -417,7 +423,7 @@ export const VideoBox = styled.h1`
 
 
   @media (max-width: 768px) {
-    top:50%;
+    top: 50%;
     left: 35%;
     font-size: 1.3rem;
   }
@@ -506,6 +512,10 @@ export const BoothAndSessionHeader = styled.div`
   padding: 4rem 2rem;
   z-index: 10;
   text-align: left;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 
@@ -518,9 +528,12 @@ export const BoothAndSessionTitle = styled.h1`
   margin-bottom: 1rem;
   letter-spacing: -0.0225rem;
   margin-top: 3rem; 
+  margin-left: 8rem;
+
   
   @media (max-width: 768px) {
     font-size: 2.5rem;
+    margin-left: 3rem;
   }
 `;
 
@@ -531,9 +544,13 @@ export const BoothAndSessionSub = styled.p`
   font-weight: 400;
   color: var(--Text-Primary);
   margin-bottom: 2rem;
+  margin-left: 8rem;
+
 
   @media (max-width: 768px) {
+    text-align: left;
     font-size: 1.3rem;
+    margin-left: 3rem;
   }
 `;
 
@@ -567,6 +584,12 @@ export const CardContainer = styled.div`
   position: relative;
   transition: transform 0.5s;
   z-index: 10;
+
+  &:hover {
+    scale: 1.15;
+    transition: all 0.5s ease;
+
+  }
 
   @media (max-width: 768px) {
     width: 16rem;
@@ -631,7 +654,7 @@ export const InfoWrapper = styled.section`
   position: relative;
   background-color: var(--background-primary);
   width: 100%;
-  min-height: 400vh;
+  min-height: 300vh;
   padding: 4rem 0 0 0;
   overflow: hidden;
   display: flex;
@@ -641,7 +664,7 @@ export const InfoWrapper = styled.section`
 
   @media (max-width: 768px) {
     min-height: 500vh;
-    padding: 2rem 0 0 0;
+
   }
 `;
 
@@ -652,7 +675,7 @@ export const InfoTop = styled.div`
 
   @media (max-width: 768px) {
     text-align: left;
-    margin-left: 1rem;
+    margin-left: 2rem;
     margin-bottom: 4rem;
     width: 100%;
   }
@@ -695,8 +718,9 @@ export const InfoCardRow = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
-    width: 90%;
+    width: 100%;
     max-width: 350px;
     margin-bottom: 6rem;
   }
@@ -735,18 +759,20 @@ export const InfoCard = styled.div`
   }
 
   > div:last-child {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono';
     font-weight: 400;
     font-size: 1.25rem;
     line-height: 1.6;
   }
 
   @media (max-width: 768px) {
-    width: 34rem;
+    width: calc(100% - 2rem); 
     height: 21rem;
     padding: 4rem;
     margin-top: 0;
     border-radius: 15px;
+
+    
 
     > div:first-child {
       font-size: 1.5rem;
@@ -796,7 +822,7 @@ export const InfoContent = styled.div`
   padding: 4rem 2rem 2rem 2rem;
   left: -10rem;
   text-align: left;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   font-size: 1.25rem;
 
@@ -863,7 +889,7 @@ export const InfoAnchorText = styled.div`
   left: 5%;
   text-align: left;
   color: var(--Text-Secondary);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   font-size: 1.3rem;
   line-height: 140%;
@@ -1111,7 +1137,7 @@ export const GuestBookText = styled.p`
   margin: 0;
   color: var(--Text-Secondary);
   line-height: 140%;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   font-size: 0.95rem;
 

@@ -43,15 +43,15 @@ const Landing = () => {
         const scrollPosition = currentScrollY - particleEndPoint;
         const sectionHeight = windowHeight * 1.5; 
         
-        if (scrollPosition > sectionHeight * 4.2 && scrollPosition < sectionHeight * 5.0) {
+        if (scrollPosition > sectionHeight * 3.5 && scrollPosition < sectionHeight * 4.3) {
           setCurrentSection('mainTheme');
-        } else if (scrollPosition > sectionHeight * 5.01 && scrollPosition < sectionHeight * 5.8) {
+        } else if (scrollPosition > sectionHeight * 4.31 && scrollPosition < sectionHeight * 5.1) {
           setCurrentSection('video');
-        } else if (scrollPosition > sectionHeight * 5.81 && scrollPosition < sectionHeight * 6.6  ) {
+        } else if (scrollPosition > sectionHeight * 5.11 && scrollPosition < sectionHeight * 5.9  ) {
           setCurrentSection('booth');
-        } else if (scrollPosition > sectionHeight * 6.61 && scrollPosition < sectionHeight * 9.0) {
+        } else if (scrollPosition > sectionHeight * 5.91 && scrollPosition < sectionHeight * 8.3) {
           setCurrentSection('info');
-        } else if (scrollPosition > sectionHeight * 9.01 && scrollPosition < sectionHeight * 9.9) {
+        } else if (scrollPosition > sectionHeight * 8.31 && scrollPosition < sectionHeight * 9.1) {
           setCurrentSection('guestbook');
         }
       } else {
@@ -102,7 +102,7 @@ const Landing = () => {
       </GksAiContainer>
       <ParticleGlobe scrollY={scrollY} />
       <IntroOverlayComponent hideIntro={hideIntro} />
-      <div style={{ height: '300vh' }}></div>
+      <div style={{ height: '200vh' }}></div>
       <MainTheme visibleSections={visibleSections} />
       <VideoSection />
       <BoothAndSession />
