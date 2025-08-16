@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GlassEffectWithSolidBg } from '../../style/common';
+import { useNavigate } from 'react-router-dom';
 
-const BoothCard = ({ type, content, title }) => {
+const BoothCard = ({ type, content, title, link }) => {
+  const navigate = useNavigate();
   return (
-    <Container>
+    <Container onClick={() => navigate(link)}>
       <div>
         <TabWrapper>
           <Tab>{type}</Tab>
@@ -17,17 +19,26 @@ const BoothCard = ({ type, content, title }) => {
 };
 
 const Container = styled(GlassEffectWithSolidBg)`
+  cursor: pointer;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+
   &::after {
     border-radius: 50px;
     background: var(--Background-Glass, rgba(16, 16, 16, 0.4));
+    transition:
+      background 0.5s ease,
+      /* filter 1s ease, */ opacity 0.5s ease;
   }
+
   display: flex;
   flex-direction: column;
-  /* width: 24.3rem; */
-  /* height: 31.1rem; */
   padding: 1.53rem 1.74rem 2.6rem 1.74rem;
   justify-content: space-between;
   border-radius: 1.6212rem;
+  overflow: hidden;
+
   &::after,
   &::before {
     border-radius: 1.6212rem;
@@ -37,6 +48,22 @@ const Container = styled(GlassEffectWithSolidBg)`
     display: flex;
     flex-direction: column;
     gap: 2.55rem;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+
+    &::after {
+      background: linear-gradient(
+        89deg,
+        rgba(16, 212, 141, 0.6) 5.4%,
+        rgba(34, 106, 223, 0.6) 40.92%,
+        rgba(19, 61, 231, 0.6) 73.07%,
+        rgba(84, 25, 234, 0.6) 95.62%
+      ); /* opacity를 주려면 rgba로 */
+      filter: blur(66px); /* background-filter 대신 filter */
+      opacity: 0.8; /* 배경 투명도 추가 */
+    }
   }
 `;
 

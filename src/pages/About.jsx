@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SectionCard from '../components/About/SectionCard';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Intro from '../components/About/Intro';
 import PeopleContent from '../components/About/PeopleContent';
 import { GlassEffectWithSolidBg } from '../style/common';
 import Gradient1 from '../assets/images/Gradient1.png';
 import Gradient2 from '../assets/images/Gradient2.png';
+import { keyframes } from 'styled-components';
 
 const PageText = [
   {
@@ -38,6 +39,40 @@ const PageText = [
   }
 ];
 
+function useIntersectionObserver(options) {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target); // 한 번만 실행
+        }
+      });
+    }, options);
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, [options]);
+
+  return [ref, isVisible];
+}
+
+export function TypeWriterTrigger({ text }) {
+  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
+
+  return (
+    <TypeWriter active={isVisible} ref={ref}>
+      <p>{text}</p>
+    </TypeWriter>
+  );
+}
+
 const About = () => {
   return (
     <Container>
@@ -50,7 +85,11 @@ const About = () => {
         <Sections>
           {PageText.map((item, index) => (
             <Section key={index}>
-              {item.chatBox ? <ChatBox>{item.chatBox}</ChatBox> : null}
+              {item.chatBox ? (
+                <ChatBox>
+                  <TypeWriterTrigger text={item.chatBox} />
+                </ChatBox>
+              ) : null}
               <SectionCard title={item.title}>
                 {item.isText ? (
                   <TextBox>{item.description}</TextBox>
@@ -137,6 +176,34 @@ const ChatBox = styled(GlassEffectWithSolidBg)`
   @media (max-width: 768px) {
     padding: 1rem 1.8rem;
     font-size: 1.6rem;
+  }
+`;
+
+const typing = keyframes`
+  from { width: 0 }
+  to { width: 100% }
+`;
+
+const blinkCaret = keyframes`
+  from, to { border-color: transparent }
+  50% { border-color: white; }
+`;
+
+const TypeWriter = styled.div`
+  > p {
+    overflow: hidden;
+    border-right: 0.15em solid white;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+
+    ${({ active }) =>
+      active &&
+      css`
+        animation:
+          ${typing} 2s steps(40, end),
+          ${blinkCaret} 1.25s step-end infinite;
+      `}
   }
 `;
 

@@ -4,6 +4,7 @@ import KoreaImg from '../../assets/images/korea-map.svg';
 import styled from 'styled-components';
 import iconAI from '../../assets/images/GKS_AI.png';
 import { GlassEffectWithSolidBg } from '../../style/common';
+import { TypeWriterTrigger } from '../../pages/About';
 
 const Intro = () => {
   return (
@@ -23,7 +24,10 @@ const Intro = () => {
           <div>
             <img src={iconAI} alt="AI Icon" />
           </div>
-          <span>What is GKSF?</span>
+          {/* <span>What is GKSF?</span> */}
+          <TextWrapper>
+            <TypeWriterTrigger text="What is GKSF?" />
+          </TextWrapper>
         </ChatBox>
       </Content>
     </Container>
@@ -117,7 +121,7 @@ const ChatBox = styled(GlassEffectWithSolidBg)`
   flex-shrink: 0;
   padding: 2rem 6.3rem;
 
-  > div {
+  > div:first-child {
     width: 6.4rem;
     height: 6.4rem;
     display: flex;
@@ -131,7 +135,7 @@ const ChatBox = styled(GlassEffectWithSolidBg)`
     }
   }
 
-  > span {
+  p {
     color: var(--text-primary);
     font-family: 'IBM Plex Mono';
     font-size: 3.2rem;
@@ -143,7 +147,7 @@ const ChatBox = styled(GlassEffectWithSolidBg)`
 
   @media (max-width: 768px) {
     padding: 1rem 1.8rem;
-    > div {
+    > div:first-child {
       width: 4.5rem;
       height: 4.5rem;
       > img {
@@ -151,10 +155,14 @@ const ChatBox = styled(GlassEffectWithSolidBg)`
         height: calc(4.5 * 1.4rem);
       }
     }
-    > span {
+    p {
       font-size: 2rem;
     }
   }
+`;
+
+const TextWrapper = styled.div`
+  width: fit-content;
 `;
 
 export default Intro;
