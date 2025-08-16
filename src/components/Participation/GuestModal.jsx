@@ -376,7 +376,7 @@ const Button = styled.button`
   border-radius: 1rem;
   padding: 1.2rem 3.2rem;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   cursor: pointer;
   width: 16rem;
   transition: background 0.2s;
@@ -389,5 +389,3 @@ const Button = styled.button`
     width: 15rem;
   }
 `;
-
-

@@ -24,7 +24,7 @@ const PageContainer = styled.div`
   position: relative;
   width: 100vw;
   min-height: 100vh;
-  font-family: 'IBM Plex Mono', Helvetica;
+  font-family: 'IBM Plex Mono';
   margin: 0 auto;
   display: flex;
   flex-direction: column;

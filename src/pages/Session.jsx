@@ -236,14 +236,9 @@ const Tab = styled.button.attrs(() => ({}))`
     transform: translateY(-0.2rem);
     backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   }
-  @media (max-width: 900px) {
-    width: 11rem;
-    height: 4rem;
-    font-size: 1.5rem;
-  }
   @media (max-width: 600px) {
-    width: 8.5rem;
-    height: 3.2rem;
+    width: 10.5rem;
+    height: 4.2rem;
     font-size: 1.1rem;
   }
 `;
@@ -254,8 +249,8 @@ const SessionTitle = styled.h2`
   font-size: 3rem;
   font-weight: 400;
   text-align: center;
-  margin-top: 4.5rem;
-  margin-bottom: 3.6rem;
+  margin-top: 5.2rem;
+  margin-bottom: 4.6rem;
   letter-spacing: 0.04em;
   line-height: 1.3;
   color: #fff;
@@ -331,56 +326,56 @@ const InfoCol = styled.div`
 const SpeakerGroup = styled.div``;
 
 const SpeakerTitle = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--text-tertiary);
   margin-bottom: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.01em;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
 `;
 
 const Speaker = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--Text-Primary, #fbfbfb);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.01em;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
 `;
 
 const ContentGroup = styled.div``;
 
 const ContentTitle = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--text-tertiary);
   margin-bottom: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.01em;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
 `;
 
 const Content = styled.div`
   font-size: 1.3rem;
   color: var(--Text-Primary, #fbfbfb);
-  line-height: 1.7;
-  font-family: 'IBM Plex Mono', monospace;
+  line-height: 1.65;
+  font-family: 'IBM Plex Mono';
 `;
 
 const StructureGroup = styled.div``;
 
 const Structure = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--Text-Primary, #fbfbfb);
-  font-weight: 500;
-  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-family: 'IBM Plex Mono';
 `;
 
 const StructureTitle = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--text-tertiary);
   margin-bottom: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.01em;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
 `;
 
 const BottomSpace = styled.div`

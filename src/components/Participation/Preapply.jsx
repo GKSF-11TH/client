@@ -81,7 +81,7 @@ const CloseBtn = styled.button`
 const Title = styled.h2`
   text-align: center;
   font-size: 2rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 3.6rem;
   letter-spacing: 0.04em;
@@ -98,7 +98,7 @@ const Section = styled.div`
 
 const Label = styled.label`
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 2rem;
   color: #919191;
@@ -122,11 +122,11 @@ const Input = styled.input`
   margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   &::placeholder {
     color: #bbb;
     font-size: 1.4rem;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono';
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
@@ -137,6 +137,7 @@ const Input = styled.input`
 
   @media (max-width: 600px) {
     font-size: 1rem;
+    padding: 1rem 0;
     &::placeholder {
       font-size: 1rem;
     }
@@ -151,7 +152,7 @@ const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   margin-bottom: 0.8rem;
   cursor: pointer;
   color: #919191;
@@ -179,7 +180,7 @@ const SessionDesc = styled.div`
   margin-top: 0.4rem;
   color: #aaa;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   line-height: 1.4;
 
   @media (min-width: 601px) {
@@ -212,7 +213,7 @@ const Button = styled.button`
   border-radius: 1rem;
   padding: 1.2rem 3.2rem;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   cursor: pointer;
   width: 16rem;
   transition:
@@ -245,7 +246,7 @@ const SuccessButton = styled.button`
   align-items: center;
   gap: 12px;
   color: #fff;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   cursor: pointer;
   font-size: 1.4rem;
 `;
@@ -489,7 +490,7 @@ const Preapply = ({ onClose }) => {
                         style={{
                           fontWeight: 400,
                           marginBottom: '8px',
-                          fontFamily: "'IBM Plex Mono', monospace",
+                          fontFamily: "'IBM Plex Mono'",
                           fontSize: window.innerWidth <= 600 ? '12px' : '14px'
                         }}
                       >
@@ -521,7 +522,7 @@ const Preapply = ({ onClose }) => {
                               <span
                                 style={{
                                   fontWeight: 400,
-                                  fontFamily: "'IBM Plex Mono', monospace"
+                                  fontFamily: "'IBM Plex Mono'"
                                 }}
                               >
                                 {item.label}

@@ -69,7 +69,7 @@ const CloseBtn = styled.button`
 const Title = styled.h2`
   text-align: center;
   font-size: 2rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 3.6rem;
   letter-spacing: 0.04em;
@@ -91,7 +91,7 @@ const Form = styled.form`
 
 const Label = styled.label`
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 0.8rem;
   color: #919191;
@@ -115,11 +115,11 @@ const Input = styled.input`
   margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   &::placeholder {
     color: #bbb;
     font-size: 1.4rem;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono';
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
@@ -149,11 +149,11 @@ const CommentInput = styled.input`
   margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   &::placeholder {
     color: #bbb;
     font-size: 1.4rem;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono';
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
@@ -187,7 +187,7 @@ const Button = styled.button`
   border-radius: 1rem;
   padding: 1.2rem 3.2rem;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   cursor: pointer;
   width: 16rem;
   transition: background 0.2s;
