@@ -101,7 +101,7 @@ const Label = styled.label`
   font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 2rem;
-  color: #919191;
+  color: #fff;
   display: block;
 
   @media (max-width: 600px) {
@@ -491,7 +491,8 @@ const Preapply = ({ onClose }) => {
                           fontWeight: 400,
                           marginBottom: '8px',
                           fontFamily: "'IBM Plex Mono'",
-                          fontSize: window.innerWidth <= 600 ? '12px' : '14px'
+                          fontSize: window.innerWidth <= 600 ? '12px' : '14px',
+                          color: '#fff'
                         }}
                       >
                         {group.date}
@@ -522,7 +523,8 @@ const Preapply = ({ onClose }) => {
                               <span
                                 style={{
                                   fontWeight: 400,
-                                  fontFamily: "'IBM Plex Mono'"
+                                  fontFamily: "'IBM Plex Mono'",
+                                  color: '#fff'
                                 }}
                               >
                                 {item.label}
