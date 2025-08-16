@@ -40,8 +40,6 @@ const BoothAndSession = () => {
         </BoothAndSessionSub>
       </BoothAndSessionHeader>
       <BoothAndSessionCardRow>
-      <OrbBg1 src={gksAiImage} alt="orb" />
-      <OrbBg2 src={gksAiImage} alt="orb" />
       <Bg src={bgImage} alt="bg" />
         {/* BOOTH 카드 */}
         <CardContainer
@@ -50,11 +48,13 @@ const BoothAndSession = () => {
               marginRight: isMobile ? '0.5rem' : '1rem',
               marginTop: isMobile ? '1rem' : '13rem',
               zIndex: 1,
-              width: isMobile ? '180px' : '200px',
-              height: isMobile ? '240px' : '300px',
+              width: isMobile ? '180px' : '21rem',
+              height: isMobile ? '240px' : '28rem',
+              position: 'relative',
             }}
           onClick={() => handleCardClick('booth')}
         >
+          <OrbBg1 src={gksAiImage} alt="orb" />
           <Card3D className={flippedCards.booth ? 'rotate-y-180' : ''}>
      
             <CardFace>
@@ -81,11 +81,13 @@ const BoothAndSession = () => {
             marginLeft: isMobile ? '0rem' : '0rem',
             marginTop: isMobile ? '1rem' : '16rem',
             zIndex: 2,
-            width: isMobile ? '180px' : '200px',
-            height: isMobile ? '240px' : '300px',
+            width: isMobile ? '180px' : '21rem',
+            height: isMobile ? '240px' : '28rem',
+            position: 'relative',
           }}
           onClick={() => handleCardClick('session')}
         >
+          <OrbBg2 src={gksAiImage} alt="orb" />
           <Card3D className={flippedCards.session ? 'rotate-y-180' : ''}>
           <CardFace>
               <img

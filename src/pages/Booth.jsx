@@ -30,7 +30,6 @@ const CardText = [
 ];
 
 const Booth = () => {
-  const navigate = useNavigate();
   return (
     <Container>
       <Background />
@@ -38,11 +37,7 @@ const Booth = () => {
         <Title>BOOTH</Title>
         <CardWrapper>
           {CardText.map((card, index) => (
-            <BoothCard
-              key={index}
-              {...card}
-              onClick={() => navigate(card.link)}
-            />
+            <BoothCard key={index} {...card} />
           ))}
         </CardWrapper>
       </Content>
@@ -116,7 +111,6 @@ const Title = styled.h1`
 `;
 
 const CardWrapper = styled.div`
-  cursor: pointer;
   width: 100%;
   padding: 0.9rem 0;
   display: flex;

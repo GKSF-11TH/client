@@ -7,6 +7,7 @@ import VideoSection from '../components/Landing/videoSection';
 import BoothAndSession from '../components/Landing/boothAndSession';
 import Info from '../components/Landing/info'
 import GuestBook from '../components/Landing/guestBook';
+import Footer from '../components/common/Footer';
 import gksAiImage from '../assets/images/GKS_AI.png';
 
 const Landing = () => {
@@ -42,13 +43,13 @@ const Landing = () => {
         const scrollPosition = currentScrollY - particleEndPoint;
         const sectionHeight = windowHeight * 1.5; 
         
-        if (scrollPosition > sectionHeight * 3.4 && scrollPosition < sectionHeight * 4.2) {
+        if (scrollPosition > sectionHeight * 3.5 && scrollPosition < sectionHeight * 4.3) {
           setCurrentSection('mainTheme');
-        } else if (scrollPosition > sectionHeight * 4.21 && scrollPosition < sectionHeight * 5.0) {
+        } else if (scrollPosition > sectionHeight * 4.31 && scrollPosition < sectionHeight * 5.1) {
           setCurrentSection('video');
-        } else if (scrollPosition > sectionHeight * 5.01 && scrollPosition < sectionHeight * 5.8  ) {
+        } else if (scrollPosition > sectionHeight * 5.11 && scrollPosition < sectionHeight * 5.9  ) {
           setCurrentSection('booth');
-        } else if (scrollPosition > sectionHeight * 5.81 && scrollPosition < sectionHeight * 8.3) {
+        } else if (scrollPosition > sectionHeight * 5.91 && scrollPosition < sectionHeight * 8.3) {
           setCurrentSection('info');
         } else if (scrollPosition > sectionHeight * 8.31 && scrollPosition < sectionHeight * 9.1) {
           setCurrentSection('guestbook');
@@ -69,7 +70,7 @@ const Landing = () => {
           newVisibleSections[index] = true;
         }
       });
-      console.log(document.querySelector('.booth-and-session'));
+  
       setVisibleSections(newVisibleSections);
     };
 
@@ -80,7 +81,7 @@ const Landing = () => {
   useEffect(() => {
     
     const timer = setTimeout(() => {
-      setIsExpanded(true);
+     
       setCurrentSection('welcome');
     }, 3000);
 
@@ -99,25 +100,15 @@ const Landing = () => {
           </GksAiText>
         </GksAiPill>
       </GksAiContainer>
-  
       <ParticleGlobe scrollY={scrollY} />
-      
- 
       <IntroOverlayComponent hideIntro={hideIntro} />
       <div style={{ height: '200vh' }}></div>
-
-
       <MainTheme visibleSections={visibleSections} />
-      
-
-
       <VideoSection />
       <BoothAndSession />
       <Info/>
       <GuestBook />
-      
-      
-
+      <Footer/>
     </LandingWrapper>
   );
 };

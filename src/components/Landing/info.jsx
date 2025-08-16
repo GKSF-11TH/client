@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import useResponsive from './useResponsive';
 import {
   InfoWrapper, InfoTop, InfoTitle, InfoSubtitle,
@@ -9,6 +10,7 @@ import {
 import orbImage from '../../assets/images/orb.png';
 
 const Info = () => {
+  const navigate = useNavigate();
   const { isMobile } = useResponsive(); 
 
   const wrapperRef = useRef(null);
@@ -121,11 +123,11 @@ const Info = () => {
     <InfoWrapper ref={wrapperRef}>
   
       <InfoTop>
-        <InfoTitle>11TH
-          {isMobile && <br/>}Global
-          {isMobile && <br/>}Korean
-          {isMobile && <br/>}Studies
-          {isMobile && <br/>}Forum</InfoTitle>
+        <InfoTitle>11TH 
+          {isMobile && <br/>} Global 
+          {isMobile && <br/>} Korean 
+          {isMobile && <br/>} Studies 
+          {isMobile && <br/>} Forum</InfoTitle>
         <InfoSubtitle>Korea in AI Revolution</InfoSubtitle>
       </InfoTop>
 
@@ -142,7 +144,7 @@ const Info = () => {
             세션 - 서강대학교 정하상관 1층 J118호
           </div>
         </InfoCard>
-        <InfoCard>
+        <InfoCard onClick={() => navigate("/participation")}>
           <div>Pre-Apply</div>
           <div>사전신청 바로가기 &rarr;</div>
         </InfoCard>
@@ -180,7 +182,7 @@ const Info = () => {
         ref={targetPositionRef}
         style={{
           position: 'absolute',
-          bottom: isMobile ? '90rem' : '69rem',
+          bottom: isMobile ? '95rem' : '90rem',
           left: isMobile ? '60%': '55%',
           transform: 'translateX(-50%)',
           width: isMobile ? '120px' : '180px',
@@ -189,6 +191,7 @@ const Info = () => {
           opacity: 0,
         }}
       />
+
       <InfoAnchorArea style={{ 
         opacity: showGlassBox ? 1 : 0, 
         transform: `translateY(${showGlassBox ? 0 : '200em'})`,
@@ -200,7 +203,8 @@ const Info = () => {
             <div style={{ opacity: 0.8 }}>AI 시대, 한국학의 방향은 어디로 향할까요?<br/>
             글로벌한 관점에서 질문하고, 함께 논의해요.</div>
           </InfoAnchorText>
-          <InfoAnchorButton>Sign Up Now →</InfoAnchorButton>
+          
+          <InfoAnchorButton onClick={() => navigate("/participation")}>Sign Up Now →</InfoAnchorButton>
           
     
         </InfoAnchorCard>
