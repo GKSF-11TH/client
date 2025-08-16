@@ -7,7 +7,7 @@ import VideoSection from '../components/Landing/videoSection';
 import BoothAndSession from '../components/Landing/boothAndSession';
 import Info from '../components/Landing/info'
 import GuestBook from '../components/Landing/guestBook';
-import Footer from '../components/common/Footer';
+
 import gksAiImage from '../assets/images/GKS_AI.png';
 
 const Landing = () => {
@@ -108,7 +108,6 @@ const Landing = () => {
       <BoothAndSession />
       <Info/>
       <GuestBook />
-      <Footer/>
     </LandingWrapper>
   );
 };

@@ -42,8 +42,8 @@ const Modal = styled.div`
   @media (max-width: 600px) {
     display: flex !important;
     width: 30rem !important;
-    height: 50rem !important;
-    padding: 3.2rem !important;
+    height: 51rem !important;
+    padding: 5.2rem 1rem 0rem 1rem;
     flex-direction: column !important;
     align-items: center !important;
     gap: 1rem !important;
@@ -81,7 +81,7 @@ const CloseBtn = styled.button`
 const Title = styled.h2`
   text-align: center;
   font-size: 2rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 3.6rem;
   letter-spacing: 0.04em;
@@ -98,7 +98,7 @@ const Section = styled.div`
 
 const Label = styled.label`
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 2rem;
   color: #919191;
@@ -122,11 +122,11 @@ const Input = styled.input`
   margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   &::placeholder {
     color: #bbb;
     font-size: 1.4rem;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono';
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
@@ -152,7 +152,7 @@ const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   margin-bottom: 0.8rem;
   cursor: pointer;
   color: #919191;
@@ -180,7 +180,7 @@ const SessionDesc = styled.div`
   margin-top: 0.4rem;
   color: #aaa;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   line-height: 1.4;
 
   @media (min-width: 601px) {
@@ -213,7 +213,7 @@ const Button = styled.button`
   border-radius: 1rem;
   padding: 1.2rem 3.2rem;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   cursor: pointer;
   width: 16rem;
   transition:
@@ -246,7 +246,7 @@ const SuccessButton = styled.button`
   align-items: center;
   gap: 12px;
   color: #fff;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   cursor: pointer;
   font-size: 1.4rem;
 `;
@@ -360,6 +360,26 @@ const Preapply = ({ onClose }) => {
   };
 
   const handleNext = () => {
+    // 모든 필수 필드가 채워져 있는지 확인
+    if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) {
+      alert('모든 필수 항목을 입력해주세요.');
+      return;
+    }
+    
+    // 이메일 형식 검증
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      alert('올바른 이메일 형식을 입력해주세요.');
+      return;
+    }
+    
+    // 전화번호 형식 검증 (숫자만)
+    const phoneRegex = /^[0-9-+\s()]+$/;
+    if (!phoneRegex.test(form.phone)) {
+      alert('올바른 전화번호 형식을 입력해주세요.');
+      return;
+    }
+    
     setStep(2);
   };
 
@@ -369,6 +389,19 @@ const Preapply = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // 모든 필수 필드가 채워져 있는지 재확인
+    if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) {
+      alert('모든 필수 항목을 입력해주세요.');
+      return;
+    }
+    
+    // 세션 선택이 되어 있는지 확인
+    if (form.sessions.length === 0) {
+      alert('최소 하나의 세션을 선택해주세요.');
+      return;
+    }
+    
     setLoading(true);
     try {
       await axios.post('https://api.gksf11.com/preapply/', form);
@@ -445,7 +478,7 @@ const Preapply = ({ onClose }) => {
             {step === 2 && (
               <>
                 <Section>
-                  <Label>4. 참가 희망 세션을 선택해주세요</Label>
+                  <Label>4. 참가 희망 세션을 선택해주세요 *</Label>
                   {sessionOptions.map((group) => (
                     <div
                       key={group.date}
@@ -457,7 +490,7 @@ const Preapply = ({ onClose }) => {
                         style={{
                           fontWeight: 400,
                           marginBottom: '8px',
-                          fontFamily: "'IBM Plex Mono', monospace",
+                          fontFamily: "'IBM Plex Mono'",
                           fontSize: window.innerWidth <= 600 ? '12px' : '14px'
                         }}
                       >
@@ -489,7 +522,7 @@ const Preapply = ({ onClose }) => {
                               <span
                                 style={{
                                   fontWeight: 400,
-                                  fontFamily: "'IBM Plex Mono', monospace"
+                                  fontFamily: "'IBM Plex Mono'"
                                 }}
                               >
                                 {item.label}

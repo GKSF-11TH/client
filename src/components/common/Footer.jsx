@@ -15,7 +15,7 @@ const FooterContainer = styled.footer`
   position: relative;
   z-index: 1;
   @media (max-width: 900px) {
-    padding: 30px 0 190px 0;
+    padding: 30px 0 5px 0;
   }
 `;
 
@@ -31,7 +31,7 @@ const FooterContent = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 40px;
-    padding: 8px 45px;
+    padding: 8px 38px;
   }
 `;
 

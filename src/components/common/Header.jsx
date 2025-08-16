@@ -9,6 +9,7 @@ import {
   GlassEffectWithBlurryBg,
   GlassEffectWithTransparentBg
 } from '../../style/common';
+import Footer from './Footer';
 
 export default function Header() {
   const [currentTab, setCurrentTab] = useState('');
@@ -136,6 +137,7 @@ export default function Header() {
       <MainSection>
         <Outlet />
       </MainSection>
+      <Footer />
     </div>
   );
 }
