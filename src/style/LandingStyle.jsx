@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 export const LandingWrapper = styled.div`
@@ -14,7 +15,10 @@ export const IntroOverlay = styled.div`
   left: 15%;
   z-index: 10;
   width: 66.25rem;
-  transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease,
+    filter 0.8s ease;
 
   &.stage-0 {
     opacity: 1;
@@ -42,7 +46,7 @@ export const IntroOverlay = styled.div`
 `;
 
 export const LogoVertical = styled.div`
-  font-family: "Syncopate", sans-serif;
+  font-family: 'Syncopate', sans-serif;
   font-weight: 400;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
@@ -54,13 +58,12 @@ export const LogoVertical = styled.div`
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
-
 `;
 
 export const MainTitle = styled.h1`
   position: absolute;
   font-size: 6.75rem;
-  font-family: "Syncopate", sans-serif;
+  font-family: 'Syncopate', sans-serif;
   font-weight: 400;
   line-height: 100%;
   letter-spacing: -0.045rem;
@@ -84,22 +87,21 @@ export const IntroText = styled.div`
   line-height: 160%;
   color: var(--Text-Primary);
   z-index: 20;
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
 
-   
-    &.stage-0 {
+  &.stage-0 {
     opacity: 0;
     transform: translateY(30px);
     filter: blur(10px);
   }
 
-  
   &.stage-1 {
     opacity: 1;
     transform: translateY(0px);
     filter: blur(0px);
   }
-
 
   &.stage-2 {
     opacity: 0;
@@ -126,7 +128,6 @@ export const GksAiContainer = styled.div`
   left: 6rem;
   z-index: 5000;
 
-
   @media (max-width: 768px) {
     opacity: 0;
   }
@@ -141,15 +142,17 @@ export const GksAiPill = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1); 
+  transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   width: fit-content;
   min-width: 120px;
   height: 52px;
   transform: translateZ(0);
-  will-change: width, padding, background, border, box-shadow; 
-  
-  ${props => props.isExpanded && `
+  will-change: width, padding, background, border, box-shadow;
+
+  ${(props) =>
+    props.isExpanded &&
+    `
     padding: 12px 20px 12px 12px;
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -165,27 +168,28 @@ export const GksAiText = styled.div`
   font-style: normal;
   font-size: 16px;
   white-space: nowrap;
-  transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1); 
+  transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1);
   letter-spacing: 0.5px;
   transform: translateZ(0);
-  will-change: font-size, font-weight; 
-  
-  ${props => props.isExpanded && `
+  will-change: font-size, font-weight;
+
+  ${(props) =>
+    props.isExpanded &&
+    `
     font-size: 16px;
 
   `}
 `;
 
 export const Orb = styled.div`
-  width: 3.3rem,;
+  width: 3.3rem;
   height: 3.3rem;
   border-radius: 50%;
   flex-shrink: 0;
   margin-left: 0;
-  transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1); 
+  transition: all 1.5s cubic-bezier(0.23, 1, 0.32, 1);
   transform: translateZ(0);
 `;
-
 
 export const MainThemeContainer = styled.div`
   position: relative;
@@ -196,7 +200,6 @@ export const MainThemeContainer = styled.div`
   justify-content: center;
 
   @media (max-width: 768px) {
-
   }
 `;
 
@@ -208,12 +211,11 @@ export const MainThemeContent = styled.div`
   padding: 4rem 2rem;
   color: var(--Text-Primary);
   text-align: center;
-  
 `;
 
 export const MainThemeTitle = styled.h1`
   font-size: 3.375rem;
-  font-family: "Syncopate", sans-serif;
+  font-family: 'Syncopate', sans-serif;
   font-weight: 400;
   margin-bottom: 1rem;
   color: var(--Text-Primary);
@@ -266,10 +268,10 @@ export const MainThemeButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    right: 2rem; 
+    right: 2rem;
     top: auto;
     margin-bottom: 0rem;
-    bottom: 0rem; 
+    bottom: 0rem;
     font-size: 1.2rem;
     padding: 0.9rem 1.5rem;
     margin-right: 1rem;
@@ -303,15 +305,15 @@ export const MainThemeSection = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: calc(100% - 2rem); 
+    width: calc(100% - 2rem);
     padding: 2rem;
-    margin: 0 auto 1.5rem; 
+    margin: 0 auto 1.5rem;
 
     &.visible {
-    transition: all 0.5s ease;
-    transform: translateY(0px) scale(1);
-    opacity: 1;
-  }
+      transition: all 0.5s ease;
+      transform: translateY(0px) scale(1);
+      opacity: 1;
+    }
   }
 `;
 
@@ -324,9 +326,7 @@ export const MainThemeSectionTitle = styled.h3`
 
   @media (max-width: 768px) {
     font-size: 1.5rem;
-
   }
-  
 `;
 
 export const MainThemeSectionContent = styled.div`
@@ -336,14 +336,11 @@ export const MainThemeSectionContent = styled.div`
   line-height: 140%;
   color: var(--Text-Primary);
 
-
   @media (max-width: 768px) {
-    font-size: 1.0rem;
+    font-size: 1rem;
     line-height: 160%;
-
   }
 `;
-
 
 export const IntroVideoSection = styled.div`
   background-color: var(--background-primary);
@@ -352,8 +349,8 @@ export const IntroVideoSection = styled.div`
   position: relative;
   z-index: 200;
   display: flex;
-  justify-content: center;   
-  align-items: flex-start;    
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 export const IntroVideoBox = styled.div`
@@ -362,11 +359,10 @@ export const IntroVideoBox = styled.div`
   margin: 0 auto;
   padding: 0;
   text-align: left;
-  
+
   @media (max-width: 768px) {
     margin-top: 10rem;
   }
-
 `;
 
 export const VideoTitle = styled.div`
@@ -381,12 +377,12 @@ export const VideoTitle = styled.div`
 `;
 
 export const IntroVideoTitle = styled.h1`
-  font-size:  3.375rem;
-  font-family: "Syncopate", sans-serif;
+  font-size: 3.375rem;
+  font-family: 'Syncopate', sans-serif;
   font-weight: 400;
   margin-bottom: 1rem;
   color: var(--text-primary);
-  text-align: left;             
+  text-align: left;
   margin-top: 3rem;
   margin-left: 8rem;
 
@@ -401,10 +397,9 @@ export const IntroVideoSubtitle = styled.p`
   font-family: 'SF Pro', sans-serif;
   font-weight: 300;
   color: var(--text-primary);
-  text-align: left; 
+  text-align: left;
   margin-left: 8rem;
 
-  
   @media (max-width: 768px) {
     margin-left: 1rem;
     font-size: 1.3rem;
@@ -422,12 +417,10 @@ export const VideoBox = styled.h1`
   color: var(--text-primary);
   text-align: center;
 
-
   @media (max-width: 768px) {
     font-size: 1.3rem;
   }
 `;
-
 
 const floatUpDown1 = keyframes`
   0% { transform: translateY(0); }
@@ -496,10 +489,10 @@ export const BoothAndSessionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   position: relative;
   overflow: hidden;
-  padding: 0 0 2rem 0;        
+  padding: 0 0 2rem 0;
   z-index: 400;
 `;
 
@@ -517,25 +510,21 @@ export const BoothAndSessionHeader = styled.div`
   }
 `;
 
-
-
 export const BoothAndSessionTitle = styled.h1`
-  font-size: 3.375rem; 
+  font-size: 3.375rem;
   font-family: 'Syncopate', sans-serif;
   font-weight: 400;
   color: var(--Text-Primary);
   margin-bottom: 1rem;
   letter-spacing: -0.0225rem;
-  margin-top: 3rem; 
+  margin-top: 3rem;
   margin-left: 8rem;
 
-  
   @media (max-width: 768px) {
     font-size: 2.5rem;
     margin-left: 3rem;
   }
 `;
-
 
 export const BoothAndSessionSub = styled.p`
   font-size: 1.875rem;
@@ -545,14 +534,12 @@ export const BoothAndSessionSub = styled.p`
   margin-bottom: 2rem;
   margin-left: 8rem;
 
-
   @media (max-width: 768px) {
     text-align: left;
     font-size: 1.3rem;
     margin-left: 3rem;
   }
 `;
-
 
 export const BoothAndSessionCardRow = styled.div`
   display: flex;
@@ -575,7 +562,6 @@ export const BoothAndSessionFooter = styled.div`
   text-align: center;
 `;
 
-
 export const CardContainer = styled.div`
   width: 21rem;
   height: 28rem;
@@ -587,7 +573,6 @@ export const CardContainer = styled.div`
   &:hover {
     scale: 1.15;
     transition: all 0.5s ease;
-
   }
 
   @media (max-width: 768px) {
@@ -612,16 +597,14 @@ export const CardFace = styled.div`
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background: linear-gradient(90deg, #121212 0%, rgba(18,18,18,0) 100%);
+  background: linear-gradient(90deg, #121212 0%, rgba(18, 18, 18, 0) 100%);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.2);
 `;
 
-
 export const CardBack = styled(CardFace)`
-  background: 
-    url('/src/assets/images/GKSF_AI.svg'); 
+  background: url('/src/assets/images/GKSF_AI.svg');
   color: #fff;
   transform: rotateY(180deg);
   background-size: cover;
@@ -629,25 +612,21 @@ export const CardBack = styled(CardFace)`
   background-repeat: no-repeat;
 `;
 
-
-
-
 const useResponsive = () => {
   const [isMobile, setIsMobile] = useState(false);
-  
+
   useEffect(() => {
     const checkDevice = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkDevice();
     window.addEventListener('resize', checkDevice);
     return () => window.removeEventListener('resize', checkDevice);
   }, []);
-  
+
   return { isMobile };
 };
-
 
 export const InfoWrapper = styled.section`
   position: relative;
@@ -663,7 +642,6 @@ export const InfoWrapper = styled.section`
 
   @media (max-width: 768px) {
     min-height: 500vh;
-
   }
 `;
 
@@ -683,7 +661,7 @@ export const InfoTop = styled.div`
 export const InfoTitle = styled.h1`
   font-size: 3.375rem;
   color: var(--text-primary);
-  font-family: "Syncopate", sans-serif;
+  font-family: 'Syncopate', sans-serif;
   font-weight: 400;
   letter-spacing: -0.0225rem;
 
@@ -730,8 +708,8 @@ export const InfoCard = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 18px;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
-  width: 30rem;  
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
+  width: 30rem;
   height: 20rem;
   padding: 3rem;
   margin-top: 6rem;
@@ -753,9 +731,9 @@ export const InfoCard = styled.div`
     font-family: 'SF Pro';
     font-weight: 500;
     font-size: 1.687rem;
-    position: absolute;     
-    top: 3rem;            
-    left: 3rem;         
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
     margin: 0;
   }
 
@@ -768,13 +746,11 @@ export const InfoCard = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: calc(100% - 2rem); 
+    width: calc(100% - 2rem);
     height: 21rem;
     padding: 4rem;
     margin-top: 0;
     border-radius: 15px;
-
-    
 
     > div:first-child {
       font-size: 1.5rem;
@@ -788,31 +764,36 @@ export const InfoCard = styled.div`
   }
 `;
 
-
 export const InfoOrbBg = styled.img`
   position: absolute;
-  left: ${({ $leftPercent }) => ($leftPercent !== undefined ? `${$leftPercent}%` : '40%')};
+  left: ${({ $leftPercent }) =>
+    $leftPercent !== undefined ? `${$leftPercent}%` : '40%'};
   top: ${({ $topPx }) => ($topPx !== undefined ? `${$topPx}px` : '220px')};
-  width: ${({ $widthPercent }) => ($widthPercent !== undefined ? `${$widthPercent}%` : '140%')};
-  transform: translateX(-50%) translateY(${({ $translateY }) => ($translateY !== undefined ? `${$translateY}px` : '0px')})
+  width: ${({ $widthPercent }) =>
+    $widthPercent !== undefined ? `${$widthPercent}%` : '140%'};
+  transform: translateX(-50%)
+    translateY(
+      ${({ $translateY }) =>
+        $translateY !== undefined ? `${$translateY}px` : '0px'}
+    )
     scale(${({ $scale }) => ($scale !== undefined ? $scale : 1)});
   opacity: ${({ $opacity }) => ($opacity !== undefined ? $opacity : 0.95)};
   z-index: 1;
   filter: blur(0.5px);
   pointer-events: none;
   user-select: none;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition:
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, top, left, width, opacity;
 
   @media (max-width: 768px) {
     margin-top: 48rem;
     width: 280%;
   }
-
 `;
 
 export const InfoContent = styled.div`
@@ -868,7 +849,7 @@ export const InfoAnchorCard = styled.div`
   width: 80.25rem;
   transition: all 0.3s ease;
   position: relative;
-  
+
   &:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.2);
@@ -916,19 +897,19 @@ export const InfoAnchorButton = styled.button`
   position: absolute;
   right: 5%;
   bottom: 20%;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
   padding: 0.75rem 1.25rem;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   cursor: pointer;
   font-weight: 500;
   white-space: nowrap;
   transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(255,255,255,0.15);
-    border-color: rgba(255,255,255,0.25);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
     transform: translateY(-1px);
   }
 
@@ -980,7 +961,7 @@ export const GuestBookHeader = styled.div`
   @media (max-width: 768px) {
     position: static;
     margin-bottom: 3rem;
-  
+
     padding: 0 1rem;
   }
 `;
@@ -988,7 +969,7 @@ export const GuestBookHeader = styled.div`
 export const GuestBookTitle = styled.h2`
   font-size: 3.375rem;
   color: var(--text-primary);
-  font-family: "Syncopate", sans-serif;
+  font-family: 'Syncopate', sans-serif;
   font-weight: 400;
   letter-spacing: -0.0225rem;
 
@@ -1026,7 +1007,6 @@ export const GuestBookGrid = styled.div`
   align-items: flex-start;
   margin-top: 0rem;
 
-
   @media (max-width: 1024px) {
     max-width: 900px;
     gap: 1rem;
@@ -1047,11 +1027,10 @@ export const GuestBookGrid = styled.div`
   }
 `;
 
-
 export const GuestBookCard = styled.div`
   position: relative;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 2rem 1.75rem;
   color: #e6e6e6;
@@ -1059,14 +1038,22 @@ export const GuestBookCard = styled.div`
   width: 27rem;
   height: 18rem;
   overflow: hidden;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-  box-shadow: 0 6px 30px rgba(0,0,0,0.25);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
 
   &:before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(89deg, #10D48D 5.4%, #226ADF 40.92%, #133DE7 73.07%, #5419EA 95.62%);
+    background: linear-gradient(
+      89deg,
+      #10d48d 5.4%,
+      #226adf 40.92%,
+      #133de7 73.07%,
+      #5419ea 95.62%
+    );
     filter: blur(66px);
     opacity: 0;
     transition: opacity 0.35s ease;
@@ -1075,14 +1062,14 @@ export const GuestBookCard = styled.div`
   }
 
   &:hover {
-    border-color: rgba(255,255,255,0.2);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
   &:hover:before {
     opacity: 0.7;
   }
 
-  &:nth-child(3n+1),
+  &:nth-child(3n + 1),
   &:nth-child(3n) {
     transform: translateY(3rem);
   }
@@ -1095,9 +1082,8 @@ export const GuestBookCard = styled.div`
     padding: 1.5rem;
     transform: none !important;
 
-    
     &.active {
-      border-color: rgba(255,255,255,0.2);
+      border-color: rgba(255, 255, 255, 0.2);
 
       &:before {
         opacity: 0.7;
