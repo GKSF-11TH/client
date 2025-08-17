@@ -67,7 +67,7 @@ const GuestModal = ({ onClose, previewData }) => {
   const handleRegister = async () => {
     setLoading(true);
     try {
-      await axios.post('http://api.gksf11.com/guestbook/', {
+      await axios.post('https://api.gksf11.com/guestbook/', {
         author: editData.nickname,
         belonging: editData.affiliation,
         message: editData.comment
