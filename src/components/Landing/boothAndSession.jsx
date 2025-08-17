@@ -32,7 +32,7 @@ const BoothAndSession = () => {
     <BoothAndSessionWrapper>
       <BoothAndSessionHeader>
         <BoothAndSessionTitle>
-          Booth and Session
+          Booth and Session 
         </BoothAndSessionTitle>
         <BoothAndSessionSub>
           Immerse Yourself {isMobile && <br/>}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import GuestModal from './GuestModal.jsx';
 
 const Overlay = styled.div`
   position: fixed;
@@ -28,7 +29,7 @@ const Modal = styled.div`
   backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   max-width: 82rem;
   width: 90vw;
-  padding: 5.2rem 4rem 3.2rem 4rem;
+  padding: 6.2rem 4rem 4.2rem 4rem;
   box-sizing: border-box;
   color: #fff;
   position: relative;
@@ -37,7 +38,7 @@ const Modal = styled.div`
   @media (max-width: 600px) {
     display: flex !important;
     width: 30rem !important;
-    height: 50rem !important;
+    height: 51rem !important;
     padding: 3.2rem !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -68,7 +69,7 @@ const CloseBtn = styled.button`
 const Title = styled.h2`
   text-align: center;
   font-size: 2rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 3.6rem;
   letter-spacing: 0.04em;
@@ -90,7 +91,7 @@ const Form = styled.form`
 
 const Label = styled.label`
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 0.8rem;
   color: #919191;
@@ -114,11 +115,11 @@ const Input = styled.input`
   margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   &::placeholder {
     color: #bbb;
     font-size: 1.4rem;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono';
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
@@ -148,11 +149,11 @@ const CommentInput = styled.input`
   margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   &::placeholder {
     color: #bbb;
     font-size: 1.4rem;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono';
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
@@ -186,7 +187,7 @@ const Button = styled.button`
   border-radius: 1rem;
   padding: 1.2rem 3.2rem;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   cursor: pointer;
   width: 16rem;
   transition: background 0.2s;
@@ -205,6 +206,7 @@ const Guestbook = ({ onClose }) => {
   const [affiliation, setAffiliation] = useState('');
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -228,59 +230,76 @@ const Guestbook = ({ onClose }) => {
   };
 
   return (
-    <Overlay>
-      <Modal>
-        <CloseBtn onClick={onClose} aria-label="닫기">
-          ×
-        </CloseBtn>
-        <Title>방명록</Title>
-        <Form onSubmit={handleSubmit}>
-          <div>
-            <Label htmlFor="nickname">닉네임</Label>
-            <Input
-              id="nickname"
-              type="text"
-              placeholder="닉네임을 입력해주세요"
-              value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="affiliation">소속</Label>
-            <Input
-              id="affiliation"
-              type="text"
-              placeholder="소속을 작성해주세요 ex. 서강대 글로벌한국학과"
-              value={affiliation}
-              onChange={(e) => setAffiliation(e.target.value)}
-            />
-          </div>
-          <div>
-            <Label htmlFor="comment">댓글</Label>
-            <CommentInput
-              id="comment"
-              type="text"
-              placeholder="댓글을 작성해주세요"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              required
-            />
-          </div>
-          <BtnRow>
-            <Button
-              type="button"
-              onClick={() => alert('미리보기 기능 준비중입니다')}
-            >
-              미리보기
-            </Button>
-            <Button type="submit" disabled={loading}>
-              {loading ? '등록 중...' : '등록하기'}
-            </Button>
-          </BtnRow>
-        </Form>
-      </Modal>
-    </Overlay>
+    <>
+      <Overlay>
+        <Modal>
+          <CloseBtn onClick={onClose} aria-label="닫기">
+            ×
+          </CloseBtn>
+          <Title>방명록</Title>
+          <Form onSubmit={handleSubmit}>
+            <div>
+              <Label htmlFor="nickname">닉네임</Label>
+              <Input
+                id="nickname"
+                type="text"
+                placeholder="닉네임을 입력해주세요"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="affiliation">소속</Label>
+              <Input
+                id="affiliation"
+                type="text"
+                placeholder="소속을 작성해주세요 ex. 서강대 글로벌한국학과"
+                value={affiliation}
+                onChange={(e) => setAffiliation(e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="comment">댓글</Label>
+              <CommentInput
+                id="comment"
+                type="text"
+                placeholder="댓글을 작성해주세요"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                required
+              />
+            </div>
+            <BtnRow>
+                             <Button
+                 type="button"
+                 onClick={() => {
+                   console.log('미리보기 버튼 클릭됨');
+                   console.log('현재 데이터:', { nickname, affiliation, comment });
+                   setShowPreview(true);
+                 }}
+               >
+                 미리보기
+               </Button>
+              <Button type="submit" disabled={loading}>
+                {loading ? '등록 중...' : '등록하기'}
+              </Button>
+            </BtnRow>
+          </Form>
+        </Modal>
+      </Overlay>
+             {showPreview && (
+         <GuestModal
+           onClose={() => {
+             console.log('미리보기 모달 닫기');
+             setShowPreview(false);
+           }}
+           previewData={{ nickname, affiliation, comment }}
+         />
+       )}
+       {console.log('showPreview 상태:', showPreview)}
+       {console.log('현재 입력된 데이터:', { nickname, affiliation, comment })}
+    </>
   );
 };
 

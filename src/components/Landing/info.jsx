@@ -141,7 +141,7 @@ const Info = () => {
           <div>Location</div>
           <div>
             부스 - 서강대학교 정하상관 2층<br/>
-            세션 - 서강대학교 정하상관 1층 J118호
+            세션 - 서강대학교 정하상관 1층<br/>J118호
           </div>
         </InfoCard>
         <InfoCard onClick={() => navigate("/participation")}>

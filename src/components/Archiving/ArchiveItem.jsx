@@ -2,8 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import gksf11_Logo from '../../assets/images/_GKSF11_로고.png';
+import gksf10_Logo from '../../assets/images/10th.png';
+import gksf9_Logo from '../../assets/images/9th.png';
+import gksf8_Logo from '../../assets/images/8th.png';
+import gksf7_Logo from '../../assets/images/7th.png';
+import gksf6_Logo from '../../assets/images/6th.png';
+import gksf5_Logo from '../../assets/images/5th.png';
+import gksf4_Logo from '../../assets/images/4th.jpg';
+import gksf3_Logo from '../../assets/images/3rd.jpg';
+import gksf2_Logo from '../../assets/images/2nd.jpg';
+import gksf1_Logo from '../../assets/images/1st.jpg';
 
-// 픽셀화 애니메이션 키프레임
+
+// 픽셀화 애니메이션 키프레임 
 const pixelateAnimation = keyframes`
   0% {
     opacity: 0;
@@ -67,7 +78,7 @@ const EditionTitle = styled.h2`
 const LogoImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transition: opacity 260ms linear;
 `;
 
@@ -98,6 +109,60 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
   const logoRef = useRef(null);
   const cardRef = useRef(null);
   const rectRef = useRef(null); // contain 사각형 저장
+
+  // 회차별 로고 매칭 함수
+  const getLogoByEdition = (editionText) => {
+    const editionNumber = editionText.match(/(\d+)/)?.[1];
+    console.log('editionText:', editionText, 'editionNumber:', editionNumber);
+    
+    if (!editionNumber) {
+      console.log('editionNumber not found, using default logo');
+      return gksf11_Logo; // 기본값
+    }
+    
+    let selectedLogo;
+    switch (editionNumber) {
+      case '1':
+        selectedLogo = gksf1_Logo;
+        break;
+      case '2':
+        selectedLogo = gksf2_Logo;
+        break;
+      case '3':
+        selectedLogo = gksf3_Logo;
+        break;
+      case '4':
+        selectedLogo = gksf4_Logo;
+        break;
+      case '5':
+        selectedLogo = gksf5_Logo;
+        break;
+      case '6':
+        selectedLogo = gksf6_Logo;
+        break;
+      case '7':
+        selectedLogo = gksf7_Logo;
+        break;
+      case '8':
+        selectedLogo = gksf8_Logo;
+        break;
+      case '9':
+        selectedLogo = gksf9_Logo;
+        break;
+      case '10':
+        selectedLogo = gksf10_Logo;
+        break;
+      case '11':
+        selectedLogo = gksf11_Logo;
+        break;
+      default:
+        selectedLogo = gksf11_Logo; // 기본값
+        break;
+    }
+    
+    console.log(`Edition ${editionNumber} -> Logo:`, selectedLogo);
+    return selectedLogo;
+  };
 
   const formatEdition = (text) => {
     if (!isMobile) return text;
@@ -229,21 +294,21 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
       >
         {hasLogo && (
           <>
-            <LogoImage
-              ref={logoRef}
-              src={gksf11_Logo}
-              alt="GKSF Logo"
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-                pointerEvents: 'none',
-                // 항상 불투명 1 유지 (깜빡임 방지)
-                opacity: 1
-              }}
-            />
+                                                   <LogoImage
+                ref={logoRef}
+                src={getLogoByEdition(edition)}
+                alt={`GKSF ${edition} Logo`}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  pointerEvents: 'none',
+                  // 항상 불투명 1 유지 (깜빡임 방지)
+                  opacity: 1
+                }}
+              />
             <canvas
               ref={canvasRef}
               style={{

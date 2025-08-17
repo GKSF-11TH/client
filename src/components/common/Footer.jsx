@@ -187,11 +187,9 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const handleClick = (path) => {
-    console.log('Footer link clicked:', path);
     try {
       navigate(path);
     } catch (error) {
-      console.log('Navigation failed, using window.location.href');
       window.location.href = path;
     }
   };
