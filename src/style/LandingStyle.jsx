@@ -230,7 +230,7 @@ export const MainThemeTitle = styled.h1`
 export const MainThemeSubtitle = styled.h2`
   font-size: 1.875rem;
   font-family: 'SF Pro', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   margin-bottom: 1rem;
   color: var(--Text-Primary);
   margin-left: 8rem;
@@ -332,7 +332,7 @@ export const MainThemeSectionTitle = styled.h3`
 export const MainThemeSectionContent = styled.div`
   font-size: 1.5rem;
   font-family: 'IBM Plex Mono';
-  font-weight: 500;
+  font-weight: 400;
   line-height: 140%;
   color: var(--Text-Primary);
 
@@ -399,7 +399,7 @@ export const IntroVideoTitle = styled.h1`
 export const IntroVideoSubtitle = styled.p`
   font-size: 1.875rem;
   font-family: 'SF Pro', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--text-primary);
   text-align: left; 
   margin-left: 8rem;
@@ -413,8 +413,9 @@ export const IntroVideoSubtitle = styled.p`
 
 export const VideoBox = styled.h1`
   position: absolute;
-  top: 40%;
-  left: 43%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 1.875rem;
   font-family: 'SF Pro', sans-serif;
   font-weight: 400;
@@ -423,8 +424,6 @@ export const VideoBox = styled.h1`
 
 
   @media (max-width: 768px) {
-    top: 50%;
-    left: 35%;
     font-size: 1.3rem;
   }
 `;
@@ -541,7 +540,7 @@ export const BoothAndSessionTitle = styled.h1`
 export const BoothAndSessionSub = styled.p`
   font-size: 1.875rem;
   font-family: 'SF Pro', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--Text-Primary);
   margin-bottom: 2rem;
   margin-left: 8rem;
@@ -698,7 +697,7 @@ export const InfoTitle = styled.h1`
 export const InfoSubtitle = styled.div`
   font-size: 1.875rem;
   font-family: 'SF Pro', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--text-primary);
   margin-top: 1rem;
 
@@ -740,8 +739,8 @@ export const InfoCard = styled.div`
   font-size: 1rem;
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
 
   &:hover {
@@ -754,8 +753,10 @@ export const InfoCard = styled.div`
     font-family: 'SF Pro';
     font-weight: 500;
     font-size: 1.687rem;
-    margin-bottom: 1.5rem;
-    opacity: 1;
+    position: absolute;     
+    top: 3rem;            
+    left: 3rem;         
+    margin: 0;
   }
 
   > div:last-child {
@@ -763,6 +764,7 @@ export const InfoCard = styled.div`
     font-weight: 400;
     font-size: 1.25rem;
     line-height: 1.6;
+    text-align: center;
   }
 
   @media (max-width: 768px) {
@@ -955,8 +957,8 @@ export const InfoAnchorOrb = styled.img`
 export const GuestBookSection = styled.section`
   background-color: var(--background-primary);
   width: 100%;
-  min-height: 100vh;
-  padding: 6rem 0 8rem 0;
+  min-height: 120vh;
+  padding: 6rem 0 20rem 0;
   position: relative;
   z-index: 600;
   display: flex;
@@ -1000,7 +1002,7 @@ export const GuestBookTitle = styled.h2`
 export const GuestBookSubtitle = styled.p`
   font-size: 1.875rem;
   font-family: 'SF Pro', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--text-primary);
   margin-top: 1rem;
 
@@ -1023,6 +1025,7 @@ export const GuestBookGrid = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-top: 0rem;
+
 
   @media (max-width: 1024px) {
     max-width: 900px;
