@@ -1,7 +1,7 @@
 // Header.jsx
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import logoImg from '../../assets//images/_GKSF Logo.svg';
+import logoImg from '../../assets/images/_GKSF Logo.svg';
 import hamburgerIcon from '../../assets/icons/hamburg.svg';
 import closeIcon from '../../assets/icons/close.svg';
 import { useEffect, useState } from 'react';
@@ -9,6 +9,7 @@ import {
   GlassEffectWithBlurryBg,
   GlassEffectWithTransparentBg
 } from '../../style/common';
+import Footer from './Footer';
 
 export default function Header() {
   const [currentTab, setCurrentTab] = useState('');
@@ -40,7 +41,13 @@ export default function Header() {
             >
               <p>ABOUT</p>
             </Tab>
-            <DropdownContainer>
+            <Tab
+              $isActive={currentTab === '/booth'}
+              onClick={() => navigate('/booth')}
+            >
+              <p>BOOTH</p>
+            </Tab>
+            {/* <DropdownContainer>
               <Tab
                 $isActive={currentTab === '/booth'}
                 onClick={() => navigate('/booth')}
@@ -58,7 +65,7 @@ export default function Header() {
                   <p>BOOTH C</p>
                 </DropdownItem>
               </DropdownMenu>
-            </DropdownContainer>
+            </DropdownContainer> */}
             <Tab
               $isActive={currentTab === '/session'}
               onClick={() => navigate('/session')}
@@ -72,10 +79,10 @@ export default function Header() {
               <p>ARCHIVING</p>
             </Tab>
           </NavWrapper>
-          <Participation>
-            <Tab onClick={() => navigate('/participation')}>
-              <p>PARTICIPATION</p>
-            </Tab>
+          <Participation onClick={() => navigate('/participation')}>
+            {/* <Tab onClick={() => navigate('/participation')}> */}
+            <p>PARTICIPATION</p>
+            {/* </Tab> */}
           </Participation>
           <TabIcon
             src={DropdownOpen ? closeIcon : hamburgerIcon}
@@ -87,42 +94,50 @@ export default function Header() {
         </HeaderWrapper>
         {DropdownOpen && (
           <MobileDropdown>
-            <Tab onClick={() => handleMobileTabClick('/about')}>
-              <p>ABOUT</p>
-            </Tab>
-            <Tab onClick={() => handleMobileTabClick('/booth')}>
-              <p>BOOTH</p>
-            </Tab>
-            <Tab
+            <div>
+              <Tab onClick={() => handleMobileTabClick('/about')}>
+                <p>ABOUT</p>
+              </Tab>
+              <Tab onClick={() => handleMobileTabClick('/booth')}>
+                <p>BOOTH</p>
+              </Tab>
+              {/* <Tab
               $isIndent={true}
               onClick={() => handleMobileTabClick('/boothDetail/1')}
-            >
+              >
               <p>BOOTH A</p>
-            </Tab>
-            <Tab
+              </Tab>
+              <Tab
               $isIndent={true}
               onClick={() => handleMobileTabClick('/boothDetail/2')}
-            >
+              >
               <p>BOOTH B</p>
-            </Tab>
-            <Tab
+              </Tab>
+              <Tab
               $isIndent={true}
               onClick={() => handleMobileTabClick('/boothDetail/3')}
-            >
+              >
               <p>BOOTH C</p>
-            </Tab>
-            <Tab onClick={() => handleMobileTabClick('/session')}>
-              <p>SESSION</p>
-            </Tab>
-            <Tab onClick={() => handleMobileTabClick('/archiving')}>
-              <p>ARCHIVING</p>
-            </Tab>
+            </Tab> */}
+              <Tab onClick={() => handleMobileTabClick('/session')}>
+                <p>SESSION</p>
+              </Tab>
+              <Tab onClick={() => handleMobileTabClick('/archiving')}>
+                <p>ARCHIVING</p>
+              </Tab>
+            </div>
+            <ParticipationMobile
+              onClick={() => handleMobileTabClick('/participation')}
+            >
+              <p>PARTICIPATION</p>
+            </ParticipationMobile>
           </MobileDropdown>
         )}
       </HeaderSection>
       <MainSection>
         <Outlet />
       </MainSection>
+      <Footer />
     </div>
   );
 }
@@ -291,6 +306,20 @@ const Participation = styled(GlassEffectWithTransparentBg)`
   gap: 1.2rem;
   position: relative;
   border-radius: 10rem;
+  cursor: pointer;
+
+  > p {
+    color: var(--text-primary);
+    text-align: center;
+    -webkit-text-stroke-width: 0.16px;
+    -webkit-text-stroke-color: var(--text-primary);
+    font-family: 'SF Pro';
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 130%; /* 1.82rem */
+    letter-spacing: 0.028rem;
+  }
 
   &:hover {
     &::after {
@@ -363,8 +392,51 @@ const TabIcon = styled.img`
 
 const MobileDropdown = styled.div`
   width: 100%;
+  height: 100%;
+  padding-bottom: 4.2rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const ParticipationMobile = styled(GlassEffectWithTransparentBg)`
+  width: 100%;
+  display: flex;
+  padding: 1.6rem 2.8rem;
+  height: 4.2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  position: relative;
+  border-radius: 10rem;
+
+  > p {
+    color: var(--text-primary);
+    text-align: center;
+    -webkit-text-stroke-width: 0.16px;
+    -webkit-text-stroke-color: var(--text-primary);
+    font-family: 'SF Pro';
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 130%; /* 1.82rem */
+    letter-spacing: 0.028rem;
+  }
+
+  &:hover {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: var(--Interaction-Hover, rgba(255, 255, 255, 0.05));
+      z-index: -1;
+    }
+  }
 `;
 
 const MainSection = styled.div`

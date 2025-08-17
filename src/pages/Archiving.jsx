@@ -4,7 +4,6 @@ import BackgroundImage from '../assets/images/booth-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import Card from '../components/Archiving/Card';
 import ArchiveItem from '../components/Archiving/ArchiveItem';
-import Footer from '../components/common/Footer';
 
 const Background = styled.div`
   position: fixed;
@@ -21,7 +20,6 @@ const Background = styled.div`
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
     background-position: center top;
-    height: 230rem;
   }
 `;
 
@@ -29,7 +27,7 @@ const MainContainer = styled.main`
   width: 100vw;
   overflow: hidden;
   position: relative;
-  z-index: 11;
+  z-index: 1;
 `;
 
 const ContentWrapper = styled.div`
@@ -82,7 +80,6 @@ const Heading = styled.h1`
 const ArchiveGrid = styled.div`
   position: absolute;
   width: 100%;
-  height: 180rem;
   top: 38rem;
   left: 50%;
   transform: translateX(-50%);
@@ -232,52 +229,52 @@ const DesktopMain = () => {
               </ItemGroup>
               <VerticalSeparator />
               <ItemGroup>
-                <ArchiveItem edition="10th GKSF" />
+                <ArchiveItem edition="10th GKSF" hasLogo={true} />
                 <HorizontalSeparator />
               </ItemGroup>
               <VerticalSeparator />
               <ItemGroup>
-                <ArchiveItem edition="9th GKSF" />
+                <ArchiveItem edition="9th GKSF" hasLogo={true} />
                 <HorizontalSeparator />
               </ItemGroup>
               <VerticalSeparator />
               <ItemGroup>
-                <ArchiveItem edition="8th GKSF" />
+                <ArchiveItem edition="8th GKSF" hasLogo={true} />
                 <HorizontalSeparator />
               </ItemGroup>
             </ArchiveRow>
             <SecondRow>
               <ItemGroup>
-                <ArchiveItem edition="7th GKSF" />
+                <ArchiveItem edition="7th GKSF" hasLogo={true} />
                 <HorizontalSeparator />
               </ItemGroup>
               <VerticalSeparator />
               <ItemGroup>
-                <ArchiveItem edition="6th GKSF" />
+                <ArchiveItem edition="6th GKSF" hasLogo={true} />
                 <HorizontalSeparator />
               </ItemGroup>
               <VerticalSeparator />
               <ItemGroup>
-                <ArchiveItem edition="5th GKSF" />
+                <ArchiveItem edition="5th GKSF" hasLogo={true} />
                 <HorizontalSeparator />
               </ItemGroup>
               <VerticalSeparator />
               <ItemGroup>
-                <ArchiveItem edition="4th GKSF" />
+                <ArchiveItem edition="4th GKSF" hasLogo={true} />
                 <HorizontalSeparator />
               </ItemGroup>
             </SecondRow>
             <ThirdRow>
               <ItemGroup>
-                <ArchiveItem edition="3rd GKSF" />
+                <ArchiveItem edition="3rd GKSF" hasLogo={true} />
               </ItemGroup>
               <VerticalSeparator />
               <ItemGroup>
-                <ArchiveItem edition="2nd GKSF" />
+                <ArchiveItem edition="2nd GKSF" hasLogo={true} />
               </ItemGroup>
               <VerticalSeparator />
               <ItemGroup>
-                <ArchiveItem edition="1st GKSF" />
+                <ArchiveItem edition="1st GKSF" hasLogo={true} />
               </ItemGroup>
               <VerticalSeparator />
               <ItemGroup>
@@ -296,7 +293,6 @@ const DesktopMain = () => {
           </ArchiveGrid>
         </MainContent>
       </ContentWrapper>
-      <Footer />
     </MainContainer>
   );
 };
@@ -317,7 +313,7 @@ const MobileMain = () => {
             <MobileArchiveRow>
               <MobileItemGroup>
                 <ArchiveItem
-                  edition="11st GKSF"
+                  edition="11th GKSF"
                   hasLogo={true}
                   isMobile={true}
                 />
@@ -325,7 +321,7 @@ const MobileMain = () => {
               </MobileItemGroup>
               <MobileVerticalSeparator />
               <MobileItemGroup>
-                <ArchiveItem edition="10th GKSF" isMobile={true} />
+                <ArchiveItem edition="10th GKSF" hasLogo={true} isMobile={true} />
                 <MobileHorizontalSeparator />
               </MobileItemGroup>
             </MobileArchiveRow>
@@ -333,12 +329,12 @@ const MobileMain = () => {
             {/* 2행 */}
             <MobileArchiveRow>
               <MobileItemGroup>
-                <ArchiveItem edition="9th GKSF" isMobile={true} />
+                <ArchiveItem edition="9th GKSF" hasLogo={true} isMobile={true} />
                 <MobileHorizontalSeparator />
               </MobileItemGroup>
               <MobileVerticalSeparator />
               <MobileItemGroup>
-                <ArchiveItem edition="8th GKSF" isMobile={true} />
+                <ArchiveItem edition="8th GKSF" hasLogo={true} isMobile={true} />
                 <MobileHorizontalSeparator />
               </MobileItemGroup>
             </MobileArchiveRow>
@@ -346,12 +342,12 @@ const MobileMain = () => {
             {/* 3행 */}
             <MobileArchiveRow>
               <MobileItemGroup>
-                <ArchiveItem edition="7th GKSF" isMobile={true} />
+                <ArchiveItem edition="7th GKSF" hasLogo={true} isMobile={true} />
                 <MobileHorizontalSeparator />
               </MobileItemGroup>
               <MobileVerticalSeparator />
               <MobileItemGroup>
-                <ArchiveItem edition="6th GKSF" isMobile={true} />
+                <ArchiveItem edition="6th GKSF" hasLogo={true} isMobile={true} />
                 <MobileHorizontalSeparator />
               </MobileItemGroup>
             </MobileArchiveRow>
@@ -359,12 +355,12 @@ const MobileMain = () => {
             {/* 4행 */}
             <MobileArchiveRow>
               <MobileItemGroup>
-                <ArchiveItem edition="5th GKSF" isMobile={true} />
+                <ArchiveItem edition="5th GKSF" hasLogo={true} isMobile={true} />
                 <MobileHorizontalSeparator />
               </MobileItemGroup>
               <MobileVerticalSeparator />
               <MobileItemGroup>
-                <ArchiveItem edition="4th GKSF" isMobile={true} />
+                <ArchiveItem edition="4th GKSF" hasLogo={true} isMobile={true} />
                 <MobileHorizontalSeparator />
               </MobileItemGroup>
             </MobileArchiveRow>
@@ -372,12 +368,12 @@ const MobileMain = () => {
             {/* 5행 */}
             <MobileArchiveRow>
               <MobileItemGroup>
-                <ArchiveItem edition="3rd GKSF" isMobile={true} />
+                <ArchiveItem edition="3rd GKSF" hasLogo={true} isMobile={true} />
                 <MobileHorizontalSeparator />
               </MobileItemGroup>
               <MobileVerticalSeparator />
               <MobileItemGroup>
-                <ArchiveItem edition="2nd GKSF" isMobile={true} />
+                <ArchiveItem edition="2nd GKSF" hasLogo={true} isMobile={true} />
                 <MobileHorizontalSeparator />
               </MobileItemGroup>
             </MobileArchiveRow>
@@ -385,7 +381,7 @@ const MobileMain = () => {
             {/* 6행 */}
             <MobileArchiveRow style={{ alignItems: 'flex-start' }}>
               <MobileItemGroup>
-                <ArchiveItem edition="1st GKSF" isMobile={true} />
+                <ArchiveItem edition="1st GKSF" hasLogo={true} isMobile={true} />
               </MobileItemGroup>
               <MobileVerticalSeparator />
               <MobileItemGroup>
@@ -418,7 +414,6 @@ const MobileMain = () => {
           </MobileArchiveGrid>
         </MainContent>
       </ContentWrapper>
-      <Footer />
     </MainContainer>
   );
 };

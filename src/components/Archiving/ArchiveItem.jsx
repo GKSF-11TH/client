@@ -2,8 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import gksf11_Logo from '../../assets/images/_GKSF11_로고.png';
+import gksf10_Logo from '../../assets/images/10th.png';
+import gksf9_Logo from '../../assets/images/9th.png';
+import gksf8_Logo from '../../assets/images/8th.png';
+import gksf7_Logo from '../../assets/images/7th.png';
+import gksf6_Logo from '../../assets/images/6th.png';
+import gksf5_Logo from '../../assets/images/5th.png';
+import gksf4_Logo from '../../assets/images/4th.jpg';
+import gksf3_Logo from '../../assets/images/3rd.jpg';
+import gksf2_Logo from '../../assets/images/2nd.jpg';
+import gksf1_Logo from '../../assets/images/1st.jpg';
 
-// 픽셀화 애니메이션 키프레임
+
+// 픽셀화 애니메이션 키프레임 
 const pixelateAnimation = keyframes`
   0% {
     opacity: 0;
@@ -67,40 +78,104 @@ const EditionTitle = styled.h2`
 const LogoImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transition: opacity 260ms linear;
 `;
 
+// object-fit: contain과 동일한 사각형 계산
+function getContainRect(canvas, img) {
+  const cw = canvas.width;
+  const ch = canvas.height;
+  const iw = img.naturalWidth;
+  const ih = img.naturalHeight;
+
+  if (!iw || !ih) return { dx: 0, dy: 0, dw: cw, dh: ch };
+
+  const scale = Math.min(cw / iw, ch / ih);
+  const dw = Math.round(iw * scale);
+  const dh = Math.round(ih * scale);
+  const dx = Math.round((cw - dw) / 2);
+  const dy = Math.round((ch - dh) / 2);
+  return { dx, dy, dw, dh };
+}
+
 const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
   const navigate = useNavigate();
-  const [clickCount, setClickCount] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [isPixelated, setIsPixelated] = useState(false);
+
+  // 상태는 준비 여부만 유지 (불필요한 리렌더 방지)
   const [ready, setReady] = useState(false);
 
   const canvasRef = useRef(null);
   const logoRef = useRef(null);
-  const offscreenRef = useRef(null);
+  const cardRef = useRef(null);
+  const rectRef = useRef(null); // contain 사각형 저장
 
-  // 더 부드러운 이징 함수
-  const easeInOutCubic = (t) =>
-    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  // 회차별 로고 매칭 함수
+  const getLogoByEdition = (editionText) => {
+    const editionNumber = editionText.match(/(\d+)/)?.[1];
+    console.log('editionText:', editionText, 'editionNumber:', editionNumber);
+    
+    if (!editionNumber) {
+      console.log('editionNumber not found, using default logo');
+      return gksf11_Logo; // 기본값
+    }
+    
+    let selectedLogo;
+    switch (editionNumber) {
+      case '1':
+        selectedLogo = gksf1_Logo;
+        break;
+      case '2':
+        selectedLogo = gksf2_Logo;
+        break;
+      case '3':
+        selectedLogo = gksf3_Logo;
+        break;
+      case '4':
+        selectedLogo = gksf4_Logo;
+        break;
+      case '5':
+        selectedLogo = gksf5_Logo;
+        break;
+      case '6':
+        selectedLogo = gksf6_Logo;
+        break;
+      case '7':
+        selectedLogo = gksf7_Logo;
+        break;
+      case '8':
+        selectedLogo = gksf8_Logo;
+        break;
+      case '9':
+        selectedLogo = gksf9_Logo;
+        break;
+      case '10':
+        selectedLogo = gksf10_Logo;
+        break;
+      case '11':
+        selectedLogo = gksf11_Logo;
+        break;
+      default:
+        selectedLogo = gksf11_Logo; // 기본값
+        break;
+    }
+    
+    console.log(`Edition ${editionNumber} -> Logo:`, selectedLogo);
+    return selectedLogo;
+  };
 
   const formatEdition = (text) => {
     if (!isMobile) return text;
-
-    // "11st GKSF" -> "11st GKSF" (st만 소문자로 유지, GKSF는 대문자)
     return text.replace(/(\d+)(st|nd|rd|th)/gi, (match, number, suffix) => {
       return number + suffix.toLowerCase();
     });
   };
 
-  // 초기화
+  // 초기화 및 리사이즈 대응
   useEffect(() => {
     const img = logoRef.current;
     const cvs = canvasRef.current;
-    const card = document.querySelector('[data-card]');
-
+    const card = cardRef.current;
     if (!img || !cvs || !card) return;
 
     const dpr = Math.max(1, Math.floor(window.devicePixelRatio || 1));
@@ -116,21 +191,19 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
       cvs.style.width = `${w}px`;
       cvs.style.height = `${h}px`;
 
-      const off = document.createElement('canvas');
-      off.width = w * dpr;
-      off.height = h * dpr;
-      offscreenRef.current = off;
-
-      const octx = off.getContext('2d');
-      octx.imageSmoothingEnabled = true;
-      octx.clearRect(0, 0, off.width, off.height);
-      octx.drawImage(img, 0, 0, off.width, off.height);
-
-      if (logoRef.current) logoRef.current.style.opacity = '1';
       const ctx = cvs.getContext('2d');
       ctx.clearRect(0, 0, cvs.width, cvs.height);
+
+      // contain 사각형 계산 저장
+      rectRef.current = getContainRect(cvs, img);
+
+      // 원본 이미지는 항상 보이게 (깜빡임 방지)
+      if (logoRef.current) logoRef.current.style.opacity = '1';
+
+      // 캔버스는 기본 숨김 (호버 시만 표시)
+      cvs.style.display = 'none';
+
       setReady(true);
-      setIsPixelated(false);
     }
 
     if (!img.complete) {
@@ -144,101 +217,98 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  // 부드럽고 약한 픽셀화 애니메이션 (한 번만 실행)
-  const animatePixelate = () => {
-    if (!ready || isAnimating) return;
-    setIsAnimating(true);
+  // 호버 시: 픽셀화 레이어 그린 뒤, 캔버스만 표시
+  const handleMouseEnter = () => {
+    if (!ready) return;
 
     const cvs = canvasRef.current;
     const ctx = cvs.getContext('2d');
-    const off = offscreenRef.current;
-    const start = performance.now();
+    const img = logoRef.current;
+    const rect = rectRef.current;
+    if (!cvs || !ctx || !img || !rect) return;
 
-    // 픽셀화 설정 - 더 부드럽고 약하게
-    const endPixelSize = 10; // 기존 28 → 10 (훼손 줄임)
-    const duration = 1800; // 기존 900 → 1800 (느리게)
-    const strength = 0.75; // 최종 강도 제한(0~1), 기본 75%
+    const { dx, dy, dw, dh } = rect;
 
-    // 최종 픽셀 크기 계산 (강도 제한 적용)
-    const finalPx = Math.max(
-      1,
-      Math.round(endPixelSize * Math.min(1, Math.max(0, strength)))
+    // 픽셀 크기 설정 (클수록 거칠게)
+    const pixelSize = 8;
+
+    // 저해상도 캔버스를 '그려질 영역' 기준으로 생성
+    const lowW = Math.max(1, Math.floor(dw / pixelSize));
+    const lowH = Math.max(1, Math.floor(dh / pixelSize));
+
+    const tmp = document.createElement('canvas');
+    tmp.width = lowW;
+    tmp.height = lowH;
+
+    const tctx = tmp.getContext('2d');
+    tctx.imageSmoothingEnabled = true;
+    tctx.clearRect(0, 0, lowW, lowH);
+
+    // 원본 이미지를 저해상도로 축소 (비율 유지)
+    // 주의: drawImage 소스는 원본 natural 크기를 기준으로
+    tctx.drawImage(
+      img,
+      0,
+      0,
+      img.naturalWidth,
+      img.naturalHeight,
+      0,
+      0,
+      lowW,
+      lowH
     );
 
-    const loop = (now) => {
-      const t = Math.min(1, (now - start) / duration);
-      const k = easeInOutCubic(t); // 더 부드러운 속도 프로파일
+    // 캔버스에 픽셀화 업스케일 (동일 사각형에만)
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(tmp, 0, 0, lowW, lowH, dx, dy, dw, dh);
 
-      // 1 → finalPx 까지만 변화 (너무 거칠게 가지 않음)
-      const px = Math.max(1, Math.round(1 + k * (finalPx - 1)));
-
-      const lowW = Math.max(1, Math.floor(off.width / px));
-      const lowH = Math.max(1, Math.floor(off.height / px));
-
-      const tmp = document.createElement('canvas');
-      tmp.width = lowW;
-      tmp.height = lowH;
-
-      const tctx = tmp.getContext('2d');
-      tctx.imageSmoothingEnabled = true;
-      tctx.clearRect(0, 0, lowW, lowH);
-      tctx.drawImage(off, 0, 0, lowW, lowH);
-
-      ctx.clearRect(0, 0, cvs.width, cvs.height);
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(tmp, 0, 0, lowW, lowH, 0, 0, cvs.width, cvs.height);
-
-      if (logoRef.current) {
-        // 원본은 천천히 사라지도록(여유 있게)
-        const imgOpacity = 1 - k;
-        logoRef.current.style.opacity = imgOpacity.toString();
-      }
-
-      if (t < 1) {
-        requestAnimationFrame(loop);
-      } else {
-        setIsAnimating(false);
-        setIsPixelated(true);
-      }
-    };
-
-    requestAnimationFrame(loop);
+    // 픽셀화 레이어 보이기 (원본 이미지는 그대로)
+    cvs.style.display = 'block';
   };
 
-  const handleClick = () => {
-    if (isAnimating || !ready) return;
+  // 호버 해제 시: 캔버스만 숨김 (원본 이미지는 건드리지 않음)
+  const handleMouseLeave = () => {
+    const cvs = canvasRef.current;
+    if (!cvs) return;
+    cvs.style.display = 'none';
+  };
 
-    if (clickCount === 0) {
-      // 첫 번째 클릭: 픽셀화 애니메이션 시작
-      setClickCount(1);
-      animatePixelate();
-    } else if (clickCount === 1) {
-      // 두 번째 클릭: 아카이빙 페이지로 이동
-      const editionNumber = edition.match(/(\d+)/)?.[1];
-      if (editionNumber) {
-        navigate(`/archiving/${editionNumber}`);
-      }
+  // 클릭 시 바로 아카이빙 페이지로 이동
+  const handleClick = () => {
+    const editionNumber = edition.match(/(\d+)/)?.[1];
+    if (editionNumber) {
+      navigate(`/archiving/${editionNumber}`);
     }
   };
 
   return (
     <ArchiveItemContainer $isMobile={isMobile}>
-      <Card $isMobile={isMobile} onClick={handleClick} data-card>
+      <Card
+        ref={cardRef}
+        $isMobile={isMobile}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        data-card
+      >
         {hasLogo && (
           <>
-            <LogoImage
-              ref={logoRef}
-              src={gksf11_Logo}
-              alt="GKSF Logo"
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-                pointerEvents: 'none'
-              }}
-            />
+                                                   <LogoImage
+                ref={logoRef}
+                src={getLogoByEdition(edition)}
+                alt={`GKSF ${edition} Logo`}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  pointerEvents: 'none',
+                  // 항상 불투명 1 유지 (깜빡임 방지)
+                  opacity: 1
+                }}
+              />
             <canvas
               ref={canvasRef}
               style={{

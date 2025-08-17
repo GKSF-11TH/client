@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useResponsive from './useResponsive';
 import {
   GuestBookSection,
@@ -13,39 +13,62 @@ import {
   GuestBookText,
 } from '../../style/LandingStyle';
 
-const GUESTS = [
-  { name: 'Emily', role: 'Visitor', text: 'The forum exceeded my expectations. The sessions were insightful and the speakers were top-notch.' },
-  { name: 'Jay', role: 'Visitor', text: 'A fantastic event! I was able to connect with professionals from various industries.' },
-  { name: '방문자1', role: '홍보기획팀원', text: 'AI에 대한 새로운 시각을 얻을 수 있어서 정말 유익했습니다.' },
-  { name: '강민지', role: '연구기획팀원', text: '요즘 시대에 너무 도움이 되는 포럼이에요. AI의 기본적인 내용부터 짚었는데 많이 도움이 되었습니다!' },
-  { name: '김재민', role: 'student', text: '패널 토론과 발표 내용이 알차고 흥미로웠어요. 특히 세션3가 기억에 남았습니다.' },
-  { name: 'Heasther', role: 'Visitor', text: 'Loved the hands-on demonstrations and panel discussions. Looking forward to next year!' },
-  { name: 'Jay', role: 'Visitor', text: 'An excellent platform to explore emerging trends in technology and innovation.' },
-  { name: '박찬재', role: 'Visitor', text: '포럼 분위기도 즐거웠고 정보도 풍부해서 만족스러웠어요.' },
-  { name: 'Jay', role: 'Visitor', text: 'A fantastic event! I was able to connect with professionals from various industries.' }
-];
-
-
 const GuestBook = () => {
+  const { isMobile } = useResponsive();
+  const [guests, setGuests] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const { isMobile } = useResponsive(); 
-  const displayGuests = isMobile ? GUESTS.slice(0, 5) : GUESTS;
-  
+  useEffect(() => {
+    const fetchGuests = async () => {
+      try {
+        const response = await fetch("https://api.gksf11.com/guestbook/");
+        if (!response.ok) {
+          throw new Error("데이터를 불러올 수 없습니다.");
+        }
+        const data = await response.json();
+
+        const normalizedData = Array.isArray(data) ? data : [data];
+
+        // 최신순 정렬 (written_at 내림차순)
+        const sortedData = normalizedData.sort(
+          (a, b) => new Date(b.written_at) - new Date(a.written_at)
+        );
+
+        // 최대 9개까지만 표시
+        setGuests(sortedData.slice(0, 9));
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGuests();
+  }, []);
+
+  const displayGuests = isMobile ? guests.slice(0, 5) : guests;
+
   return (
     <GuestBookSection>
       <GuestBookHeader>
         <GuestBookTitle>GuestBook</GuestBookTitle>
-        <GuestBookSubtitle>Explore the what, when, and where of our forum.</GuestBookSubtitle>
+        <GuestBookSubtitle>
+          Explore the what, when, and where of our forum.
+        </GuestBookSubtitle>
       </GuestBookHeader>
+
+      {loading && <p>불러오는 중...</p>}
+      {error && <p style={{ color: "red" }}>에러 발생: {error}</p>}
 
       <GuestBookGrid>
         {displayGuests.map((g, idx) => (
-          <GuestBookCard key={idx} $index={idx}>
+          <GuestBookCard key={g.id || idx} $index={idx}>
             <GuestBookCardHeader>
-              <GuestBookName>{g.name}</GuestBookName>
-              <GuestBookRole>{g.role}</GuestBookRole>
+              <GuestBookName>{g.author}</GuestBookName>
+              <GuestBookRole>{g.belonging}</GuestBookRole>
             </GuestBookCardHeader>
-            <GuestBookText>{g.text}</GuestBookText>
+            <GuestBookText>{g.message}</GuestBookText>
           </GuestBookCard>
         ))}
       </GuestBookGrid>

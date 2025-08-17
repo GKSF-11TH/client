@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import * as d3 from 'd3-geo';
-import countries from '../../countries.json';
+import countries from '/src/countries.json';
 
 const ParticleGlobe = () => {
   const containerRef = useRef();
@@ -175,7 +175,7 @@ const ParticleGlobe = () => {
     containerRef.current.appendChild(renderer.domElement);
 
     const radius = isMobile ? 1.6 : 2;
-    const TOTAL_PARTICLES = isMobile ? 3000 : 7000;
+    const TOTAL_PARTICLES = isMobile ? 2500 : 5000;
     const goldenRatio = (1 + Math.sqrt(5)) / 2;
     const landPositions = [];
 

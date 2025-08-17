@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import BackgroundImage from '../assets/images/booth-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
-import Footer from '../components/common/Footer';
+import speaker1Image from '../assets/images/speaker1.jpeg';
+import speaker2Image from '../assets/images/speaker2.png';
+import speaker3Image from '../assets/images/speaker3.jpeg';
+import speaker4Image from '../assets/images/speaker4.png';
+import speaker5Image from '../assets/images/speaker5.png';
 
 const sessions = [
   {
@@ -15,7 +19,7 @@ const sessions = [
     content:
       '생성형 AI는 단순한 도구를 넘어 삶 전반에 영향을 미치는 기반 기술로 자리잡고 있으며, 이에 따라 AI 리터러시 교육의 중요성도 높아지고 있다. 본 세션은 AI 의존이 사고력 저하를 초래할 수 있다는 우려와 학습 능력을 향상시킬 수 있다는 기대 사이에서 균형점을 모색하고자 한다. 나아가 인간의 주체성을 잃지 않고 AI를 효과적으로 활용할 수 있는 방법에 대해 함께 고민해보고자 한다.',
     structure: '강연 및 청중 질의응답',
-    img: '/src/assets/images/speaker1.jpeg'
+    img: speaker1Image
   },
   {
     id: 2,
@@ -27,7 +31,7 @@ const sessions = [
     content:
       '대한민국의 스포츠와 AI에 대한 현주소에 대해 이야기하고, 스포츠와 AI 기술의 융합이 어떻게 변화하고 있는지를 조망하고자 합니다. 이를 통해 스포츠 산업 내 AI 기술의 활용 가능성을 모색하고, 나아가 AI와 스포츠 심리학의 융합이 가져올 새로운 패러다임을 공유함으로써 스포츠 산업의 미래 발전에 기여하고자 합니다.',
     structure: '강연 및 미니 토크쇼',
-    img: '/src/assets/images/speaker2.png'
+    img: speaker2Image
   },
   {
     id: 3,
@@ -40,7 +44,7 @@ const sessions = [
     content:
       'AI 기술의 발전으로 노동시장이 빠르게 재편되면서, 청년층은 일자리 불확실성에 직면하고 있습니다. 본 세션에서는 AI로 인해 변화하는 노동시장 속에서 청년이 갖춰야 할 역량과 정부·기업의 역할, 사람과 기술의 공존 방안을 고용주와 노동자의 관점에서 함께 모색합니다.',
     structure: '심포지엄 및 청중 질의응답',
-    img: '/src/assets/images/speaker3.png'
+    img: speaker3Image
   },
   {
     id: 4,
@@ -52,7 +56,7 @@ const sessions = [
     content:
       'AI와 교육의 접목에 관한 제도적 기반과 실제 교육 현장의 경험을 폭넓게 바라보며 AI 기반 교육의 현재와 미래 전망을 탐구합니다. 또한 AI 기반 교육의 확산이 초래할 수 있는 교육 격차 문제를 진단하고, 이를 해소하기 위한 실천적 방안에 대해 다양한 관점에서 논의하고자 합니다.',
     structure: '심포지엄 및 청중 질의응답',
-    img: '/src/assets/images/speaker4.png'
+    img: speaker4Image
   },
   {
     id: 5,
@@ -60,7 +64,7 @@ const sessions = [
     speaker: '최수정, 문화기획자',
     content: '창의적 문화 활동이 사회에 미치는 영향과 사례를 공유합니다.',
     structure: '케이스 스터디',
-    img: '/src/assets/images/speaker5.png'
+    img: speaker5Image
   }
 ];
 
@@ -74,7 +78,7 @@ const Container = styled.div`
   font-family: 'Pretendard', 'Montserrat', sans-serif;
 
   @media (max-width: 768px) {
-    height: 165.3rem;
+    height: 100%;
   }
 `;
 
@@ -93,7 +97,6 @@ const Background = styled.div`
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
     background-position: center top;
-    height: 165.3rem;
   }
 `;
 
@@ -233,14 +236,9 @@ const Tab = styled.button.attrs(() => ({}))`
     transform: translateY(-0.2rem);
     backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   }
-  @media (max-width: 900px) {
-    width: 11rem;
-    height: 4rem;
-    font-size: 1.5rem;
-  }
   @media (max-width: 600px) {
-    width: 8.5rem;
-    height: 3.2rem;
+    width: 10.5rem;
+    height: 4.2rem;
     font-size: 1.1rem;
   }
 `;
@@ -251,8 +249,8 @@ const SessionTitle = styled.h2`
   font-size: 3rem;
   font-weight: 400;
   text-align: center;
-  margin-top: 4.5rem;
-  margin-bottom: 3.6rem;
+  margin-top: 5.2rem;
+  margin-bottom: 4.6rem;
   letter-spacing: 0.04em;
   line-height: 1.3;
   color: #fff;
@@ -328,56 +326,56 @@ const InfoCol = styled.div`
 const SpeakerGroup = styled.div``;
 
 const SpeakerTitle = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--text-tertiary);
   margin-bottom: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.01em;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
 `;
 
 const Speaker = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--Text-Primary, #fbfbfb);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.01em;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
 `;
 
 const ContentGroup = styled.div``;
 
 const ContentTitle = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--text-tertiary);
   margin-bottom: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.01em;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
 `;
 
 const Content = styled.div`
   font-size: 1.3rem;
   color: var(--Text-Primary, #fbfbfb);
-  line-height: 1.7;
-  font-family: 'IBM Plex Mono', monospace;
+  line-height: 1.65;
+  font-family: 'IBM Plex Mono';
 `;
 
 const StructureGroup = styled.div``;
 
 const Structure = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--Text-Primary, #fbfbfb);
-  font-weight: 500;
-  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-family: 'IBM Plex Mono';
 `;
 
 const StructureTitle = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--text-tertiary);
   margin-bottom: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.01em;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
 `;
 
 const BottomSpace = styled.div`
@@ -437,9 +435,6 @@ const Session = () => {
         </InfoRow>
       </main>
       <BottomSpace />
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <Footer />
-      </div>
     </Container>
   );
 };

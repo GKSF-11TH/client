@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SectionCard from '../components/About/SectionCard';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Intro from '../components/About/Intro';
 import PeopleContent from '../components/About/PeopleContent';
 import { GlassEffectWithSolidBg } from '../style/common';
 import Gradient1 from '../assets/images/Gradient1.png';
 import Gradient2 from '../assets/images/Gradient2.png';
+import { keyframes } from 'styled-components';
 
 const PageText = [
   {
@@ -19,24 +20,57 @@ const PageText = [
     isText: false,
     chatBox: 'Who participated?',
     title: 'People',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Est morbi velit diam facilisi. Amet tellus id vitae ultrices placerat proin nulla vel. Odio nunc mattis etiam platea cras. Morbi aliquam dolor nunc eget elit feugiat. Vestibulum vitae pellentesque in quisque magna mi consectetur volutpat aenean. Magna lectus fermentum lorem erat elit at.\nAliquet est tempus volutpat enim morbi vestibulum turpis. Pharetra id tincidunt fermentum at. Nibh sed.'
+    description: ''
   },
   {
     isText: true,
-    chatBox: 'Lorem ispum dolor',
+    chatBox: 'What is booth?',
     title: 'Booth',
     description:
-      'Lorem ipsum dolor sit amet consectetur. Est morbi velit diam facilisi. Amet tellus id vitae ultrices placerat proin nulla vel. Odio nunc mattis etiam platea cras. Morbi aliquam dolor nunc eget elit feugiat. Vestibulum vitae pellentesque in quisque magna mi consectetur volutpat aenean. Magna lectus fermentum lorem erat elit at.\nAliquet est tempus volutpat enim morbi vestibulum turpis. Pharetra id tincidunt fermentum at. Nibh sed.'
+      '국제한국학포럼에서 부스는 단순한 정보 제공을 넘어, 관람객이 직접 체험할 수 있는 전시 및 참여형 콘텐츠로 구성됩니다. 이번 포럼의 부스는 ‘유토피아’, ‘디스토피아’, ‘리얼리티’라는 세 가지 소주제를 중심으로 구성되며, 이들 각각은 AI라는 기술적 전환이 한국 사회에 어떤 방식으로 작용하고 있는지를 다양한 시선에서 풀어냅니다. 각 부스들은 내용적으로 긴밀히 연결되어 있어, 관람객들은 이를 순차적으로 체험해 나가며 하나의 큰 대주제인 ‘AI 혁명과 한국’을 보다 입체적이고 다층적으로 이해할 수 있습니다. 이 과정을 통해 관람객은 각 부스가 던지는 질문을 바탕으로 스스로 사고하고, 현재 우리가 마주한 기술적 전환의 의미를 성찰해볼 수 있는 시간을 갖게 됩니다'
   },
   {
     isText: true,
-    chatBox: 'Lorem ispum dolor',
+    chatBox: 'What is Session?',
     title: 'Session',
     description:
-      'Lorem ipsum dolor sit amet consectetur. Est morbi velit diam facilisi. Amet tellus id vitae ultrices placerat proin nulla vel. Odio nunc mattis etiam platea cras. Morbi aliquam dolor nunc eget elit feugiat. Vestibulum vitae pellentesque in quisque magna mi consectetur volutpat aenean. Magna lectus fermentum lorem erat elit at.\nAliquet est tempus volutpat enim morbi vestibulum turpis. Pharetra id tincidunt fermentum at. Nibh sed.'
+      '국제한국학포럼에서 세션이란, 단순한 지식 전달의 자리를 넘어 오늘날 한국 사회를 살아가는 청년들이 스스로 질문을 던지고 깊이 있는 토론을 통해 대안을 모색하는 장입니다.\n이번 포럼은 총 5개의 학술 세션으로 구성되어 있으며, 각 세션을 통해 우리는 기술 중심의 사회 변화 속에서도 인간과 공동체의 가치를 되묻고자 합니다.\n최근, ‘AI’라는 단어는 더 이상 먼 미래의 이야기가 아닌, 우리가 일상에서 마주하는 가장 현실적인 변화로 자리 잡고 있습니다. 특히 2025년의 한국 사회에서 AI는 기술적 혁신을 넘어 교육, 스포츠, 노동, 문화 등 거의 모든 영역을 뒤흔드는 강력한 전환점으로 작용하고 있습니다.\n많은 이들이 AI 기술의 변화에 놀라움과 동시에 위기를 이야기하지만, 정작 그 변화에 대해 주체적으로 고민하고 대응하려는 움직임은 아직 충분하지 않은 것이 현실입니다.\nAI 기술의 발전을 막연히 두려워하기보다, 지금 우리에게 필요한 것은 그 변화를 올바르게 직시하여 미래를 능동적으로 준비하는 태도입니다.\n이에 제11회 국제한국학포럼은 ‘AI 혁명과 한국: Korea in AI Revolution’이라는 대주제 아래, AI 혁명 속에서 청년들이 마주할 한국 사회의 변화를 중심에 두고자 합니다.'
   }
 ];
+
+function useIntersectionObserver(options) {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target); // 한 번만 실행
+        }
+      });
+    }, options);
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, [options]);
+
+  return [ref, isVisible];
+}
+
+export function TypeWriterTrigger({ text }) {
+  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
+
+  return (
+    <TypeWriter active={isVisible} ref={ref}>
+      <p>{text}</p>
+    </TypeWriter>
+  );
+}
 
 const About = () => {
   return (
@@ -50,7 +84,11 @@ const About = () => {
         <Sections>
           {PageText.map((item, index) => (
             <Section key={index}>
-              {item.chatBox ? <ChatBox>{item.chatBox}</ChatBox> : null}
+              {item.chatBox ? (
+                <ChatBox>
+                  <TypeWriterTrigger text={item.chatBox} />
+                </ChatBox>
+              ) : null}
               <SectionCard title={item.title}>
                 {item.isText ? (
                   <TextBox>{item.description}</TextBox>
@@ -137,6 +175,34 @@ const ChatBox = styled(GlassEffectWithSolidBg)`
   @media (max-width: 768px) {
     padding: 1rem 1.8rem;
     font-size: 1.6rem;
+  }
+`;
+
+const typing = keyframes`
+  from { width: 0 }
+  to { width: 100% }
+`;
+
+const blinkCaret = keyframes`
+  from, to { border-color: transparent }
+  50% { border-color: white; }
+`;
+
+const TypeWriter = styled.div`
+  > p {
+    overflow: hidden;
+    border-right: 0.15em solid white;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.048rem;
+
+    ${({ active }) =>
+      active &&
+      css`
+        animation:
+          ${typing} 2s steps(40, end),
+          ${blinkCaret} 1.25s step-end infinite;
+      `}
   }
 `;
 

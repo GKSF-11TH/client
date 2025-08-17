@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import useResponsive from './useResponsive';
 import {
   MainThemeContainer,
@@ -12,7 +13,8 @@ import {
 } from '../../style/LandingStyle';
 
 const MainTheme = ({ visibleSections }) => {
-  const { isMobile } = useResponsive(); // 화면 크기 감지
+  const navigate = useNavigate();
+  const { isMobile } = useResponsive(); 
   
   return (
     <div style={{ backgroundColor: 'var(--background-primary)', minHeight: '100vh', width: '100%', position: 'relative', zIndex: 200 }}>
@@ -26,7 +28,7 @@ const MainTheme = ({ visibleSections }) => {
             </div>
 
           </div>
-          <MainThemeButton>Sign Up Now →</MainThemeButton>
+          <MainThemeButton onClick={() => navigate("/participation")}>Sign Up Now →</MainThemeButton>
           
           <MainThemeSection 
             className={`main-theme-section ${visibleSections[0] ? 'visible' : ''}`}

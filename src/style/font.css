@@ -86,13 +86,6 @@
 }
 
 @font-face {
-  font-family: 'SF Pro';
-  src: url('../assets/fonts/designhouseLight.ttf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'DesignHouse';
   src: url('../assets/fonts/designhouseLight.ttf') format('truetype');
   font-weight: 300;
