@@ -5,8 +5,11 @@ import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png
 import speaker1Image from '../assets/images/speaker1.jpeg';
 import speaker2Image from '../assets/images/speaker2.png';
 import speaker3Image from '../assets/images/speaker3.jpeg';
+import speaker3_2Image from '../assets/images/speaker3_2.png';
 import speaker4Image from '../assets/images/speaker4.png';
+import speaker4_1Image from '../assets/images/speaker4_1.jpeg';
 import speaker5Image from '../assets/images/speaker5.png';
+import speaker5_1Image from '../assets/images/speaker5_1.png';
 
 const sessions = [
   {
@@ -17,9 +20,10 @@ const sessions = [
     tags: ['AI', '리터러시', '교육'],
     speaker: '구본권 한겨레 사람과 디지털 연구소장',
     content:
-      '생성형 AI는 단순한 도구를 넘어 삶 전반에 영향을 미치는 기반 기술로 자리잡고 있으며, 이에 따라 AI 리터러시 교육의 중요성도 높아지고 있다. 본 세션은 AI 의존이 사고력 저하를 초래할 수 있다는 우려와 학습 능력을 향상시킬 수 있다는 기대 사이에서 균형점을 모색하고자 한다. 나아가 인간의 주체성을 잃지 않고 AI를 효과적으로 활용할 수 있는 방법에 대해 함께 고민해보고자 한다.',
+      '(1) 생성형 AI의 기본 구조와 AI 리터러시에 대한 기본 배경지식\n(2) 생성형 AI의 양면성\n: 학습효율을 높여주는가 VS 사고력과 창의력을 저하시키는가\n(3) 생성형 AI를 올바르게 사용하기 위한 교육적 방향성과 태도',
     structure: '강연 및 청중 질의응답',
-    img: speaker1Image
+    img: speaker1Image,
+    hasMultipleSpeakers: false
   },
   {
     id: 2,
@@ -27,11 +31,12 @@ const sessions = [
     time: '11:15 - 12:15',
     place: 'Room 2',
     tags: ['스포츠', 'AI', '산업'],
-    speaker: '정용철 서강대학교 교육대학원 스포츠전공 주임교수',
+    speaker: '이준성 연세대학교 스포츠응용산업학과 교수',
     content:
-      '대한민국의 스포츠와 AI에 대한 현주소에 대해 이야기하고, 스포츠와 AI 기술의 융합이 어떻게 변화하고 있는지를 조망하고자 합니다. 이를 통해 스포츠 산업 내 AI 기술의 활용 가능성을 모색하고, 나아가 AI와 스포츠 심리학의 융합이 가져올 새로운 패러다임을 공유함으로써 스포츠 산업의 미래 발전에 기여하고자 합니다.',
-    structure: '강연 및 미니 토크쇼',
-    img: speaker2Image
+      '(1) 한국 스포츠 산업에서의 AI 활용 현황\n(2) AI 기술이 한국 스포츠 문화에 끼친 변화\n(3) 스포츠 산업의 일자리와 산업 구조의 재편 가능성\n(4)  AI와 함께 나아갈 한국 스포츠의 미래 전략',
+    structure: '강연 및 청중 질의응답',
+    img: speaker2Image,
+    hasMultipleSpeakers: false
   },
   {
     id: 3,
@@ -40,11 +45,13 @@ const sessions = [
     place: 'Room 3',
     tags: ['AI', '청년', '일자리'],
     speaker:
-      '이금룡 코글로닷컴 회장 /  양승엽 한국노동연구원 사회정책연구본부 부연구위원',
+      '이금룡 코글로닷컴 회장\n양승엽 한국노동연구원 사회정책연구본부 부연구위원',
     content:
-      'AI 기술의 발전으로 노동시장이 빠르게 재편되면서, 청년층은 일자리 불확실성에 직면하고 있습니다. 본 세션에서는 AI로 인해 변화하는 노동시장 속에서 청년이 갖춰야 할 역량과 정부·기업의 역할, 사람과 기술의 공존 방안을 고용주와 노동자의 관점에서 함께 모색합니다.',
+      '(1) AI도입에 따른 한국 노동시장의 일자리변화\n(2) 기업의 인력 재편 전략과 고용 구조 변화\n(3) 청년층이 겪는 고용 불안정과 격차 확대\n(4) AI 시대에 대비한 한국 청년의 역량 개발의 필요성\n(5) 정부·기업·노동자의 역할 및 한국 사회의 대응 전략',
     structure: '심포지엄 및 청중 질의응답',
-    img: speaker3Image
+    img: speaker3Image,
+    img2: speaker3_2Image,
+    hasMultipleSpeakers: true
   },
   {
     id: 4,
@@ -52,19 +59,24 @@ const sessions = [
     time: '14:45 - 15:45',
     place: 'Main Hall',
     tags: ['AI', '교육', '격차'],
-    speaker: '김현아 경일초등학교 교장 / 한정윤 고운영센터 부연구위원',
+    speaker: '김현아 경일초등학교 교장\n한정윤 서울시립대학교 교육대학원 교수',
     content:
-      'AI와 교육의 접목에 관한 제도적 기반과 실제 교육 현장의 경험을 폭넓게 바라보며 AI 기반 교육의 현재와 미래 전망을 탐구합니다. 또한 AI 기반 교육의 확산이 초래할 수 있는 교육 격차 문제를 진단하고, 이를 해소하기 위한 실천적 방안에 대해 다양한 관점에서 논의하고자 합니다.',
+      '(1) 한국 교육 현장의 AI 도입 현황\n(2) 해외에서 실행 중인 AI 교육 사례\n(3) AI가 바꾼 한국 교육의 방식 및 교사 역할의 재정의\n(4) 학생에게 요구되는 새로운 핵심 역량\n(5) AI 교육 정책의 한국적 방향성 모색',
     structure: '심포지엄 및 청중 질의응답',
-    img: speaker4Image
+    img: speaker4_1Image,
+    img2: speaker4Image,
+    hasMultipleSpeakers: true
   },
   {
     id: 5,
-    title: '문화와 창의성',
-    speaker: '최수정, 문화기획자',
-    content: '창의적 문화 활동이 사회에 미치는 영향과 사례를 공유합니다.',
-    structure: '케이스 스터디',
-    img: speaker5Image
+    title: '인공지능이 그려 갈 K-콘텐츠의 새로운 무대',
+    speaker: '최민근 MBC 예능국 예능3CP 프로듀서\n김영대 음악평론가',
+    content:
+      '(1) AI 기술이 K-콘텐츠 산업에 가져온 변화\n(2) AI 콘텐츠가 한국적 콘텐츠로 인정받을 수 있는가\n(3) 팬과 AI 아티스트의 정서적 연결 가능성\n(4) K-콘텐츠 산업의 윤리적·문화적 방향성',
+    structure: '심포지엄 및 청중 질의응답',
+    img: speaker5Image,
+    img2: speaker5_1Image,
+    hasMultipleSpeakers: true
   }
 ];
 
@@ -285,19 +297,56 @@ const InfoRow = styled.div`
   }
 `;
 
-const SpeakerImg = styled.img`
+const SpeakerImgContainer = styled.div`
+  position: relative;
   width: 30rem;
   height: 30rem;
+  perspective: 60rem;
+  cursor: ${(props) => (props.$hasMultipleSpeakers ? 'pointer' : 'default')};
+
+  @media (max-width: 600px) {
+    width: 25rem;
+    height: 25rem;
+  }
+`;
+
+const SpeakerImg3D = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+
+  &.rotate-y-180 {
+    transform: rotateY(-180deg);
+  }
+`;
+
+const SpeakerImgFront = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
   object-fit: cover;
   object-position: center top;
   border-radius: 2.4rem;
   background: #222;
   box-shadow: 0 0 3.2rem #4f8cff33;
   border: 0.2rem solid #4f8cff33;
-  @media (max-width: 600px) {
-    width: 25rem;
-    height: 25rem;
-  }
+`;
+
+const SpeakerImgBack = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(-180deg);
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 2.4rem;
+  background: #222;
+  box-shadow: 0 0 3.2rem #4f8cff33;
+  border: 0.2rem solid #4f8cff33;
 `;
 
 const InfoCol = styled.div`
@@ -340,6 +389,8 @@ const Speaker = styled.div`
   font-weight: 400;
   letter-spacing: 0.01em;
   font-family: 'IBM Plex Mono';
+  white-space: pre-line;
+  line-height: 1.6;
 `;
 
 const ContentGroup = styled.div``;
@@ -354,10 +405,11 @@ const ContentTitle = styled.div`
 `;
 
 const Content = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--Text-Primary, #fbfbfb);
-  line-height: 1.65;
+  line-height: 1.7;
   font-family: 'IBM Plex Mono';
+  white-space: pre-line;
 `;
 
 const StructureGroup = styled.div``;
@@ -387,7 +439,19 @@ const BottomSpace = styled.div`
 
 const Session = () => {
   const [selectedTab, setSelectedTab] = useState(0);
+  const [flippedCards, setFlippedCards] = useState({});
   const session = sessions[selectedTab];
+
+  const handleCardFlip = (sessionId) => {
+    if (sessions[sessionId - 1].hasMultipleSpeakers) {
+      setFlippedCards((prev) => ({
+        ...prev,
+        [sessionId]: !prev[sessionId]
+      }));
+    }
+  };
+
+  const isCardFlipped = (sessionId) => flippedCards[sessionId] || false;
 
   return (
     <Container>
@@ -417,7 +481,19 @@ const Session = () => {
             : session.title}
         </SessionTitle>
         <InfoRow>
-          <SpeakerImg src={session.img} alt={session.speaker} />
+          <SpeakerImgContainer
+            $hasMultipleSpeakers={session.hasMultipleSpeakers}
+            onClick={() => handleCardFlip(session.id)}
+          >
+            <SpeakerImg3D
+              className={isCardFlipped(session.id) ? 'rotate-y-180' : ''}
+            >
+              <SpeakerImgFront src={session.img} alt={session.speaker} />
+              {session.hasMultipleSpeakers && session.img2 && (
+                <SpeakerImgBack src={session.img2} alt={session.speaker} />
+              )}
+            </SpeakerImg3D>
+          </SpeakerImgContainer>
           <InfoCol>
             <SpeakerGroup>
               <SpeakerTitle>연사자</SpeakerTitle>
