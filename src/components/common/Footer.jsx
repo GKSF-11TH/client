@@ -15,7 +15,7 @@ const FooterContainer = styled.footer`
   position: relative;
   z-index: 1;
   @media (max-width: 900px) {
-    padding: 30px 0 190px 0;
+    padding: 30px 0 8px 0;
   }
 `;
 

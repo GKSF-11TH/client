@@ -82,9 +82,9 @@ const GuestModal = ({ onClose, previewData }) => {
   };
 
   return (
-    <Overlay>
+    <Overlay onClick={onClose}>
         <Layout>
-          <GuestBookCard>
+          <GuestBookCard onClick={(e) => e.stopPropagation()}>
                          <GuestBookCardHeader>
                                {!isEditing ? (
                   <>
@@ -116,7 +116,7 @@ const GuestModal = ({ onClose, previewData }) => {
                 />
               )}
           </GuestBookCard>
-          <ButtonContainer>
+          <ButtonContainer onClick={(e) => e.stopPropagation()}>
                          {!isEditing ? (
                <>
                  <Button onClick={handleModify}>수정하기</Button>

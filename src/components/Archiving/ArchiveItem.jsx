@@ -18,18 +18,18 @@ import gksf1_Logo from '../../assets/images/1st.jpg';
 const pixelateAnimation = keyframes`
   0% {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.7);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.1);
   }
 `;
 
 // 픽셀화된 로고 컨테이너
 const PixelatedContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 110%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,7 +82,7 @@ const LogoImage = styled.img`
   transition: opacity 260ms linear;
 `;
 
-// object-fit: contain과 동일한 사각형 계산
+// object-fit: cover와 동일한 사각형 계산
 function getContainRect(canvas, img) {
   const cw = canvas.width;
   const ch = canvas.height;
@@ -91,7 +91,8 @@ function getContainRect(canvas, img) {
 
   if (!iw || !ih) return { dx: 0, dy: 0, dw: cw, dh: ch };
 
-  const scale = Math.min(cw / iw, ch / ih);
+  // cover 방식으로 계산 (이미지가 카드 전체를 덮도록)
+  const scale = Math.max(cw / iw, ch / ih);
   const dw = Math.round(iw * scale);
   const dh = Math.round(ih * scale);
   const dx = Math.round((cw - dw) / 2);

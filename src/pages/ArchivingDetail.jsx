@@ -4,8 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import archivingData from '../components/Archiving/archivingData.json';
 import BackgroundImage from '../assets/images/booth-detail-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-detail-gradient-bg-mobile.png';
-import GradientArchiving1 from '../assets/images/Gradient_Archiving1.png';
-import GradientArchiving2 from '../assets/images/Gradient2_Archiving2.png';
+import GradientArchiving1 from '../assets/images/Gradient_1.png';
+import GradientArchiving2 from '../assets/images/Gradient_2.png';
 
 // 포스터 이미지들 import
 import poster1 from '../assets/images/1poster.png';
