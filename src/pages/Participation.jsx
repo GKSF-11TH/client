@@ -29,7 +29,7 @@ const Background = styled.div`
 const Container = styled.div`
   position: relative;
   width: 100vw;
-  height: 90rem;
+  height: 80rem;
   color: #fff;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
   display: flex;
@@ -102,14 +102,14 @@ const MainContent = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: clamp(3.5rem, 4vh, 4rem) 1rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  padding-top: 13rem;
   @media (max-width: 600px) {
-    padding-top: 0.5rem;
+    padding-top: 1rem;
   }
 `;
 
@@ -117,17 +117,17 @@ const CardRow = styled.div`
   display: flex;
   justify-content: center;
   gap: 6rem;
-  margin-bottom: clamp(3rem, 8vh, 8rem);
+  margin-bottom: clamp(2rem, 4vh, 4rem);
   width: 100%;
   @media (max-width: 900px) {
     gap: 2.4rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
   }
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: center;
     gap: 4.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -240,7 +240,7 @@ const Participation = () => {
           </Card>
         </CardRow>
       </MainContent>
- 
+
       {showGuestbook && <Guestbook onClose={() => setShowGuestbook(false)} />}
       {showPreapply && <Preapply onClose={() => setShowPreapply(false)} />}
     </Container>
