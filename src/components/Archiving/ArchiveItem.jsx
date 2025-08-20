@@ -13,8 +13,7 @@ import gksf3_Logo from '../../assets/images/3rd.jpg';
 import gksf2_Logo from '../../assets/images/2nd.jpg';
 import gksf1_Logo from '../../assets/images/1st.jpg';
 
-
-// 픽셀화 애니메이션 키프레임 
+// 픽셀화 애니메이션 키프레임
 const pixelateAnimation = keyframes`
   0% {
     opacity: 0;
@@ -115,12 +114,12 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
   const getLogoByEdition = (editionText) => {
     const editionNumber = editionText.match(/(\d+)/)?.[1];
     console.log('editionText:', editionText, 'editionNumber:', editionNumber);
-    
+
     if (!editionNumber) {
       console.log('editionNumber not found, using default logo');
       return gksf11_Logo; // 기본값
     }
-    
+
     let selectedLogo;
     switch (editionNumber) {
       case '1':
@@ -160,7 +159,7 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
         selectedLogo = gksf11_Logo; // 기본값
         break;
     }
-    
+
     console.log(`Edition ${editionNumber} -> Logo:`, selectedLogo);
     return selectedLogo;
   };
@@ -295,21 +294,21 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
       >
         {hasLogo && (
           <>
-                                                   <LogoImage
-                ref={logoRef}
-                src={getLogoByEdition(edition)}
-                alt={`GKSF ${edition} Logo`}
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  pointerEvents: 'none',
-                  // 항상 불투명 1 유지 (깜빡임 방지)
-                  opacity: 1
-                }}
-              />
+            <LogoImage
+              ref={logoRef}
+              src={getLogoByEdition(edition)}
+              alt={`GKSF ${edition} Logo`}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                pointerEvents: 'none',
+                // 항상 불투명 1 유지 (깜빡임 방지)
+                opacity: 1
+              }}
+            />
             <canvas
               ref={canvasRef}
               style={{

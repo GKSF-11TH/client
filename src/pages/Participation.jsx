@@ -107,7 +107,7 @@ const MainContent = styled.main`
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-  padding-top: 13rem;
+  padding-top: 13.5rem;
   @media (max-width: 600px) {
     padding-top: 1rem;
   }
