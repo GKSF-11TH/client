@@ -29,7 +29,7 @@ const Background = styled.div`
 const Container = styled.div`
   position: relative;
   width: 100vw;
-  height: 90rem;
+  height: 80rem;
   color: #fff;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
   display: flex;
@@ -84,7 +84,6 @@ const Subtitle = styled.p`
   font-weight: 400;
   line-height: 140%;
   letter-spacing: 0.016rem;
-  padding-bottom: 3rem;
   max-width: 80ch;
   margin: 0 auto;
   @media (max-width: 900px) {
@@ -103,14 +102,14 @@ const MainContent = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: clamp(3.5rem, 4vh, 4rem) 1rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  padding-top: 13.5rem;
   @media (max-width: 600px) {
-    padding-top: 0.5rem;
+    padding-top: 1rem;
   }
 `;
 
@@ -118,17 +117,17 @@ const CardRow = styled.div`
   display: flex;
   justify-content: center;
   gap: 6rem;
-  margin-bottom: clamp(3rem, 8vh, 8rem);
+  margin-bottom: clamp(2rem, 4vh, 4rem);
   width: 100%;
   @media (max-width: 900px) {
     gap: 2.4rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
   }
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: center;
     gap: 4.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -145,9 +144,7 @@ const Card = styled(GlassEffectWithBlurryBg)`
   background: rgba(36, 35, 35, 0.05);
   cursor: pointer;
   overflow: hidden;
-  transition:
-    transform 0.5s ease,
-    opacity 0.5s ease;
+  transition: all 0.3s ease;
 
   &::before {
     border-radius: 1.8rem !important;
@@ -155,27 +152,14 @@ const Card = styled(GlassEffectWithBlurryBg)`
 
   &::after {
     border-radius: 1.8rem !important;
-    background: var(--Background-Glass, rgba(16, 16, 16, 0.4));
-    transition:
-      background 0.5s ease,
-      opacity 0.5s ease;
   }
 
   &:hover {
-    transform: scale(1.1);
-
-    &::after {
-      background: linear-gradient(
-        89deg,
-        rgba(16, 212, 141, 0.6) 5.4%,
-        rgba(34, 106, 223, 0.6) 40.92%,
-        rgba(19, 61, 231, 0.6) 73.07%,
-        rgba(84, 25, 234, 0.6) 95.62%
-      );
-      filter: blur(66px);
-      opacity: 0.8;
-    }
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
   }
+
   @media (max-width: 600px) {
     width: 70vw;
     height: 20rem;
@@ -256,7 +240,7 @@ const Participation = () => {
           </Card>
         </CardRow>
       </MainContent>
- 
+
       {showGuestbook && <Guestbook onClose={() => setShowGuestbook(false)} />}
       {showPreapply && <Preapply onClose={() => setShowPreapply(false)} />}
     </Container>

@@ -13,23 +13,22 @@ import gksf3_Logo from '../../assets/images/3rd.jpg';
 import gksf2_Logo from '../../assets/images/2nd.jpg';
 import gksf1_Logo from '../../assets/images/1st.jpg';
 
-
-// 픽셀화 애니메이션 키프레임 
+// 픽셀화 애니메이션 키프레임
 const pixelateAnimation = keyframes`
   0% {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.7);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.1);
   }
 `;
 
 // 픽셀화된 로고 컨테이너
 const PixelatedContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 110%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,7 +81,7 @@ const LogoImage = styled.img`
   transition: opacity 260ms linear;
 `;
 
-// object-fit: contain과 동일한 사각형 계산
+// object-fit: cover와 동일한 사각형 계산
 function getContainRect(canvas, img) {
   const cw = canvas.width;
   const ch = canvas.height;
@@ -91,7 +90,8 @@ function getContainRect(canvas, img) {
 
   if (!iw || !ih) return { dx: 0, dy: 0, dw: cw, dh: ch };
 
-  const scale = Math.min(cw / iw, ch / ih);
+  // cover 방식으로 계산 (이미지가 카드 전체를 덮도록)
+  const scale = Math.max(cw / iw, ch / ih);
   const dw = Math.round(iw * scale);
   const dh = Math.round(ih * scale);
   const dx = Math.round((cw - dw) / 2);
@@ -114,12 +114,12 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
   const getLogoByEdition = (editionText) => {
     const editionNumber = editionText.match(/(\d+)/)?.[1];
     console.log('editionText:', editionText, 'editionNumber:', editionNumber);
-    
+
     if (!editionNumber) {
       console.log('editionNumber not found, using default logo');
       return gksf11_Logo; // 기본값
     }
-    
+
     let selectedLogo;
     switch (editionNumber) {
       case '1':
@@ -159,7 +159,7 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
         selectedLogo = gksf11_Logo; // 기본값
         break;
     }
-    
+
     console.log(`Edition ${editionNumber} -> Logo:`, selectedLogo);
     return selectedLogo;
   };
@@ -294,21 +294,21 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
       >
         {hasLogo && (
           <>
-                                                   <LogoImage
-                ref={logoRef}
-                src={getLogoByEdition(edition)}
-                alt={`GKSF ${edition} Logo`}
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  pointerEvents: 'none',
-                  // 항상 불투명 1 유지 (깜빡임 방지)
-                  opacity: 1
-                }}
-              />
+            <LogoImage
+              ref={logoRef}
+              src={getLogoByEdition(edition)}
+              alt={`GKSF ${edition} Logo`}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                pointerEvents: 'none',
+                // 항상 불투명 1 유지 (깜빡임 방지)
+                opacity: 1
+              }}
+            />
             <canvas
               ref={canvasRef}
               style={{

@@ -212,7 +212,7 @@ const Guestbook = ({ onClose }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://api.gksf11.com/guestbook/', {
+      await axios.post('https://api.gksf11.com/guestbook/', {
         author: nickname,
         belonging: affiliation,
         message: comment

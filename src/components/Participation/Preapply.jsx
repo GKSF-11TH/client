@@ -367,21 +367,21 @@ const Preapply = ({ onClose }) => {
       alert('모든 필수 항목을 입력해주세요.');
       return;
     }
-    
+
     // 이메일 형식 검증
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(form.email)) {
       alert('올바른 이메일 형식을 입력해주세요.');
       return;
     }
-    
+
     // 전화번호 형식 검증 (숫자만)
     const phoneRegex = /^[0-9-+\s()]+$/;
     if (!phoneRegex.test(form.phone)) {
       alert('올바른 전화번호 형식을 입력해주세요.');
       return;
     }
-    
+
     setStep(2);
   };
 
@@ -391,19 +391,19 @@ const Preapply = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // 모든 필수 필드가 채워져 있는지 재확인
     if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) {
       alert('모든 필수 항목을 입력해주세요.');
       return;
     }
-    
+
     // 세션 선택이 되어 있는지 확인
     if (form.sessions.length === 0) {
       alert('최소 하나의 세션을 선택해주세요.');
       return;
     }
-    
+
     setLoading(true);
     try {
       await axios.post('https://api.gksf11.com/preapply/', form);
@@ -416,9 +416,10 @@ const Preapply = ({ onClose }) => {
   };
 
   const handleSuccessClose = () => {
+    console.log('홈으로 이동하기 버튼 클릭됨');
     setShowSuccess(false);
-    if (onClose) onClose();
-    navigate('/');
+    // window.location.href를 사용해서 강제로 홈으로 이동
+    window.location.href = '/';
   };
 
   return (
