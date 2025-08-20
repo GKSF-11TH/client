@@ -16,6 +16,10 @@ const Info = () => {
   const wrapperRef = useRef(null);
   const targetPositionRef = useRef(null);
 
+
+  const [targetPosition, setTargetPosition] = useState({ top: 0, left: 0 });
+  const [initialPosition, setInitialPosition] = useState({ top: 0, left: 0 });
+
   const [orbStyle, setOrbStyle] = useState({
     topPx: isMobile ? 300 : 150,
     leftPercent: isMobile ? 50 : 40,
@@ -27,7 +31,8 @@ const Info = () => {
   const [showGlassBox, setShowGlassBox] = useState(false);
   const [animationComplete, setAnimationComplete] = useState(false);
 
-  const handleUpdate = () => {
+
+  const calculateTargetPosition = () => {
     const wrapper = wrapperRef.current;
     const targetEl = targetPositionRef.current;
     if (!wrapper || !targetEl) return;
@@ -35,11 +40,27 @@ const Info = () => {
     const wrapperRect = wrapper.getBoundingClientRect();
     const targetRect = targetEl.getBoundingClientRect();
 
+    
+    const targetCenterY = targetRect.top - wrapperRect.top + targetRect.height / 3;
+    const targetCenterX = isMobile ? 55 : 52; // leftPercent
+
+
+    const initTop = isMobile ? 300 : 150;
+    const initLeft = isMobile ? 50 : 40;
+
+    setTargetPosition({ top: targetCenterY * 0.9, left: targetCenterX });
+    setInitialPosition({ top: initTop, left: initLeft });
+  };
+
+  const handleUpdate = () => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const wrapperRect = wrapper.getBoundingClientRect();
     const sectionTop = wrapperRect.top + window.scrollY;
     const sectionHeight = wrapper.offsetHeight;
     const scrollY = window.scrollY;
 
-  
     const animationStartOffset = sectionHeight * (isMobile ? 0.2 : 0.3);
     const animationRange = sectionHeight * (isMobile ? 0.6 : 0.5);
 
@@ -53,6 +74,19 @@ const Info = () => {
     }
     
     if (animationComplete && p >= stopPoint) {
+      // 애니메이션이 완료되면 정확한 목표 위치로 고정
+      const wrapperWidth = wrapper.offsetWidth;
+      const endWidthPx = isMobile ? 200 : 500;
+      const startWidthPx = wrapperWidth * (isMobile ? 2 : 1.4);
+      const endScale = endWidthPx / startWidthPx;
+
+      setOrbStyle({
+        topPx: targetPosition.top - (startWidthPx * endScale) / 2,
+        leftPercent: targetPosition.left,
+        scale: endScale,
+        widthPercent: isMobile ? 200 : 140,
+        opacity: 0.7,
+      });
       return;
     }
     
@@ -60,17 +94,18 @@ const Info = () => {
       setAnimationComplete(false);
     }
 
+ 
     const wrapperWidth = wrapper.offsetWidth;
     const startWidthPx = wrapperWidth * (isMobile ? 2 : 1.4);
     const endWidthPx = isMobile ? 120 : 180;
     const endScale = endWidthPx / startWidthPx;
 
-    const targetCenterY = targetRect.top - wrapperRect.top + targetRect.height / 3;
-
     const ease = p * p * (3 - 2 * p);
+    
+
     const scaleNow = 1 + (endScale - 1) * ease;
-    const topNow = (isMobile ? 300 : 150) + (targetCenterY - (startWidthPx * endScale) / 2 - (isMobile ? 300 : 150)) * ease;
-    const leftNow = (isMobile ? 50 : 40) + ((isMobile ? 57 : 55) - (isMobile ? 50 : 40)) * ease;
+    const topNow = initialPosition.top + (targetPosition.top - (startWidthPx * endScale) / 2 - initialPosition.top) * ease;
+    const leftNow = initialPosition.left + (targetPosition.left - initialPosition.left) * ease;
     const opacityNow = 0.95 - 0.25 * ease;
 
     if (p >= (isMobile ? 0.5 : 0.6) && !showGlassBox) {
@@ -90,25 +125,37 @@ const Info = () => {
     });
   };
 
+  // 목표 위치 계산용 useEffect (초기화 및 리사이즈 시에만 실행)
   useEffect(() => {
-    const onScroll = () => handleUpdate();
-    const onResize = () => {
+    const handleResize = () => {
+      calculateTargetPosition();
       if (!animationComplete) {
         handleUpdate();
       }
     };
+
+    // 초기 계산
+    setTimeout(calculateTargetPosition, 100);
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMobile]);
+
+  // 스크롤 핸들링용 useEffect
+  useEffect(() => {
+    const onScroll = () => handleUpdate();
     
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize);
     
     handleUpdate();
     
     return () => {
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onResize);
     };
-  }, [showGlassBox, animationComplete, isMobile]);
-
+  }, [showGlassBox, animationComplete, targetPosition, initialPosition, isMobile]);
 
   useEffect(() => {
     setOrbStyle(prev => ({
@@ -117,11 +164,12 @@ const Info = () => {
       leftPercent: isMobile ? 50 : 40,
       widthPercent: isMobile ? 200 : 140,
     }));
+    // isMobile이 변경되면 목표 위치 재계산
+    setTimeout(calculateTargetPosition, 100);
   }, [isMobile]);
 
   return (
     <InfoWrapper ref={wrapperRef}>
-  
       <InfoTop>
         <InfoTitle>11TH 
           {isMobile && <br/>} Global 
@@ -130,7 +178,6 @@ const Info = () => {
           {isMobile && <br/>} Forum</InfoTitle>
         <InfoSubtitle>Korea in AI Revolution</InfoSubtitle>
       </InfoTop>
-
 
       <InfoCardRow>
         <InfoCard>
@@ -141,7 +188,7 @@ const Info = () => {
           <div>Location</div>
           <div>
             부스 - 서강대학교 정하상관 2층<br/>
-            세션 - 서강대학교 정하상관 1층<br/>J118호
+            세션 - 서강대학교 정하상관 1층 J118호
           </div>
         </InfoCard>
         <InfoCard onClick={() => navigate("/participation")}>
@@ -149,7 +196,6 @@ const Info = () => {
           <div>사전신청 바로가기 &rarr;</div>
         </InfoCard>
       </InfoCardRow>
-
 
       <InfoOrbBg
         src={orbImage}
@@ -160,7 +206,6 @@ const Info = () => {
         $widthPercent={orbStyle.widthPercent}
         $opacity={orbStyle.opacity}
       />
-
 
       <InfoContent>
         <div style={{ fontWeight: '600', marginBottom: '2.5rem', fontSize: '1.75rem' }}>디렉터 인사말</div>
@@ -176,7 +221,6 @@ const Info = () => {
           감사합니다.
         </div>
       </InfoContent>
-
 
       <div 
         ref={targetPositionRef}
@@ -204,9 +248,7 @@ const Info = () => {
             글로벌한 관점에서 질문하고, 함께 논의해요.</div>
           </InfoAnchorText>
           
-          <InfoAnchorButton onClick={() => navigate("/participation")}>Sign Up Now →</InfoAnchorButton>
-          
-    
+          <InfoAnchorButton onClick={() => navigate("/about")}>About GKSF</InfoAnchorButton>
         </InfoAnchorCard>
       </InfoAnchorArea>
     </InfoWrapper>

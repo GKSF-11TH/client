@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LandingWrapper, GksAiContainer, GksAiPill, Orb, GksAiText } from '../style/LandingStyle';
 import ParticleGlobe from '../components/Landing/particleGlobe';
 import IntroOverlayComponent from '../components/Landing/introOverlay';
@@ -113,7 +114,15 @@ const Landing = () => {
     guestbook: 'Leave Your Message'
   };
 
-  // 스크롤 처리 로직을 별도 함수로 분리
+  const navigate = useNavigate();
+
+  const handleGksAiClick = () => {
+    if (currentSection === 'guestbook') {
+      navigate('/participation'); // guestbook일 때만 이동
+    }
+  };
+
+
   const handleScrollUpdate = (currentScrollY) => {
     setScrollY(currentScrollY);
     setHideIntro(currentScrollY > 30);
@@ -132,7 +141,7 @@ const Landing = () => {
       } else if (scrollPosition > sectionHeight * 5.11 && scrollPosition < sectionHeight * 5.9) {
         setCurrentSection('booth');
       } else if (scrollPosition > sectionHeight * 5.91 && scrollPosition < sectionHeight * 8.3) {
-        setCurrentSection('info');
+        setCurrentSection('guestbook');
       } else if (scrollPosition > sectionHeight * 8.31 && scrollPosition < sectionHeight * 9.1) {
         setCurrentSection('guestbook');
       }
@@ -185,7 +194,9 @@ const Landing = () => {
           <Orb>
             <img src={gksAiImage} alt='gksAI' style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%'}}/>
           </Orb>
-          <GksAiText>
+          <GksAiText 
+          onClick={handleGksAiClick} // 클릭 핸들러 추가
+          style={{ cursor: currentSection === 'guestbook' ? 'pointer' : 'default' }}>
             {sectionTexts[currentSection]}
           </GksAiText>
         </GksAiPill>
