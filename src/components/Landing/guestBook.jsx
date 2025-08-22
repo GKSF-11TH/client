@@ -30,12 +30,12 @@ const GuestBook = () => {
 
         const normalizedData = Array.isArray(data) ? data : [data];
 
-        // 최신순 정렬 (written_at 내림차순)
+        
         const sortedData = normalizedData.sort(
           (a, b) => new Date(b.written_at) - new Date(a.written_at)
         );
 
-        // 최대 9개까지만 표시
+     
         setGuests(sortedData.slice(0, 9));
       } catch (err) {
         setError(err.message);

@@ -42,13 +42,13 @@ const Info = () => {
 
     
     const targetCenterY = targetRect.top - wrapperRect.top + targetRect.height / 3;
-    const targetCenterX = isMobile ? 55 : 52; // leftPercent
+    const targetCenterX = isMobile ? 55 : 52; 
 
 
     const initTop = isMobile ? 300 : 150;
     const initLeft = isMobile ? 50 : 40;
 
-    setTargetPosition({ top: targetCenterY * 0.9, left: targetCenterX });
+    setTargetPosition({ top: targetCenterY * 0.89, left: targetCenterX });
     setInitialPosition({ top: initTop, left: initLeft });
   };
 
@@ -74,7 +74,7 @@ const Info = () => {
     }
     
     if (animationComplete && p >= stopPoint) {
-      // 애니메이션이 완료되면 정확한 목표 위치로 고정
+     
       const wrapperWidth = wrapper.offsetWidth;
       const endWidthPx = isMobile ? 200 : 500;
       const startWidthPx = wrapperWidth * (isMobile ? 2 : 1.4);
@@ -125,7 +125,6 @@ const Info = () => {
     });
   };
 
-  // 목표 위치 계산용 useEffect (초기화 및 리사이즈 시에만 실행)
   useEffect(() => {
     const handleResize = () => {
       calculateTargetPosition();
@@ -134,7 +133,7 @@ const Info = () => {
       }
     };
 
-    // 초기 계산
+
     setTimeout(calculateTargetPosition, 100);
     
     window.addEventListener('resize', handleResize);
@@ -144,7 +143,7 @@ const Info = () => {
     };
   }, [isMobile]);
 
-  // 스크롤 핸들링용 useEffect
+
   useEffect(() => {
     const onScroll = () => handleUpdate();
     
@@ -164,7 +163,7 @@ const Info = () => {
       leftPercent: isMobile ? 50 : 40,
       widthPercent: isMobile ? 200 : 140,
     }));
-    // isMobile이 변경되면 목표 위치 재계산
+   
     setTimeout(calculateTargetPosition, 100);
   }, [isMobile]);
 

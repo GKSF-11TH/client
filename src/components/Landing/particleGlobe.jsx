@@ -62,7 +62,7 @@ const ParticleGlobe = () => {
 
         if (delayedProgress < 0.5) {
           float pillarProgress = delayedProgress * 2.0;
-          // bounce easing 적용
+          
           pillarProgress = easeOutBounce(pillarProgress);
 
           vec3 exaggeratedPillar = pillarPosition;
@@ -85,7 +85,6 @@ const ParticleGlobe = () => {
         vec4 clipPos = projectionMatrix * viewMatrix * modelMatrix * vec4(mixedPosition, 1.0);
         vec2 ndcPos = clipPos.xy / clipPos.w;
 
-        // 마우스 인터랙션 (움직임이 있고, 지구 완성 전일 때만)
         if (uMouseActive > 0.5) {
           float mouseDist = distance(ndcPos, uMouse);
           float mouseRange = 0.3;
@@ -115,7 +114,7 @@ const ParticleGlobe = () => {
         mixedPosition.x += mouseInfluence.x * sin(delayedProgress * 3.14159);
         mixedPosition.y += mouseInfluence.y * cos(delayedProgress * 3.14159);
 
-        // 클릭 효과 (기존 유지)
+        
         float clickDist = distance(ndcPos, uClick);
         float clickInfluence = smoothstep(0.4, 0.0, clickDist) * uClickTime;
         float clickWave = sin(clickDist * 15.0 - uTime * 8.0) * clickInfluence;
@@ -138,7 +137,7 @@ const ParticleGlobe = () => {
         else if (noise < 0.4) { color1 = uColorB; color2 = uColorC; vColor = mix(color1, color2, (noise - 0.2) / 0.2); }
         else if (noise < 0.6) { color1 = uColorC; color2 = uColorD; vColor = mix(color1, color2, (noise - 0.4) / 0.2); }
         else if (noise < 0.8) { color1 = uColorD; color2 = uColorE; vColor = mix(color1, color2, (noise - 0.6) / 0.2); }
-        else { color1 = uColorE; color2 = uColorA; vColor = mix(color1, color2, (noise - 0.8) / 0.2); }
+        else { color1 = uColorE; color2 = uColorE; }
 
         vAlpha = 1.0;
       }
@@ -165,7 +164,7 @@ const ParticleGlobe = () => {
       0.1,
       1000
     );
-    // 모바일일 때 카메라를 조금 더 뒤로
+    
     camera.position.z = isMobile ? 6.5 : 5;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -179,7 +178,7 @@ const ParticleGlobe = () => {
     const goldenRatio = (1 + Math.sqrt(5)) / 2;
     const landPositions = [];
 
-    // 지구 위 위치 계산
+
     for (let i = 0; i < TOTAL_PARTICLES; i++) {
       const y = 1 - (i / (TOTAL_PARTICLES - 1)) * 2;
       const radiusAtY = Math.sqrt(1 - y * y);
@@ -196,7 +195,7 @@ const ParticleGlobe = () => {
       }
     }
 
-    // 배경 파티클
+
     const backgroundParticles = isMobile ? 100 : 300;
     for (let i = 0; i < backgroundParticles; i++) {
       const phi = Math.random() * Math.PI * 2;
@@ -232,7 +231,7 @@ const ParticleGlobe = () => {
       pillarPositions[i * 3 + 1] = pillarHeight - i * 0.005;
       pillarPositions[i * 3 + 2] = finalZ + (Math.random() - 0.5) * pillarSpread;
 
-      // 모바일에서 파티클 크기 줄이기
+ 
       sizeAttr[i] = isMobile ? 0.4 + Math.random() * 0.6 : 1.0 + Math.random();
       delayAttr[i] = Math.random() * 0.6;
     }
@@ -248,7 +247,7 @@ const ParticleGlobe = () => {
       vertexShader,
       fragmentShader,
       uniforms: {
-        uSize: { value: 0.07 },
+        uSize: { value: 0.08 },
         uResolution: { value: new THREE.Vector2(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio) },
         uProgress: { value: 0 },
         uMouse: { value: new THREE.Vector2(0, 0) },
@@ -271,7 +270,7 @@ const ParticleGlobe = () => {
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    // 마우스, 클릭, 스크롤, 애니메이션 로직 기존 그대로
+  
     const mouse = new THREE.Vector2();
     const targetMouse = new THREE.Vector2();
     let lastMouseMoveTime = 0;
@@ -341,7 +340,7 @@ const ParticleGlobe = () => {
         particles.rotation.y += 0.002;
       }
 
-      // 모바일/데스크탑 카메라 z 최적화
+  
       const baseZ = isMobile ? 6.5 : 5;
       const range = isMobile ? 1.0 : 1.5;
       const targetZ = baseZ - smoothScrollProgress * range;
