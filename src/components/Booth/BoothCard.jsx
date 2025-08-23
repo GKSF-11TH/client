@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GlassEffectWithSolidBg } from '../../style/common';
 import { useNavigate } from 'react-router-dom';
 
-const BoothCard = ({ type, content, title, link }) => {
+const BoothCard = ({ type, content, title, link, color }) => {
   const navigate = useNavigate();
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
   return (
-    <Container onClick={() => navigate(link)}>
+    <Container
+      onMouseMove={handleMouseMove}
+      style={{
+        '--mouse-x': `${pos.x}px`,
+        '--mouse-y': `${pos.y}px`
+      }}
+      $color={color}
+      onClick={() => navigate(link)}
+    >
       <div>
         <TabWrapper>
           <Tab>{type}</Tab>
@@ -19,6 +36,7 @@ const BoothCard = ({ type, content, title, link }) => {
 };
 
 const Container = styled(GlassEffectWithSolidBg)`
+  flex-shrink: 0;
   cursor: pointer;
   transition:
     transform 0.5s ease,
@@ -30,6 +48,20 @@ const Container = styled(GlassEffectWithSolidBg)`
     transition:
       background 0.5s ease,
       /* filter 1s ease, */ opacity 0.5s ease;
+
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(
+      circle 120px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      ${({ $color }) => $color} 0%,
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(40px);
   }
 
   display: flex;
@@ -51,19 +83,10 @@ const Container = styled(GlassEffectWithSolidBg)`
   }
 
   &:hover {
-    transform: scale(1.1);
-
-    &::after {
-      background: linear-gradient(
-        89deg,
-        rgba(16, 212, 141, 0.6) 5.4%,
-        rgba(34, 106, 223, 0.6) 40.92%,
-        rgba(19, 61, 231, 0.6) 73.07%,
-        rgba(84, 25, 234, 0.6) 95.62%
-      ); /* opacity를 주려면 rgba로 */
-      filter: blur(66px); /* background-filter 대신 filter */
-      opacity: 0.8; /* 배경 투명도 추가 */
-    }
+    transform: scale(1.2);
+  }
+  &:hover::after {
+    opacity: 1;
   }
 `;
 

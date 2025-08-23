@@ -28,7 +28,7 @@ const MainTheme = ({ visibleSections }) => {
             </div>
 
           </div>
-          <MainThemeButton onClick={() => navigate("/participation")}>Sign Up Now →</MainThemeButton>
+          {/* <MainThemeButton onClick={() => navigate("/participation")}>Sign Up Now →</MainThemeButton> */}
           
           <MainThemeSection 
             className={`main-theme-section ${visibleSections[0] ? 'visible' : ''}`}

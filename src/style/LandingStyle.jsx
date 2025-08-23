@@ -834,7 +834,7 @@ export const InfoAnchorArea = styled.div`
 `;
 
 export const InfoAnchorCard = styled.div`
-  width: 70%;
+
   min-height: 20rem;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.015);
@@ -847,6 +847,7 @@ export const InfoAnchorCard = styled.div`
   gap: 2rem;
   padding: 3.5rem 3rem 3rem 3rem;
   width: 80.25rem;
+  height: 25em;
   transition: all 0.3s ease;
   position: relative;
 
@@ -899,7 +900,7 @@ export const InfoAnchorButton = styled.button`
   bottom: 20%;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  padding: 0.75rem 1.25rem;
+  padding: 1rem 1.5rem;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   cursor: pointer;
