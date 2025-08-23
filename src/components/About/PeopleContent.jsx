@@ -65,9 +65,9 @@ const PeopleContent = () => {
 const Container = styled.div`
   color: var(--text-secondary);
   font-family: 'SF Pro';
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 140%; /* 2.52rem */
   letter-spacing: 0.036rem;
 
@@ -101,7 +101,7 @@ const RoleCell = styled.td`
 `;
 
 const ContentCell = styled.td`
-  font-weight: 400;
+  font-weight: 300;
   vertical-align: top;
 `;
 
