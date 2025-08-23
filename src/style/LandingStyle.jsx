@@ -483,7 +483,7 @@ export const Bg = styled.img`
   }
 `;
 export const BoothAndSessionWrapper = styled.div`
-  min-height: 100vh;
+  min-height: 120vh;
   width: 100%;
   background-color: var(--background-primary);
   display: flex;
