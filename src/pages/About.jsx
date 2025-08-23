@@ -210,9 +210,9 @@ const TypeWriter = styled.div`
 const TextBox = styled.p`
   color: var(--text-secondary);
   font-family: 'SF Pro';
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-style: normal;
-  font-weight: 510;
+  font-weight: 300;
   line-height: 140%; /* 2.52rem */
   letter-spacing: 0.036rem;
   white-space: pre-line;

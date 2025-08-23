@@ -32,6 +32,7 @@ const BoothDetail = () => {
       <Background />
       <Content>
         <Title>{BoothData[boothId - 1].title}</Title>
+        <BoothDescription>부스 소개</BoothDescription>
         <Description>{BoothData[boothId - 1].description}</Description>
         {/* <ImageGridBox>
           {BoothData[boothId - 1].images.map((image, index) => (
@@ -116,13 +117,27 @@ const Title = styled.h1`
   }
 `;
 
+const BoothDescription = styled.p`
+  color: var(--Text-Tertiary, #919191);
+  text-align: center;
+
+  /* Desktop/Body/16_R */
+  font-family: 'IBM Plex Mono';
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 2.24rem */
+  letter-spacing: 0.016rem;
+  margin-bottom: 1.2rem;
+`;
+
 const Description = styled.p`
   color: var(--text-secondary);
   text-align: center;
   font-family: 'SF Pro';
-  font-size: 2.4rem;
+  font-size: 1.6rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 125%; /* 2.4rem */
   letter-spacing: -0.024rem;
 
@@ -200,7 +215,7 @@ const NoImagesFound = styled.div`
   color: var(--text-tertiary);
   opacity: 0.7;
   font-family: 'SF Pro';
-  font-size: 2.4rem;
+  font-size: 1.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: 125%; /* 2.4rem */
