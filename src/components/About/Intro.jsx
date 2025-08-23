@@ -46,6 +46,7 @@ const Container = styled.div`
 const Background = styled.img`
   width: 100%;
   position: absolute;
+  top: -7%;
   z-index: 0;
 
   &.mobile-map {
@@ -119,7 +120,7 @@ const ChatBox = styled(GlassEffectWithSolidBg)`
   align-items: center;
   gap: 2.2rem;
   flex-shrink: 0;
-  padding: 2rem 6.3rem;
+  padding: 1.5rem 3.5rem;
 
   > div:first-child {
     width: 6.4rem;
