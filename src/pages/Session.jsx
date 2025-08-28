@@ -183,7 +183,8 @@ const NavWrapper = styled.div`
   background: rgba(255, 255, 255, 0.05);
   border: 0.1rem solid rgba(255, 255, 255, 0.1);
   border-radius: 3.6rem;
-  backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
   @media (max-width: 900px) {
     width: 90%;
     max-width: 60rem;
@@ -193,6 +194,7 @@ const NavWrapper = styled.div`
     margin: 0 auto 3.2rem auto;
     background: transparent;
     border: none;
+    -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
   @media (max-width: 600px) {
@@ -206,6 +208,7 @@ const NavWrapper = styled.div`
     margin: 0 auto 2.2rem auto;
     background: transparent;
     border: none;
+    -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 `;
@@ -234,19 +237,22 @@ const Tab = styled.button.attrs(() => ({}))`
   white-space: nowrap;
   transform: ${(props) =>
     props.$active ? 'translateY(-0.1rem)' : 'translateY(0)'};
-  backdrop-filter: ${(props) =>
-    props.$active ? 'blur(calc(var(--Glass-L, 30px) / 2))' : 'none'};
+  -webkit-backdrop-filter: ${(props) =>
+    props.$active ? 'blur(15px)' : 'none'};
+  backdrop-filter: ${(props) => (props.$active ? 'blur(15px)' : 'none')};
   padding: 1rem;
   margin: 0;
   &:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-0.1rem);
-    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
   }
   &:active {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-0.2rem);
-    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
   }
   @media (max-width: 600px) {
     width: 10.5rem;
