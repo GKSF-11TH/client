@@ -230,7 +230,7 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
     const { dx, dy, dw, dh } = rect;
 
     // 픽셀 크기 설정 (클수록 거칠게)
-    const pixelSize = 8;
+    const pixelSize = 9.5;
 
     // 저해상도 캔버스를 '그려질 영역' 기준으로 생성
     const lowW = Math.max(1, Math.floor(dw / pixelSize));
