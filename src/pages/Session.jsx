@@ -33,7 +33,7 @@ const sessions = [
     tags: ['스포츠', 'AI', '산업'],
     speaker: '이준성 연세대학교 스포츠응용산업학과 교수',
     content:
-      '(1) 한국 스포츠 산업에서의 AI 활용 현황\n(2) AI 기술이 한국 스포츠 문화에 끼친 변화\n(3) 스포츠 산업의 일자리와 산업 구조의 재편 가능성\n(4)  AI와 함께 나아갈 한국 스포츠의 미래 전략',
+      '(1) 한국 스포츠 산업에서의 AI 활용 현황\n(2) AI 기술이 한국 스포츠 문화에 끼친 변화\n(3) 스포츠 산업의 일자리와 산업 구조의 재편 가능성\n(4) AI와 함께 나아갈 한국 스포츠의 미래 전략',
     structure: '강연 및 청중 질의응답',
     img: speaker2Image,
     hasMultipleSpeakers: false
@@ -84,7 +84,7 @@ const tabs = ['세션 A', '세션 B', '세션 C', '세션 D', '세션 E'];
 
 const Container = styled.div`
   position: relative;
-  width: 100vw;
+  width: 100%; /* Safari 가로 스크롤 방지 (100vw 사용 지양) */
   height: 105rem;
   color: #fff;
   font-family: 'Pretendard', 'Montserrat', sans-serif;
@@ -139,9 +139,6 @@ const Title = styled.h1`
   line-height: 100%;
   letter-spacing: -0.036rem;
   padding-bottom: 2.4rem;
-  @media (max-width: 900px) {
-    font-size: 2.2rem;
-  }
   @media (max-width: 600px) {
     font-size: 3rem;
     margin-bottom: 0.5rem;
@@ -151,8 +148,6 @@ const Title = styled.h1`
 const Subtitle = styled.p`
   color: var(--Text-Primary, #fbfbfb);
   text-align: center;
-
-  /* Desktop/Body/16_R */
   font-family: 'IBM Plex Mono';
   font-size: 1.6rem;
   font-style: normal;
@@ -160,10 +155,6 @@ const Subtitle = styled.p`
   line-height: 140%;
   letter-spacing: 0.016rem;
   padding-bottom: 2.8rem;
-  @media (max-width: 900px) {
-    font-size: 1.05rem;
-    margin-bottom: 2.8rem;
-  }
   @media (max-width: 600px) {
     font-size: 1.3rem;
     margin-bottom: 1rem;
@@ -171,6 +162,7 @@ const Subtitle = styled.p`
 `;
 
 const NavWrapper = styled.div`
+  position: relative; /* 클릭 박스 안정화 */
   display: flex;
   width: 66rem;
   height: 6.4rem;
@@ -183,8 +175,22 @@ const NavWrapper = styled.div`
   background: rgba(255, 255, 255, 0.05);
   border: 0.1rem solid rgba(255, 255, 255, 0.1);
   border-radius: 3.6rem;
-  -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
+  overflow: hidden; /* blur 클리핑 */
+  background-clip: padding-box; /* iOS Safari 안정화 */
+  -webkit-backdrop-filter: saturate(150%) blur(15px);
+  backdrop-filter: saturate(150%) blur(15px);
+  isolation: isolate; /* 레이어 분리로 화이트 박스 방지 */
+
+  /* flex-gap 미지원 Safari 폴백 */
+  @supports not (gap: 1rem) {
+    & > * {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+
   @media (max-width: 900px) {
     width: 90%;
     max-width: 60rem;
@@ -199,11 +205,12 @@ const NavWrapper = styled.div`
   }
   @media (max-width: 600px) {
     width: 90%;
-    height: 9rem;
+    height: 12rem;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
     gap: 0.6rem;
+    row-gap: 0.6rem; /* iOS에서 줄바꿈 간격 보정 */
     padding: 1.2rem 0 0 0;
     margin: 0 auto 2.2rem auto;
     background: transparent;
@@ -214,6 +221,13 @@ const NavWrapper = styled.div`
 `;
 
 const Tab = styled.button.attrs(() => ({}))`
+  appearance: none;
+  -webkit-appearance: none;
+  background-clip: padding-box;
+  background-color: transparent;
+
+  position: relative;
+  z-index: 1;
   display: flex;
   width: 15rem;
   height: 4.8rem;
@@ -223,41 +237,55 @@ const Tab = styled.button.attrs(() => ({}))`
   border-radius: 3.6rem;
   border: ${(props) =>
     props.$active
-      ? '0.0794rem solid var(--Glass, rgba(255, 255, 255, 0.2))'
-      : 'none'};
+      ? '0.08rem solid rgba(255,255,255,0.2)'
+      : '0.08rem solid rgba(255,255,255,0.08)'};
   background: ${(props) =>
-    props.$active ? 'rgba(255, 255, 255, 0.15)' : 'transparent'};
+    props.$active ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.08)'};
   color: #fff;
   font-family: 'Pretendard', sans-serif;
   font-size: 1.8rem;
   font-weight: 300;
   cursor: pointer;
   outline: none;
-  transition: all 0.18s cubic-bezier(0.4, 1.2, 0.6, 1);
+  transition:
+    transform 0.18s cubic-bezier(0.4, 1.2, 0.6, 1),
+    background 0.18s ease,
+    border-color 0.18s ease;
   white-space: nowrap;
   transform: ${(props) =>
-    props.$active ? 'translateY(-0.1rem)' : 'translateY(0)'};
-  -webkit-backdrop-filter: ${(props) =>
-    props.$active ? 'blur(15px)' : 'none'};
-  backdrop-filter: ${(props) => (props.$active ? 'blur(15px)' : 'none')};
+    props.$active ? 'translateY(-2px)' : 'translateY(0)'};
   padding: 1rem;
   margin: 0;
-  &:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-0.1rem);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+
+  /* 버튼에는 blur를 적용하지 않음: Safari 화이트 박스 방지 */
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+    &:active {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-4px);
+    }
   }
-  &:active {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-0.2rem);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-  }
+
   @media (max-width: 600px) {
     width: 10.5rem;
     height: 4.2rem;
     font-size: 1.1rem;
+    /* 모바일: 이전 레이아웃 느낌 복원 (비활성 투명, 활성만 강조) */
+    background: ${(props) =>
+      props.$active ? 'rgba(255,255,255,0.15)' : 'transparent'};
+    border: ${(props) =>
+      props.$active
+        ? '0.08rem solid rgba(255,255,255,0.2)'
+        : '0.08rem solid transparent'};
   }
 `;
 
@@ -372,7 +400,7 @@ const InfoCol = styled.div`
     text-align: left;
     width: 100%;
     max-width: 100%;
-    height: 33rem;
+    height: auto; /* 콘텐츠 기반 높이 */
     padding-left: 3rem;
     padding-right: 3rem;
   }
@@ -483,7 +511,7 @@ const Session = () => {
       <main style={{ position: 'relative', zIndex: 1 }}>
         <SessionTitle>
           {session.title.includes(':')
-            ? session.title.replace(':', ':\n')
+            ? session.title.replace(':', ':')
             : session.title}
         </SessionTitle>
         <InfoRow>
