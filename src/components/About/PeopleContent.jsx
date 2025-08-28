@@ -45,7 +45,7 @@ const PeopleContent = () => {
             <ContentCell>
               <Strong>팀장</Strong> 천사은
               <br />
-              김태희 문서영 원예슬 윤난경 임윤상 하연서
+              김태희 문서영 원예솔 윤난경 임윤상 하연서
             </ContentCell>
           </TableRow>
           <TableRow>
