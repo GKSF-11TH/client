@@ -216,6 +216,7 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
+
   
   
     const handleMouseEnter = () => {
@@ -258,6 +259,7 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
       cvs.style.display = 'block';
     };
     
+
 
   // 호버 해제 시: 캔버스만 숨김 (원본 이미지는 건드리지 않음)
   const handleMouseLeave = () => {

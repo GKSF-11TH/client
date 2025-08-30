@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import BackgroundImage from '../assets/images/booth-detail-gradient-bg.png';
+import BackgroundImage from '../assets/images/booth-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-detail-gradient-bg-mobile.png';
 
 const BoothData = [
@@ -32,15 +32,17 @@ const BoothDetail = () => {
       <Background />
       <Content>
         <Title>{BoothData[boothId - 1].title}</Title>
+        <BoothDescription>부스 소개</BoothDescription>
         <Description>{BoothData[boothId - 1].description}</Description>
-        <ImageGridBox>
+        {/* <ImageGridBox>
           {BoothData[boothId - 1].images.map((image, index) => (
             <ImageBox key={index} alt={`Booth ${boothId} Image ${index + 1}`} />
           ))}
           <SpareBox imageLen={BoothData[boothId - 1].images.length}>
             Global Korean Studies Forum
           </SpareBox>
-        </ImageGridBox>
+        </ImageGridBox> */}
+        <NoImagesFound>부스 이미지 업로드 예정</NoImagesFound>
       </Content>
     </Container>
   );
@@ -69,7 +71,7 @@ const Background = styled.div`
   height: 100%;
   background-image: url('${BackgroundImage}');
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
 
   @media (max-width: 768px) {
@@ -115,13 +117,27 @@ const Title = styled.h1`
   }
 `;
 
+const BoothDescription = styled.p`
+  color: var(--Text-Tertiary, #919191);
+  text-align: center;
+
+  /* Desktop/Body/16_R */
+  font-family: 'IBM Plex Mono';
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 2.24rem */
+  letter-spacing: 0.016rem;
+  margin-bottom: 1.2rem;
+`;
+
 const Description = styled.p`
   color: var(--text-secondary);
   text-align: center;
   font-family: 'SF Pro';
-  font-size: 2.4rem;
+  font-size: 1.6rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 125%; /* 2.4rem */
   letter-spacing: -0.024rem;
 
@@ -187,6 +203,32 @@ const SpareBox = styled.div`
     padding: 1.2rem 0 0 1.2rem;
     width: ${(props) => (2 - (props.imageLen % 2)) * 100}%;
     aspect-ratio: ${(props) => 2 - (props.imageLen % 2)} * 25/ 36;
+  }
+`;
+
+const NoImagesFound = styled.div`
+  width: 100%;
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-tertiary);
+  opacity: 0.7;
+  font-family: 'SF Pro';
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%; /* 2.4rem */
+  letter-spacing: -0.024rem;
+
+  margin-bottom: 9.3rem;
+  padding: 0 7.7rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+    line-height: 140%;
+    margin-bottom: 5rem;
+    padding: 0 2rem;
   }
 `;
 

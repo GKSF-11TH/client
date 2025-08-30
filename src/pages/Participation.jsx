@@ -4,11 +4,11 @@ import BackgroundImage from '../assets/images/booth-gradient-bg.png';
 import MobileBackgroundImage from '../assets/images/booth-gradient-bg-mobile.png';
 import Guestbook from '../components/Participation/Guestbook.jsx';
 import Preapply from '../components/Participation/Preapply.jsx';
-import Footer from '../components/common/Footer';
+
 import { GlassEffectWithBlurryBg } from '../style/common.js';
 
 const Background = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 0;
@@ -22,24 +22,28 @@ const Background = styled.div`
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
     background-position: center top;
-    height: 230rem;
+    height: 120rem;
   }
 `;
 
 const Container = styled.div`
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  height: 80rem;
   color: #fff;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    height: 85rem;
+  }
 `;
 
 const Header = styled.header`
   position: relative;
-  z-index: 1;
+  z-index: 11;
   padding-top: 14rem;
   text-align: center;
   flex-shrink: 0;
@@ -62,7 +66,7 @@ const Title = styled.h1`
   font-weight: 400;
   line-height: 100%;
   letter-spacing: -0.036rem;
-  padding-bottom: clamp(1.5rem, 3vh, 2.4rem);
+  padding-bottom: 3rem;
   @media (max-width: 900px) {
     font-size: 2.2rem;
   }
@@ -80,7 +84,6 @@ const Subtitle = styled.p`
   font-weight: 400;
   line-height: 140%;
   letter-spacing: 0.016rem;
-  padding-bottom: clamp(3rem, 8vh, 9rem);
   max-width: 80ch;
   margin: 0 auto;
   @media (max-width: 900px) {
@@ -99,14 +102,14 @@ const MainContent = styled.main`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: clamp(3.5rem, 4vh, 4rem) 1rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  padding-top: 13.5rem;
   @media (max-width: 600px) {
-    padding-top: 0.5rem;
+    padding-top: 1rem;
   }
 `;
 
@@ -114,17 +117,17 @@ const CardRow = styled.div`
   display: flex;
   justify-content: center;
   gap: 6rem;
-  margin-bottom: clamp(3rem, 8vh, 8rem);
+  margin-bottom: clamp(2rem, 4vh, 4rem);
   width: 100%;
   @media (max-width: 900px) {
     gap: 2.4rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
   }
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: center;
     gap: 4.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -138,11 +141,10 @@ const Card = styled(GlassEffectWithBlurryBg)`
   justify-content: flex-start;
   position: relative;
   border-radius: 1.8rem !important;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(36, 35, 35, 0.05);
   cursor: pointer;
-  transition:
-    box-shadow 0.2s,
-    border-color 0.2s;
+  overflow: hidden;
+  transition: all 0.3s ease;
 
   &::before {
     border-radius: 1.8rem !important;
@@ -150,8 +152,14 @@ const Card = styled(GlassEffectWithBlurryBg)`
 
   &::after {
     border-radius: 1.8rem !important;
-    background: rgba(255, 255, 255, 0.05);
   }
+
+  &:hover {
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(calc(var(--Glass-L, 30px) / 2));
+  }
+
   @media (max-width: 600px) {
     width: 70vw;
     height: 20rem;
@@ -207,14 +215,6 @@ const CardAction = styled.div`
   }
 `;
 
-const BottomSpace = styled.div`
-  height: clamp(4rem, 8vh, 12rem);
-  flex-shrink: 0;
-  @media (max-width: 600px) {
-    height: 4.8rem;
-  }
-`;
-
 const Participation = () => {
   const [showGuestbook, setShowGuestbook] = useState(false);
   const [showPreapply, setShowPreapply] = useState(false);
@@ -232,18 +232,17 @@ const Participation = () => {
         <CardRow>
           <Card onClick={() => setShowPreapply(true)}>
             <CardTitle>Pre-Apply</CardTitle>
-            <CardAction>사전신청하기</CardAction>
+            <CardAction>사전 신청</CardAction>
           </Card>
           <Card onClick={() => setShowGuestbook(true)}>
             <CardTitle>Guestbook</CardTitle>
-            <CardAction>방명록 작성하기</CardAction>
+            <CardAction>방명록 작성</CardAction>
           </Card>
         </CardRow>
       </MainContent>
-      <BottomSpace />
+
       {showGuestbook && <Guestbook onClose={() => setShowGuestbook(false)} />}
       {showPreapply && <Preapply onClose={() => setShowPreapply(false)} />}
-      <Footer />
     </Container>
   );
 };

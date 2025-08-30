@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import preapplyModalImage from '../../assets/images/PreapplyModal.png';
 
 const Overlay = styled.div`
   position: fixed;
@@ -41,8 +43,8 @@ const Modal = styled.div`
   @media (max-width: 600px) {
     display: flex !important;
     width: 30rem !important;
-    height: 50rem !important;
-    padding: 3.2rem !important;
+    height: 51rem !important;
+    padding: 5.2rem 1rem 0rem 1rem;
     flex-direction: column !important;
     align-items: center !important;
     gap: 1rem !important;
@@ -55,7 +57,7 @@ const Modal = styled.div`
   /* 세션 선택 단계일 때 모바일에서 높이 증가 */
   @media (max-width: 600px) {
     &.session-step {
-      height: 65rem !important;
+      height: 64rem !important;
     }
   }
 `;
@@ -80,7 +82,7 @@ const CloseBtn = styled.button`
 const Title = styled.h2`
   text-align: center;
   font-size: 2rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 3.6rem;
   letter-spacing: 0.04em;
@@ -97,15 +99,15 @@ const Section = styled.div`
 
 const Label = styled.label`
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   margin-bottom: 2rem;
-  color: #919191;
+  color: #fff;
   display: block;
 
   @media (max-width: 600px) {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    margin-bottom: 1.6rem;
   }
 `;
 
@@ -121,11 +123,11 @@ const Input = styled.input`
   margin-bottom: 0.4rem;
   outline: none;
   box-shadow: none;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   &::placeholder {
     color: #bbb;
     font-size: 1.4rem;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono';
   }
   &:focus {
     border-image: linear-gradient(90deg, #3a7bd5, #10d48d) 1;
@@ -135,10 +137,10 @@ const Input = styled.input`
   }
 
   @media (max-width: 600px) {
-    font-size: 1.2rem;
-    padding: 1.2rem 0;
+    font-size: 1rem;
+    padding: 1rem 0;
     &::placeholder {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
   }
 `;
@@ -151,14 +153,14 @@ const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   margin-bottom: 0.8rem;
   cursor: pointer;
   color: #919191;
 
   @media (max-width: 600px) {
-    font-size: 1.2rem;
-    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -167,6 +169,11 @@ const Checkbox = styled.input`
   accent-color: #000000;
   width: 1.8rem;
   height: 1.8rem;
+
+  @media (max-width: 600px) {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
 `;
 
 const SessionDesc = styled.div`
@@ -174,13 +181,18 @@ const SessionDesc = styled.div`
   margin-top: 0.4rem;
   color: #aaa;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   line-height: 1.4;
 
   @media (min-width: 601px) {
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    margin-left: 2rem;
   }
 `;
 
@@ -202,7 +214,7 @@ const Button = styled.button`
   border-radius: 1rem;
   padding: 1.2rem 3.2rem;
   font-size: 1.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono';
   cursor: pointer;
   width: 16rem;
   transition:
@@ -217,9 +229,27 @@ const Button = styled.button`
   }
   @media (max-width: 600px) {
     padding: 0.8rem 1.6rem;
-    font-size: 1.2rem;
-    width: 10rem;
+    font-size: 1rem;
+    width: 9rem;
   }
+`;
+
+const SuccessButton = styled.button`
+  border-radius: var(--Radius-S, 8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--Background-Tertiary, rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(33.70908737182617px);
+  display: flex;
+  width: 166px;
+  padding: 12px 23px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-family: 'IBM Plex Mono';
+  cursor: pointer;
+  font-size: 1.4rem;
 `;
 
 const SuccessOverlay = styled(Overlay)`
@@ -227,11 +257,14 @@ const SuccessOverlay = styled(Overlay)`
 `;
 
 const SuccessModal = styled.div`
-  background: linear-gradient(135deg, #2e3c5d 0%, #3a7bd5 100%);
+  background: url(${preapplyModalImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 1.8rem;
   max-width: 40rem;
   width: 90vw;
-  padding: 4.8rem 3.2rem 3.2rem 3.2rem;
+  height: 30rem;
   box-sizing: border-box;
   color: #fff;
   text-align: center;
@@ -239,6 +272,8 @@ const SuccessModal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 4rem;
   font-family: 'SF Pro', 'Syncopate', sans-serif;
 `;
 
@@ -248,7 +283,7 @@ const CheckIcon = styled.div`
 `;
 
 const SuccessTitle = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-family: 'Syncopate', 'SF Pro', sans-serif;
   font-weight: 400;
   margin-bottom: 1.2rem;
@@ -261,6 +296,7 @@ const SuccessDesc = styled.div`
 `;
 
 const Preapply = ({ onClose }) => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({
     name: '',
@@ -280,18 +316,13 @@ const Preapply = ({ onClose }) => {
       items: [
         {
           key: 'A',
-          label: '세션 A 11:00 - 12:30',
-          desc: '지방소멸 극복; 지역사회 활성화와 연대로 살아나는 마을'
+          label: '세션 A 18:20 - 19:30',
+          desc: '생각은 AI가 하고, 나는 멈췄다?: AI리터러시 교육이 필요한 지금'
         },
         {
           key: 'B',
-          label: '세션 B 11:00 - 12:30',
-          desc: '지방소멸 극복; 지역사회 활성화와 연대로 살아나는 마을'
-        },
-        {
-          key: 'C',
-          label: '세션 C 11:00 - 12:30',
-          desc: '지방소멸 극복; 지역사회 활성화와 연대로 살아나는 마을'
+          label: '세션 B 19:50 - 20:50',
+          desc: '스포츠 산업, AI라는 코치를 만나다'
         }
       ]
     },
@@ -299,14 +330,19 @@ const Preapply = ({ onClose }) => {
       date: '9월 13일 토요일',
       items: [
         {
+          key: 'C',
+          label: '세션 C 11:10 - 12:30',
+          desc: 'AI와 청년 일자리: 함께 가는 법을 묻다'
+        },
+        {
           key: 'D',
-          label: '세션 D 11:00 - 12:30',
-          desc: '지방소멸 극복; 지역사회 활성화와 연대로 살아나는 마을'
+          label: '세션 D 12:50 - 14:20',
+          desc: 'AI와 교육: 새로운 시대의 문을 열다'
         },
         {
           key: 'E',
-          label: '세션 E 11:00 - 12:30',
-          desc: '지방소멸 극복; 지역사회 활성화와 연대로 살아나는 마을'
+          label: '세션 E 14:40 - 16:10',
+          desc: '인공지능이 그려 갈 K-POP의 새로운 무대'
         }
       ]
     }
@@ -326,6 +362,26 @@ const Preapply = ({ onClose }) => {
   };
 
   const handleNext = () => {
+    // 모든 필수 필드가 채워져 있는지 확인
+    if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) {
+      alert('모든 필수 항목을 입력해주세요.');
+      return;
+    }
+
+    // 이메일 형식 검증
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      alert('올바른 이메일 형식을 입력해주세요.');
+      return;
+    }
+
+    // 전화번호 형식 검증 (숫자만)
+    const phoneRegex = /^[0-9-+\s()]+$/;
+    if (!phoneRegex.test(form.phone)) {
+      alert('올바른 전화번호 형식을 입력해주세요.');
+      return;
+    }
+
     setStep(2);
   };
 
@@ -335,6 +391,19 @@ const Preapply = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 모든 필수 필드가 채워져 있는지 재확인
+    if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) {
+      alert('모든 필수 항목을 입력해주세요.');
+      return;
+    }
+
+    // 세션 선택이 되어 있는지 확인
+    if (form.sessions.length === 0) {
+      alert('최소 하나의 세션을 선택해주세요.');
+      return;
+    }
+
     setLoading(true);
     try {
       await axios.post('https://api.gksf11.com/preapply/', form);
@@ -347,8 +416,10 @@ const Preapply = ({ onClose }) => {
   };
 
   const handleSuccessClose = () => {
+    console.log('홈으로 이동하기 버튼 클릭됨');
     setShowSuccess(false);
-    if (onClose) onClose();
+    // window.location.href를 사용해서 강제로 홈으로 이동
+    window.location.href = '/';
   };
 
   return (
@@ -411,15 +482,21 @@ const Preapply = ({ onClose }) => {
             {step === 2 && (
               <>
                 <Section>
-                  <Label>4. 참가 희망 세션을 선택해주세요</Label>
+                  <Label>4. 참가 희망 세션을 선택해주세요 *</Label>
                   {sessionOptions.map((group) => (
-                    <div key={group.date} style={{ marginBottom: '18px' }}>
+                    <div
+                      key={group.date}
+                      style={{
+                        marginBottom: window.innerWidth <= 600 ? '12px' : '18px'
+                      }}
+                    >
                       <div
                         style={{
                           fontWeight: 400,
                           marginBottom: '8px',
-                          fontFamily: "'IBM Plex Mono', monospace",
-                          fontSize: '14px'
+                          fontFamily: "'IBM Plex Mono'",
+                          fontSize: window.innerWidth <= 600 ? '12px' : '14px',
+                          color: '#fff'
                         }}
                       >
                         {group.date}
@@ -434,7 +511,13 @@ const Preapply = ({ onClose }) => {
                       />
                       <CheckboxGroup>
                         {group.items.map((item) => (
-                          <div key={item.key} style={{ marginBottom: '16px' }}>
+                          <div
+                            key={item.key}
+                            style={{
+                              marginBottom:
+                                window.innerWidth <= 600 ? '12px' : '16px'
+                            }}
+                          >
                             <CheckboxLabel>
                               <Checkbox
                                 type="checkbox"
@@ -444,7 +527,8 @@ const Preapply = ({ onClose }) => {
                               <span
                                 style={{
                                   fontWeight: 400,
-                                  fontFamily: "'IBM Plex Mono', monospace"
+                                  fontFamily: "'IBM Plex Mono'",
+                                  color: '#fff'
                                 }}
                               >
                                 {item.label}
@@ -473,10 +557,9 @@ const Preapply = ({ onClose }) => {
       {showSuccess && (
         <SuccessOverlay>
           <SuccessModal>
-            <CheckIcon>✓</CheckIcon>
-            <SuccessTitle>신청이 완료되었습니다</SuccessTitle>
-            <SuccessDesc>포럼 소개 홈페이지를 더 둘러볼까요?</SuccessDesc>
-            <Button onClick={handleSuccessClose}>홈으로 이동하기</Button>
+            <SuccessButton onClick={handleSuccessClose}>
+              홈으로 이동하기
+            </SuccessButton>
           </SuccessModal>
         </SuccessOverlay>
       )}

@@ -11,26 +11,28 @@ const CardText = [
     content:
       '기술 발전에 대한 두려움보다 더 나은 삶을 향한 가능성에 주목하며, 예술/의료/교육 분야의 문제를 AI와의 융합으로 어떻게 풀어갈 수 있을지 살펴봅니다.',
     title: 'UTOPIA',
-    link: '/boothDetail/1'
+    link: '/boothDetail/1',
+    color: '#5419EA'
   },
   {
     type: 'BOOTH B',
     content:
       'AI가 불러올 잠재적 위협과 그 본질을 직시하고 한국 사회가 나아가야 할 방향을 모색합니다.',
     title: 'DISTOPIA',
-    link: '/boothDetail/2'
+    link: '/boothDetail/2',
+    color: '#226ADF'
   },
   {
     type: 'BOOTH C',
     content:
       'AI 시대의 현실 속에서 인간다움과 주체성을 지킬 방법을 고민하며, 인간성에 대한 질문을 스스로 던져볼 수 있는 자리를 마련합니다.',
     title: 'REALITY',
-    link: '/boothDetail/3'
+    link: '/boothDetail/3',
+    color: '#10D48D'
   }
 ];
 
 const Booth = () => {
-  const navigate = useNavigate();
   return (
     <Container>
       <Background />
@@ -38,11 +40,7 @@ const Booth = () => {
         <Title>BOOTH</Title>
         <CardWrapper>
           {CardText.map((card, index) => (
-            <BoothCard
-              key={index}
-              {...card}
-              onClick={() => navigate(card.link)}
-            />
+            <BoothCard key={index} {...card} />
           ))}
         </CardWrapper>
       </Content>
@@ -76,7 +74,6 @@ const Background = styled.div`
 
   @media (max-width: 768px) {
     background-image: url('${MobileBackgroundImage}');
-    background-position: center top;
     height: 230rem;
   }
 `;
@@ -101,13 +98,13 @@ const Content = styled.div`
 const Title = styled.h1`
   color: var(--text-primary);
   text-align: center;
-  -webkit-text-stroke-width: 0.04rem;
+  -webkit-text-stroke-width: 0.4px;
   -webkit-text-stroke-color: var(--text-primary);
   font-family: Syncopate;
   font-size: 3.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 100%;
+  line-height: 100%; /* 3.6rem */
   letter-spacing: -0.036rem;
 
   @media (max-width: 768px) {
@@ -117,7 +114,6 @@ const Title = styled.h1`
 `;
 
 const CardWrapper = styled.div`
-  cursor: pointer;
   width: 100%;
   padding: 0.9rem 0;
   display: flex;

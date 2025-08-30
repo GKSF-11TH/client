@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GlassEffectWithSolidBg } from '../../style/common';
+import { useNavigate } from 'react-router-dom';
 
-const BoothCard = ({ type, content, title }) => {
+const BoothCard = ({ type, content, title, link, color }) => {
+  const navigate = useNavigate();
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
   return (
-    <Container>
+    <Container
+      onMouseMove={handleMouseMove}
+      style={{
+        '--mouse-x': `${pos.x}px`,
+        '--mouse-y': `${pos.y}px`
+      }}
+      $color={color}
+      onClick={() => navigate(link)}
+    >
       <div>
         <TabWrapper>
           <Tab>{type}</Tab>
@@ -17,17 +36,41 @@ const BoothCard = ({ type, content, title }) => {
 };
 
 const Container = styled(GlassEffectWithSolidBg)`
+  flex-shrink: 0;
+  cursor: pointer;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+
   &::after {
     border-radius: 50px;
     background: var(--Background-Glass, rgba(16, 16, 16, 0.4));
+    transition:
+      background 0.5s ease,
+      /* filter 1s ease, */ opacity 0.5s ease;
+
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(
+      circle 120px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      ${({ $color }) => $color} 0%,
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(40px);
   }
+
   display: flex;
   flex-direction: column;
-  /* width: 24.3rem; */
-  /* height: 31.1rem; */
   padding: 1.53rem 1.74rem 2.6rem 1.74rem;
   justify-content: space-between;
   border-radius: 1.6212rem;
+  overflow: hidden;
+
   &::after,
   &::before {
     border-radius: 1.6212rem;
@@ -37,6 +80,13 @@ const Container = styled(GlassEffectWithSolidBg)`
     display: flex;
     flex-direction: column;
     gap: 2.55rem;
+  }
+
+  &:hover {
+    transform: scale(1.2);
+  }
+  &:hover::after {
+    opacity: 1;
   }
 `;
 

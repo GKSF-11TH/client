@@ -15,7 +15,7 @@ const FooterContainer = styled.footer`
   position: relative;
   z-index: 1;
   @media (max-width: 900px) {
-    padding: 30px 0 190px 0;
+    padding: 30px 0 8px 0;
   }
 `;
 
@@ -187,11 +187,9 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const handleClick = (path) => {
-    console.log('Footer link clicked:', path);
     try {
       navigate(path);
     } catch (error) {
-      console.log('Navigation failed, using window.location.href');
       window.location.href = path;
     }
   };
