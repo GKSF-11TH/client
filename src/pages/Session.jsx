@@ -403,6 +403,8 @@ const InfoCol = styled.div`
     height: auto; /* 콘텐츠 기반 높이 */
     padding-left: 3rem;
     padding-right: 3rem;
+    justify-content: flex-start;
+    gap: 2.4rem;
   }
 `;
 
