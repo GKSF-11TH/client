@@ -5,7 +5,7 @@ import gksf11_Logo from '../../assets/images/_GKSF11_로고.png';
 import gksf10_Logo from '../../assets/images/10th.png';
 import gksf9_Logo from '../../assets/images/9th.png';
 import gksf8_Logo from '../../assets/images/8th.png';
-import gksf7_Logo from '../../assets/images/7th.png';
+import gksf7_Logo from '../../assets/images/7th.jpg';
 import gksf6_Logo from '../../assets/images/6th.png';
 import gksf5_Logo from '../../assets/images/5th.png';
 import gksf4_Logo from '../../assets/images/4th.jpg';
@@ -217,49 +217,49 @@ const ArchiveItem = ({ edition, hasLogo = false, isMobile = false }) => {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  
-  
-    const handleMouseEnter = () => {
-      if (!ready) return;
-    
-      const cvs = canvasRef.current;
-      const ctx = cvs.getContext('2d');
-      const img = logoRef.current;
-      const rect = rectRef.current;
-      if (!cvs || !ctx || !img || !rect) return;
-    
-      const { dx, dy, dw, dh } = rect;
-    
-  
-      const pixelSize = 24;
-    
-      const lowW = Math.max(1, Math.floor(dw / pixelSize));
-      const lowH = Math.max(1, Math.floor(dh / pixelSize));
-    
-      const tmp = document.createElement('canvas');
-      tmp.width = lowW;
-      tmp.height = lowH;
-    
-      const tctx = tmp.getContext('2d', { willReadFrequently: true });
+  const handleMouseEnter = () => {
+    if (!ready) return;
 
-      tctx.imageSmoothingEnabled = false;
-      tctx.clearRect(0, 0, lowW, lowH);
-    
+    const cvs = canvasRef.current;
+    const ctx = cvs.getContext('2d');
+    const img = logoRef.current;
+    const rect = rectRef.current;
+    if (!cvs || !ctx || !img || !rect) return;
 
-      tctx.drawImage(
-        img,
-        0, 0, img.naturalWidth, img.naturalHeight,
-        0, 0, lowW, lowH
-      );
-    
-      ctx.clearRect(0, 0, cvs.width, cvs.height);
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(tmp, 0, 0, lowW, lowH, dx, dy, dw, dh);
-    
-      cvs.style.display = 'block';
-    };
-    
+    const { dx, dy, dw, dh } = rect;
 
+    const pixelSize = 24;
+
+    const lowW = Math.max(1, Math.floor(dw / pixelSize));
+    const lowH = Math.max(1, Math.floor(dh / pixelSize));
+
+    const tmp = document.createElement('canvas');
+    tmp.width = lowW;
+    tmp.height = lowH;
+
+    const tctx = tmp.getContext('2d', { willReadFrequently: true });
+
+    tctx.imageSmoothingEnabled = false;
+    tctx.clearRect(0, 0, lowW, lowH);
+
+    tctx.drawImage(
+      img,
+      0,
+      0,
+      img.naturalWidth,
+      img.naturalHeight,
+      0,
+      0,
+      lowW,
+      lowH
+    );
+
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(tmp, 0, 0, lowW, lowH, dx, dy, dw, dh);
+
+    cvs.style.display = 'block';
+  };
 
   // 호버 해제 시: 캔버스만 숨김 (원본 이미지는 건드리지 않음)
   const handleMouseLeave = () => {
