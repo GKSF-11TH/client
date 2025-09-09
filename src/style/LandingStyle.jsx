@@ -406,19 +406,14 @@ export const IntroVideoSubtitle = styled.p`
   }
 `;
 
-export const VideoBox = styled.h1`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.875rem;
-  font-family: 'SF Pro', sans-serif;
-  font-weight: 400;
-  color: var(--text-primary);
-  text-align: center;
+export const VideoBox = styled.div`
+  position: relative;
+  width: 91%;
+  margin: 0 auto;
 
   @media (max-width: 768px) {
-    font-size: 1.3rem;
+    max-width: 100%;
+    padding: 0 1rem;
   }
 `;
 
