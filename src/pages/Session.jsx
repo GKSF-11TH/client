@@ -55,7 +55,7 @@ const sessions = [
   },
   {
     id: 4,
-    title: 'AI와 교육: 혁신과 불평등의 경계에서',
+    title: 'AI와 교육, 새로운 시대의 문을 열다',
     time: '14:45 - 15:45',
     place: 'Main Hall',
     tags: ['AI', '교육', '격차'],
@@ -403,6 +403,8 @@ const InfoCol = styled.div`
     height: auto; /* 콘텐츠 기반 높이 */
     padding-left: 3rem;
     padding-right: 3rem;
+    justify-content: flex-start;
+    gap: 2.4rem;
   }
 `;
 
