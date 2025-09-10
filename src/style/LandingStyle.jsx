@@ -487,7 +487,7 @@ export const BoothAndSessionWrapper = styled.div`
   justify-content: flex-start;
   position: relative;
   overflow: hidden;
-  padding: 0 0 2rem 0;
+  padding: 4rem 0 2rem 0;
   z-index: 400;
 `;
 
@@ -829,7 +829,6 @@ export const InfoAnchorArea = styled.div`
 `;
 
 export const InfoAnchorCard = styled.div`
-
   min-height: 20rem;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.015);
