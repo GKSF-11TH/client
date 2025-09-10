@@ -487,7 +487,7 @@ export const BoothAndSessionWrapper = styled.div`
   justify-content: flex-start;
   position: relative;
   overflow: hidden;
-  padding: 4rem 0 2rem 0;
+  padding: 0 0 2rem 0;
   z-index: 400;
 `;
 
