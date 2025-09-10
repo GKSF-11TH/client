@@ -44,7 +44,7 @@ const Modal = styled.div`
     display: flex !important;
     width: 30rem !important;
     height: 51rem !important;
-    padding: 5.2rem 1rem 0rem 1rem;
+    padding: 5rem 1rem 0rem 1rem;
     flex-direction: column !important;
     align-items: center !important;
     gap: 1rem !important;
